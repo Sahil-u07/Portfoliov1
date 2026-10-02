@@ -4,7 +4,7 @@
 export const profile = {
   name: 'Sahil Lenka',
   tagline: 'B.Tech CSE (AIML) · Manipal University Jaipur · Class of 2028',
-  intro: "I build web products people actually use, write open-source code that maintainers merge, and make AI that knows when to say “I don't know”.",
+  intro: "I build full-stack web products people actually use, contribute to open source, and make AI that knows when to say “I don't know”.",
   email: 'sahillenka44@gmail.com',
   github: 'https://github.com/Sahil-u07',
   linkedin: 'https://www.linkedin.com/in/sahil-lenka-3608a2311',
@@ -12,20 +12,20 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "I'm Sahil, a computer science student at Manipal University Jaipur, specialising in AI and machine learning. I've learned the most by shipping: two internships building real products, and a steady run of pull requests to open-source projects where maintainers review every line.",
-    'My biggest open-source piece is a security scanner for Beehive that maps every API auth check and flags the endpoints that have none. It surfaced six real vulnerabilities. I also built a DICOM routing engine for Diomede and have merged work in Concore and GNU Radio.',
+    "I'm Sahil, a computer science student at Manipal University Jaipur, specialising in AI and machine learning. I've learned the most by shipping: two internships, team projects that are live in production, and contributions to open-source projects.",
+    "At IOTA Studio AI I built the company's website end to end with React, Node.js and a REST API. At Sundarone I integrated Razorpay payments into a hostel-booking site, which helped bookings rise by 15%.",
     "On my own I built EvidenceRAG, a document Q&A system that won't answer unless it can back the answer with evidence. Check before you claim: that idea runs through most of what I build.",
   ],
   facts: [
     { label: 'Studying', value: 'B.Tech CSE (AIML), Manipal University Jaipur, class of 2028' },
     { label: 'Worked at', value: 'IOTA Studio AI and Sundarone, as an intern' },
-    { label: 'Open source', value: 'Beehive, Diomede, Concore and GNU Radio' },
+    { label: 'Stack', value: 'React, Node.js, Python, FastAPI and MongoDB' },
     { label: 'Focus', value: 'Full-stack web, security tooling and retrieval systems' },
   ],
 };
 
 export const stats = [
-  { value: 6, label: 'real vulnerabilities my scanner caught in Beehive' },
+  { value: 15, suffix: '%', label: 'more bookings after my Razorpay integration at Sundarone' },
   { value: 30, suffix: '+', label: 'pull requests across four open-source projects' },
   { text: 'Top 35', label: 'out of 10,000+ teams at HackRx 6.0' },
   { value: 97, label: 'backend tests keeping EvidenceRAG honest' },
