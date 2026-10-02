@@ -22,6 +22,8 @@ try {
     // The name decodes from scrambled letters, so check the accessible name, then the settled text.
     await page.getByRole('heading', { level: 1, name: 'Sahil Lenka' }).waitFor();
     await page.waitForFunction(() => document.querySelector('h1').textContent === 'Sahil Lenka');
+    // The hero must be fully at rest at the top: any leftover scroll transform blurs its text.
+    assert.ok(['none', 'matrix(1, 0, 0, 1, 0, 0)'].includes(await page.$eval('.hero-inner', e => getComputedStyle(e).transform)), `${name}: hero is transformed at the top`);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     assert.ok(overflow <= 0, `${name}: horizontal scroll of ${overflow}px`);
 

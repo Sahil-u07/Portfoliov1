@@ -88,8 +88,13 @@ code, pre, kbd { font-family: var(--mono); }
 /* Scroll-linked motion: progress follows the scrollbar, so scrolling back plays it in reverse.
    Inside @supports so browsers without scroll timelines show everything static instead of the end state. */
 @supports (animation-timeline: view()) {
-  /* The hero tips backward and fades as it leaves the top of the screen */
-  .hero-inner { transform-origin: 50% 100%; animation: hero-out linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+  /* The hero tips backward and fades as its top scrolls past the top of the screen. view() would inset the
+     range by the 80px scroll-padding, so the hero loaded slightly transformed and its text blurred; the 0px
+     inset keeps it exactly at rest until scrolling starts.
+     Wide screens only: on phones the hero is taller than the screen and holds the interactive canvas. */
+  @media (min-width: 901px) {
+    .hero-inner { transform-origin: 50% 100%; animation: hero-out linear both; animation-timeline: view(block 0px); animation-range: exit-crossing 0% exit-crossing 100%; }
+  }
   /* Headings stand up from lying flat as they enter */
   main h2 { transform-origin: 50% 100%; animation: stand-up linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
 }
