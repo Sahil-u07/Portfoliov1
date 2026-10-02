@@ -78,10 +78,10 @@ code, pre, kbd { font-family: var(--mono); }
 .zoom-tile { display: grid; place-items: center; width: 96px; aspect-ratio: 1; border-radius: 26px; background: var(--accent); color: var(--on-accent); font: 700 34px var(--mono);
   animation: zoom linear both; animation-timeline: --zoom; animation-range: entry 40% contain 100%; }
 @keyframes zoom {
-  0% { transform: scale(0.5) rotate(-12deg); opacity: 0; }
-  30% { transform: scale(1) rotate(0); opacity: 1; }
+  0% { transform: perspective(700px) rotateY(-80deg) rotateX(35deg) scale(0.5); opacity: 0; }
+  30% { transform: perspective(700px) rotateY(0) rotateX(0) scale(1); opacity: 1; }
   85% { opacity: 1; }
-  100% { transform: scale(24); opacity: 0; }
+  100% { transform: perspective(700px) rotateY(0) rotateX(0) scale(24); opacity: 0; }
 }
 @supports not (animation-timeline: view()) { .zoom { display: none; } }
 
