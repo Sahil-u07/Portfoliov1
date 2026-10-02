@@ -1,6 +1,7 @@
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
+import EvidenceRag from './components/EvidenceRag';
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <main id="main">
         <Hero />
         <Stats />
+        <EvidenceRag />
       </main>
     </>
   );
