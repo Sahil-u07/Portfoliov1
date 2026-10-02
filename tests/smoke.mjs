@@ -79,6 +79,13 @@ try {
     await page.keyboard.press('Enter');
     await page.waitForFunction(() => !document.querySelector('.palette').open && location.hash === '#contact');
 
+    // Wheel scrolling glides to its target instead of jumping, but still gets there.
+    await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+    await page.mouse.move(viewport.width / 2, viewport.height / 2);
+    await page.mouse.wheel(0, 400);
+    assert.ok(await page.evaluate(() => scrollY) < 400, `${name}: wheel scroll jumped instead of gliding`);
+    await page.waitForFunction(() => Math.abs(scrollY - 400) < 1);
+
     if (shots) {
       await page.goto(url);
       await page.waitForTimeout(1200);
