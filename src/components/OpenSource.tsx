@@ -12,7 +12,7 @@ export default function OpenSource() {
       <div className="os-intro">
         <div>
           <p className="kicker">Open source</p>
-          <h2>Code that passed <em>someone else's</em> review</h2>
+          <h2>My open-source <em>work</em></h2>
         </div>
         <Terminal />
       </div>

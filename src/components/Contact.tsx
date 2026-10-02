@@ -23,8 +23,8 @@ export default function Contact() {
     <section className="wrap section contact" id="contact">
       <div className="contact-card">
         <p className="kicker">Contact</p>
-        <h2>Let's build <em>something</em>.</h2>
-        <p>I'm open to internships, open-source collaborations and interesting problems. Email is the quickest way to reach me.</p>
+        <h2>Say <em>hi</em></h2>
+        <p>I'm looking for internships, and I'm always happy to talk about open source or anything I've built here. Email is the quickest way to reach me.</p>
         <div className="cta-row">
           <button className="btn primary" type="button" onClick={copy}>
             <Icon name={copied ? 'check' : 'copy'} /> <span aria-live="polite">{copied ? 'Copied to clipboard' : profile.email}</span>

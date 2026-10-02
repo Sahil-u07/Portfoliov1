@@ -33,7 +33,7 @@ export default function App() {
       </main>
       <footer className="wrap footer">
         <span>{profile.name}</span>
-        <span>Built with React and Vite. No UI or animation libraries.</span>
+        <span>Made with React and Vite.</span>
       </footer>
     </>
   );

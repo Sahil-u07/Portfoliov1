@@ -28,7 +28,7 @@ export default function Benchmark() {
           </div>
         ))}
       </div>
-      <p className="note">20-question controlled benchmark. Differences of a few points are within noise, so it works as a regression harness rather than a leaderboard.</p>
+      <p className="note">It's only 20 questions, so a difference of a few points is basically noise. I use it to catch regressions, not to crown a winner.</p>
     </div>
   );
 }

@@ -7,7 +7,7 @@ export default function About() {
   return (
     <section className="wrap section" id="about">
       <p className="kicker">Introduction</p>
-      <h2>A quick <em>overview</em></h2>
+      <h2>About <em>me</em></h2>
       <div className="about">
         <Reveal className="about-text">{about.paragraphs.map(p => <p key={p}>{p}</p>)}</Reveal>
         <Reveal as="dl" className="facts" style={{ '--i': 1 } as CSSProperties}>

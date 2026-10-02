@@ -4,7 +4,7 @@
 export const profile = {
   name: 'Sahil Lenka',
   tagline: 'B.Tech CSE (AIML) · Manipal University Jaipur · Class of 2028',
-  intro: "I build full-stack web products people actually use, contribute to open source, and make AI that knows when to say “I don't know”.",
+  intro: "I like building things people actually use. Most of my time goes into web apps, open-source projects, and an AI side project that only answers when it can show where the answer came from.",
   email: 'sahillenka44@gmail.com',
   github: 'https://github.com/Sahil-u07',
   linkedin: 'https://www.linkedin.com/in/sahil-lenka-3608a2311',
@@ -12,15 +12,15 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "I'm Sahil, a computer science student at Manipal University Jaipur, specialising in AI and machine learning. I've learned the most by shipping: two internships, team projects that are live in production, and contributions to open-source projects.",
-    "At IOTA Studio AI I built the company's website end to end with React, Node.js and a REST API. At Sundarone I integrated Razorpay payments into a hostel-booking site, which helped bookings rise by 15%.",
-    "On my own I built EvidenceRAG, a document Q&A system that won't answer unless it can back the answer with evidence. Check before you claim: that idea runs through most of what I build.",
+    "Hi, I'm Sahil. I'm doing my B.Tech in Computer Science (AI and ML) at Manipal University Jaipur. Most of what I know I picked up by building things: two internships, a team project that's live, and a lot of pull requests to open-source projects.",
+    "At IOTA Studio AI I built the company's website from start to finish with React, Node.js and a REST API. Before that, at Sundarone, I added Razorpay payments to their hostel-booking site, which helped push bookings up by 15%.",
+    "My favourite side project is EvidenceRAG. You give it your documents and ask questions, and it only answers if it can point to the exact passage that backs the answer up. If it can't, it just says it doesn't know.",
   ],
   facts: [
     { label: 'Studying', value: 'B.Tech CSE (AIML), Manipal University Jaipur, class of 2028' },
     { label: 'Worked at', value: 'IOTA Studio AI and Sundarone, as an intern' },
     { label: 'Stack', value: 'React, Node.js, Python, FastAPI and MongoDB' },
-    { label: 'Focus', value: 'Full-stack web, security tooling and retrieval systems' },
+    { label: 'Into', value: 'Web development, security tooling and search' },
   ],
 };
 
@@ -28,14 +28,14 @@ export const stats = [
   { value: 15, suffix: '%', label: 'more bookings after my Razorpay integration at Sundarone' },
   { value: 33, label: 'merged pull requests across four open-source projects' },
   { text: 'Top 35', label: 'out of 10,000+ teams at HackRx 6.0' },
-  { value: 97, label: 'backend tests keeping EvidenceRAG honest' },
+  { value: 97, label: 'backend tests in EvidenceRAG' },
 ];
 
 export const evidenceRag = {
   repo: 'https://github.com/Sahil-u07/evidencerag',
   motto: 'Retrieve evidence first. Generate from it. Verify before answering.',
   summary:
-    "A local-first document intelligence platform that answers questions from your own documents using hybrid retrieval, cross-encoder reranking, grounded generation, citation alignment and NLI-based verification, and abstains when the evidence isn't enough.",
+    "Ask questions about your own documents, fully offline. It searches them two ways (by meaning and by exact keywords), reranks what it finds, writes an answer using only those passages, and then checks every citation. If the evidence isn't good enough, it refuses instead of guessing.",
   tags: ['Python', 'FastAPI', 'React', 'TypeScript', 'Ollama', 'Sentence Transformers', 'SSE'],
   stages: [
     { name: 'Ingest & chunk', detail: 'Loads PDF, TXT or Markdown files and splits them into retrievable passages.' },
@@ -147,18 +147,18 @@ export const projects = [
     summary: "Ask a question about your own documents and get an answer you can check. It finds the evidence first, answers only from it, verifies every citation, and says so when the evidence isn't there.",
     highlights: ['Hybrid dense + BM25 retrieval with RRF', 'Cross-encoder reranking, MRR 1.000 on its benchmark', 'NLI verification, 97 backend tests'],
     tags: ['Python', 'FastAPI', 'React', 'Ollama'],
-    links: [{ label: 'Deep dive', href: '#evidencerag' }, { label: 'Source', href: 'https://github.com/Sahil-u07/evidencerag' }],
+    links: [{ label: 'How it works', href: '#evidencerag' }, { label: 'Source', href: 'https://github.com/Sahil-u07/evidencerag' }],
   },
   {
     name: 'This portfolio', kind: 'Personal project · Frontend',
-    summary: "The site you're reading. The 3D scene, scroll effects and smooth scrolling are all written by hand, with no UI, animation or 3D libraries.",
-    highlights: ['Drag-to-spin 3D scene on a plain canvas', 'Browser tests run on every pull request', 'Goes live on GitHub Pages with every merge'],
+    summary: "The site you're on right now. The 3D search sketch, the scroll effects and the smooth scrolling are built from scratch, without any UI, animation or 3D libraries.",
+    highlights: ['A 3D sketch you can drag around, on a plain canvas', 'Browser tests run on every pull request', 'Goes live on GitHub Pages with every merge'],
     tags: ['React', 'TypeScript', 'Vite', 'Canvas'],
     links: [{ label: 'Live', href: 'https://sahil-u07.github.io/Portfoliov1/' }, { label: 'Source', href: 'https://github.com/Sahil-u07/Portfoliov1' }],
   },
   {
     name: 'ProjectMUJToppers', kind: 'Live product · Full-stack',
-    summary: 'A platform that showcases university toppers, with sign-in, an admin dashboard and a student database. Built as a team with feature branches, and live in production.',
+    summary: "A site that showcases toppers at our university, with logins, an admin dashboard and a student database. We built it as a team using feature branches, and it's live.",
     highlights: ['Sign-in and an admin dashboard', 'Student database behind it', 'Live at mujtoppers.in'],
     tags: ['React.js', 'Node.js', 'MongoDB'],
     links: [{ label: 'Live', href: 'https://mujtoppers.in' }],
@@ -169,15 +169,15 @@ export const experience = [
   {
     when: 'Apr 2025 – Aug 2025 · Remote', role: 'Web Development Intern', org: 'IOTA Studio AI', sub: 'AIC MUJ incubated startup',
     points: [
-      "Built and shipped the company's official website end to end with React.js, Node.js and REST APIs. More than 10 of my production commits are in the main codebase.",
-      'Designed the API so the frontend and backend stay cleanly separated, with MongoDB and SQL behind it for content.',
+      "Built the company's website from start to finish with React.js, Node.js and REST APIs, and got more than 10 commits into their production codebase.",
+      'Set up the API so the frontend and backend stayed separate, with MongoDB and SQL storing the content.',
     ],
   },
   {
     when: 'Feb 2024 – May 2024', role: 'Software Development Intern', org: 'Sundarone Private Limited', sub: 'sundaronehostel.in',
     points: [
-      'Integrated Razorpay payments, which contributed to a 15% rise in bookings.',
-      'Led rounds of UX improvements that lifted user retention by 20%.',
+      'Added Razorpay payments to the booking flow, which helped bookings go up 15%.',
+      'Ran a few rounds of UX changes that improved user retention by 20%.',
     ],
   },
   {
@@ -195,9 +195,9 @@ export const skills: Record<string, string[]> = {
 };
 
 export const achievements = [
-  { title: 'HackRx 6.0 (Bajaj Finserv)', body: 'Top 35 out of 10,000+ teams in a national-level hackathon.' },
-  { title: 'Smart Delhi Ideathon', body: '3rd place in category at a government-backed tech innovation competition.' },
-  { title: '3× Hackathon Finalist', body: 'Reached the finals of three university-level and national hackathons.' },
+  { title: 'HackRx 6.0 (Bajaj Finserv)', body: 'Made the top 35 out of 10,000+ teams in this national hackathon.' },
+  { title: 'Smart Delhi Ideathon', body: 'Came 3rd in our category at this government-backed innovation contest.' },
+  { title: '3× Hackathon Finalist', body: 'Made it to the finals of three hackathons, at university and national level.' },
 ];
 
 export const sections = [
