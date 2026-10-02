@@ -13,6 +13,7 @@ import Contact from './components/Contact';
 export default function App() {
   return (
     <>
+      <div className="progress" aria-hidden="true" />
       <a className="skip" href="#main">Skip to content</a>
       <Nav><CommandMenu /></Nav>
       <main id="main">
