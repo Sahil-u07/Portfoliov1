@@ -1,7 +1,6 @@
 import { profile } from '../data';
 import DecodeText from './DecodeText';
 import Icon from './Icon';
-import RetrievalField from './RetrievalField';
 import './Hero.css';
 
 const [first, last] = profile.name.split(' ');
@@ -20,7 +19,6 @@ export default function Hero() {
             <a className="btn" href={`mailto:${profile.email}`}><Icon name="mail" /> Email</a>
           </div>
         </div>
-        <RetrievalField />
       </div>
     </section>
   );

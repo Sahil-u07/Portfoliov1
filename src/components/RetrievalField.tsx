@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { prefersReducedMotion, resetPointer, trackPointer } from '../hooks';
+import './RetrievalField.css';
 
 const K = 5, PER_TOPIC = 24, FLOOR = 1.25;
 type V = [number, number, number];
@@ -12,7 +13,7 @@ const TOPICS = [15, 160, 200, 265, 330].map((hue, i) => {
 const gauss = () => (Math.random() + Math.random() + Math.random() - 1.5) * 0.35; // cheap bell curve
 
 /**
- * Hero panel: a 3D "embedding space". Dots are passages grouped into topic
+ * A 3D "embedding space". Dots are passages grouped into topic
  * clusters, the ring is a query drifting between them, and its K nearest
  * passages (by 3D distance) light up with their rank, a sketch of EvidenceRAG's
  * dense retrieval. Drag to spin it; it keeps spinning with inertia.
@@ -136,9 +137,9 @@ export default function RetrievalField() {
 
   return (
     <figure className="field" onPointerMove={trackPointer} onPointerLeave={resetPointer}>
-      <div className="term-bar"><i /><i /><i /><span>3D embedding space · k = {K}</span></div>
+      <div className="term-bar"><i /><i /><i /><span>search, in 3D</span></div>
       <canvas ref={canvas} aria-hidden="true" />
-      <figcaption>A 3D sketch of the dense retrieval inside EvidenceRAG. Passages cluster by topic, the ring is a query, and its {K} nearest passages light up in rank order. Drag to spin it.</figcaption>
+      <figcaption>Drag to spin it.</figcaption>
     </figure>
   );
 }

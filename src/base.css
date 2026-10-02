@@ -59,7 +59,7 @@ code, pre, kbd { font-family: var(--mono); }
 .toggle-btn:hover { color: var(--fg); }
 .toggle-btn[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 
-/* Window chrome shared by the hero field and the terminal */
+/* Window chrome shared by the 3D search sketch and the terminal */
 .term-bar { display: flex; align-items: center; gap: 6px; padding: 12px 14px; border-bottom: 1px solid var(--border); }
 .term-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border-strong); }
 .term-bar span { margin-left: 8px; font: 12px var(--mono); color: var(--fg-muted); }

@@ -30,17 +30,19 @@ try {
     // Background ribbons are drawn.
     assert.ok(await page.locator('.ribbons').evaluate(c => c.getContext('2d').getImageData(0, 0, c.width, c.height).data.some((v, i) => i % 4 === 3 && v > 0)), `${name}: ribbons drew nothing`);
 
-    // Hero field: hovering it draws the query and its neighbours on the canvas.
+    // 3D search sketch: it only animates while on screen, so wait for it to draw the query's neighbours.
     const field = page.locator('.field canvas');
     await field.hover();
-    await page.waitForTimeout(200);
-    const lit = await field.evaluate(c => {
-      const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
-      let lime = 0;
-      for (let i = 0; i < d.length; i += 4) if (d[i] > 150 && d[i + 1] > 200 && d[i + 2] < 100) lime++;
-      return lime;
-    });
-    assert.ok(lit > 50, `${name}: retrieval field drew no highlighted neighbours`);
+    await field.evaluate(c => new Promise((resolve, reject) => {
+      const lit = () => {
+        const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
+        let lime = 0;
+        for (let i = 0; i < d.length; i += 4) if (d[i] > 150 && d[i + 1] > 200 && d[i + 2] < 100) lime++;
+        return lime > 50;
+      };
+      const t0 = performance.now();
+      (function poll() { lit() ? resolve() : performance.now() - t0 > 5000 ? reject(new Error('3D sketch drew no highlighted neighbours')) : requestAnimationFrame(poll); })();
+    }));
 
     // Dragging spins the field (exercises the drag handlers; any error fails the run).
     const fb = await field.boundingBox();
