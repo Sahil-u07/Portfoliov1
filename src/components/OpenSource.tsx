@@ -30,6 +30,16 @@ export default function OpenSource() {
               </div>
             )}
             {p.body.slice(1).map(b => <p key={b}>{b}</p>)}
+            <h4>Merged pull requests</h4>
+            <ol className="prs">
+              {p.prs.map(([ref, title]) => (
+                <li key={ref}>
+                  <a href={`${p.url}/${typeof ref === 'number' ? `pull/${ref}` : `commit/${ref}`}`} target="_blank" rel="noopener">
+                    <code>{typeof ref === 'number' ? `#${ref}` : ref}</code>{title}
+                  </a>
+                </li>
+              ))}
+            </ol>
             {p.tags && <ul className="tags">{p.tags.map(t => <li key={t}>{t}</li>)}</ul>}
             <a className="more" href={p.url} target="_blank" rel="noopener">Repository <Icon name="arrow" /></a>
           </Reveal>
