@@ -24,7 +24,7 @@ export default function Contact() {
       <div className="contact-card">
         <p className="kicker">Contact</p>
         <h2>Let's build <em>something</em>.</h2>
-        <p>Open to internships, open-source collaboration and interesting problems.</p>
+        <p>I'm open to internships, open-source collaborations and interesting problems. Email is the quickest way to reach me.</p>
         <div className="cta-row">
           <button className="btn primary" type="button" onClick={copy}>
             <Icon name={copied ? 'check' : 'copy'} /> <span aria-live="polite">{copied ? 'Copied to clipboard' : profile.email}</span>

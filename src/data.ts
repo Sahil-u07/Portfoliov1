@@ -4,7 +4,7 @@
 export const profile = {
   name: 'Sahil Lenka',
   tagline: 'B.Tech CSE (AIML) · Manipal University Jaipur · Class of 2028',
-  intro: 'I build full-stack products and contribute to open source, where my code ships under real maintainer review.',
+  intro: "I build web products people actually use, write open-source code that maintainers merge, and make AI that knows when to say “I don't know”.",
   email: 'sahillenka44@gmail.com',
   github: 'https://github.com/Sahil-u07',
   linkedin: 'https://www.linkedin.com/in/sahil-lenka-3608a2311',
@@ -25,10 +25,10 @@ export const about = {
 };
 
 export const stats = [
-  { value: 6, label: 'real vulnerabilities found in Beehive by my audit tool' },
-  { value: 30, suffix: '+', label: 'PRs across Beehive, Concore, Diomede and GNU Radio' },
-  { text: 'Top 35', label: 'of 10,000+ teams at HackRx 6.0 (Bajaj Finserv)' },
-  { value: 97, label: 'backend tests passing in EvidenceRAG' },
+  { value: 6, label: 'real vulnerabilities my scanner caught in Beehive' },
+  { value: 30, suffix: '+', label: 'pull requests across four open-source projects' },
+  { text: 'Top 35', label: 'out of 10,000+ teams at HackRx 6.0' },
+  { value: 97, label: 'backend tests keeping EvidenceRAG honest' },
 ];
 
 export const evidenceRag = {
@@ -64,8 +64,8 @@ export const openSource = [
     name: 'Beehive', org: 'KathiraveluLab', url: 'https://github.com/KathiraveluLab/Beehive',
     sub: 'Security Audit Tool · 14+ PRs',
     body: [
-      'Built a static scanner that maps every API auth decorator and flags unprotected endpoints with exact file and line references.',
-      'Other PRs covered testing infrastructure, CI linting, API refactoring and security hardening, most of them merged.',
+      'Built a static scanner that maps every API auth check and points to unprotected endpoints by exact file and line.',
+      'My other PRs there covered test infrastructure, CI linting, API refactoring and security hardening, and most are merged.',
     ],
     severity: { Critical: 1, High: 4, Medium: 1 },
     tags: ['Python', 'Flask', 'GitHub Actions'],
@@ -73,40 +73,40 @@ export const openSource = [
   {
     name: 'Diomede', org: 'KathiraveluLab', url: 'https://github.com/KathiraveluLab/Diomede',
     sub: 'Dynamic DICOM Routing Module · 3 PRs',
-    body: ['Implemented the routing engine, weighted destination scoring and a health-checker daemon for adaptive DICOM routing across multiple Orthanc nodes.'],
+    body: ['Built the routing engine that sends medical images (DICOM) to the best of several Orthanc nodes, with weighted scoring and a health-checker that routes around unhealthy ones.'],
     tags: ['Python', 'pynetdicom', 'Docker Compose'],
   },
   {
     name: 'Concore', org: 'ControlCore-Project', url: 'https://github.com/ControlCore-Project/concore',
     sub: '12+ PRs merged',
-    body: ['Merged contributions to Concore under maintainer review.'],
+    body: ['A dozen or more of my pull requests are merged into Concore.'],
   },
   {
     name: 'GNU Radio', org: 'gnuradio', url: 'https://github.com/gnuradio/gnuradio',
     sub: '2 PRs merged',
-    body: ['Merged contributions to the GNU Radio signal-processing toolkit.'],
+    body: ['Two of my pull requests are merged into GNU Radio, the open-source signal-processing toolkit.'],
   },
 ];
 
 export const projects = [
   {
     name: 'EvidenceRAG', kind: 'Personal project · AI / RAG',
-    summary: 'Local-first document Q&A that retrieves evidence first, generates only from it, and verifies every cited claim before answering. It abstains when the evidence is not enough.',
+    summary: "Ask a question about your own documents and get an answer you can check. It finds the evidence first, answers only from it, verifies every citation, and says so when the evidence isn't there.",
     highlights: ['Hybrid dense + BM25 retrieval with RRF', 'Cross-encoder reranking, MRR 1.000 on its benchmark', 'NLI verification, 97 backend tests'],
     tags: ['Python', 'FastAPI', 'React', 'Ollama'],
     links: [{ label: 'Deep dive', href: '#evidencerag' }, { label: 'Source', href: 'https://github.com/Sahil-u07/evidencerag' }],
   },
   {
     name: 'This portfolio', kind: 'Personal project · Frontend',
-    summary: 'The site you are on. Every interaction is hand-built with no UI, animation or icon libraries.',
-    highlights: ['3D nearest-neighbour search in the hero, no 3D library', 'Playwright browser test in CI on every PR', 'Auto-deploys to GitHub Pages from main'],
+    summary: "The site you're reading. The 3D scene, scroll effects and smooth scrolling are all written by hand, with no UI, animation or 3D libraries.",
+    highlights: ['Drag-to-spin 3D scene on a plain canvas', 'Browser tests run on every pull request', 'Goes live on GitHub Pages with every merge'],
     tags: ['React', 'TypeScript', 'Vite', 'Canvas'],
     links: [{ label: 'Live', href: 'https://sahil-u07.github.io/Portfoliov1/' }, { label: 'Source', href: 'https://github.com/Sahil-u07/Portfoliov1' }],
   },
   {
     name: 'ProjectMUJToppers', kind: 'Live product · Full-stack',
-    summary: 'A platform featuring university toppers, with authentication, an admin dashboard and student database integration, built collaboratively with feature branching.',
-    highlights: ['Authentication and admin dashboard', 'Student database integration', 'In production at mujtoppers.in'],
+    summary: 'A platform that showcases university toppers, with sign-in, an admin dashboard and a student database. Built as a team with feature branches, and live in production.',
+    highlights: ['Sign-in and an admin dashboard', 'Student database behind it', 'Live at mujtoppers.in'],
     tags: ['React.js', 'Node.js', 'MongoDB'],
     links: [{ label: 'Live', href: 'https://mujtoppers.in' }],
   },
@@ -116,15 +116,15 @@ export const experience = [
   {
     when: 'Apr 2025 – Aug 2025 · Remote', role: 'Web Development Intern', org: 'IOTA Studio AI', sub: 'AIC MUJ incubated startup',
     points: [
-      "Built and deployed the company's official full-stack website with React.js, Node.js and REST APIs, with 10+ production-level commits merged into the main codebase.",
-      'Designed the API architecture with clean frontend/backend separation and MongoDB/SQL integration for content handling.',
+      "Built and shipped the company's official website end to end with React.js, Node.js and REST APIs. More than 10 of my production commits are in the main codebase.",
+      'Designed the API so the frontend and backend stay cleanly separated, with MongoDB and SQL behind it for content.',
     ],
   },
   {
     when: 'Feb 2024 – May 2024', role: 'Software Development Intern', org: 'Sundarone Private Limited', sub: 'sundaronehostel.in',
     points: [
-      'Integrated the Razorpay payment gateway, contributing to a 15% increase in bookings.',
-      'Led UX iteration cycles that resulted in a 20% increase in user retention.',
+      'Integrated Razorpay payments, which contributed to a 15% rise in bookings.',
+      'Led rounds of UX improvements that lifted user retention by 20%.',
     ],
   },
   {

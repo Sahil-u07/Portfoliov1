@@ -11,7 +11,7 @@ export default function Skills() {
   return (
     <section className="wrap section" id="skills">
       <p className="kicker">Skills</p>
-      <h2>My <em>toolbox</em></h2>
+      <h2>What I <em>work with</em></h2>
       <div className="toggles" role="group" aria-label="Filter skills">
         {groups.map(g => (
           <button key={g} type="button" className="toggle-btn" aria-pressed={g === group} onClick={() => setGroup(g)}>{g}</button>
