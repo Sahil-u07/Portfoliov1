@@ -24,10 +24,10 @@ export default function App() {
         <About />
         <Stats />
         <div className="zoom" aria-hidden="true"><div className="zoom-stage"><div className="zoom-tile">SL</div></div></div>
+        <Experience />
         <Projects />
         <EvidenceRag />
         <OpenSource />
-        <Experience />
         <Skills />
         <Contact />
       </main>
