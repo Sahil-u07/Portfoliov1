@@ -40,7 +40,7 @@ export default function Ribbons() {
           for (let x = -40; x <= w + 40; x += 18) {
             const u = x / w;
             const spread = Math.sin(u * 3.1 + phase * 2) * 0.09; // pinch and fan
-            const y = h * (base - b.rise * u + b.amp * Math.sin(u * b.freq * Math.PI + phase * 6) + off * spread);
+            const y = h * (base - b.rise * Math.min(1, w / h) * u + b.amp * Math.sin(u * b.freq * Math.PI + phase * 6) + off * spread);
             if (x === -40) path.moveTo(x, y); else path.lineTo(x, y);
           }
           const color = (a: number) => `hsl(${b.hue + off * 40} 85% 62% / ${a})`;
