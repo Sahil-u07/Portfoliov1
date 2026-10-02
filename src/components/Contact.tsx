@@ -22,7 +22,7 @@ export default function Contact() {
   return (
     <section className="wrap section contact" id="contact">
       <p className="kicker">Contact</p>
-      <h2>Let's build something.</h2>
+      <h2>Let's build <em>something</em>.</h2>
       <p>Open to internships, open-source collaboration and interesting problems.</p>
       <div className="cta-row">
         <button className="btn primary" type="button" onClick={copy}>
