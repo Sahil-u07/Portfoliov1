@@ -11,6 +11,7 @@ const open = (url: string) => () => window.open(url, '_blank', 'noopener');
 
 const COMMANDS: Command[] = [
   ...sections.map(s => ({ label: s.label, hint: `Jump to ${s.label.toLowerCase()}`, run: go(s.id) })),
+  { label: 'EvidenceRAG deep dive', hint: 'Pipeline demo and benchmark', run: go('evidencerag') },
   { label: 'Back to top', hint: 'Home', run: go('top') },
   { label: 'Copy email address', hint: profile.email, run: () => void copyEmail() },
   { label: 'GitHub profile', hint: 'github.com/Sahil-u07', run: open(profile.github) },

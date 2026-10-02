@@ -12,7 +12,7 @@ export default function Hero() {
           <h1>{profile.name}</h1>
           <p className="lede">{profile.intro}</p>
           <div className="cta-row">
-            <a className="btn primary" href="#work">See EvidenceRAG <Icon name="down" /></a>
+            <a className="btn primary" href="#projects">See my projects <Icon name="down" /></a>
             <a className="btn" href={profile.github} target="_blank" rel="noopener"><Icon name="github" /> GitHub</a>
             <a className="btn" href={`mailto:${profile.email}`}><Icon name="mail" /> Email</a>
           </div>
