@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type PointerEvent } from 'react';
 
 export const prefersReducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -29,4 +29,23 @@ export function useActiveSection(ids: string[]) {
     return () => io.disconnect();
   }, [ids]);
   return active;
+}
+
+/**
+ * Writes the pointer position into CSS variables on the hovered element: --x/--y in px for
+ * spotlights, --rx/--ry in degrees for tilt. CSS variables instead of React state, so moving
+ * the pointer never re-renders.
+ */
+export function trackPointer(e: PointerEvent<HTMLElement>) {
+  const el = e.currentTarget, r = el.getBoundingClientRect();
+  const x = e.clientX - r.left, y = e.clientY - r.top;
+  el.style.setProperty('--x', `${x}px`);
+  el.style.setProperty('--y', `${y}px`);
+  el.style.setProperty('--rx', `${(0.5 - y / r.height) * 8}deg`);
+  el.style.setProperty('--ry', `${(x / r.width - 0.5) * 8}deg`);
+}
+
+export function resetPointer(e: PointerEvent<HTMLElement>) {
+  e.currentTarget.style.setProperty('--rx', '0deg');
+  e.currentTarget.style.setProperty('--ry', '0deg');
 }

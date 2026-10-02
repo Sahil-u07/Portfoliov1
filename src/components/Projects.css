@@ -13,3 +13,11 @@
 .project-links a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 500; text-decoration: none; }
 .project-links a:hover { color: var(--accent); }
 @media (max-width: 1000px) { .projects { grid-template-columns: 1fr; } }
+
+/* 3D tilt + spotlight from trackPointer. Selector outranks .reveal.in so the tilt isn't overridden. */
+.project.reveal.in { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 150ms ease-out, border-color var(--fast); }
+.project:hover { border-color: rgb(251 191 36 / 0.45); }
+.project::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity var(--fast);
+  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgb(251 191 36 / 0.09), transparent 60%); }
+.project:hover::before { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .project.reveal.in { transform: none; } }

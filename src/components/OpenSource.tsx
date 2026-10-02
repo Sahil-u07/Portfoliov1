@@ -1,16 +1,9 @@
-import type { PointerEvent } from 'react';
 import { openSource } from '../data';
+import { trackPointer } from '../hooks';
 import Icon from './Icon';
 import Reveal from './Reveal';
 import Terminal from './Terminal';
 import './OpenSource.css';
-
-// Card spotlight: follow the pointer with CSS variables instead of React state, so moving doesn't re-render.
-const spotlight = (e: PointerEvent<HTMLElement>) => {
-  const r = e.currentTarget.getBoundingClientRect();
-  e.currentTarget.style.setProperty('--x', `${e.clientX - r.left}px`);
-  e.currentTarget.style.setProperty('--y', `${e.clientY - r.top}px`);
-};
 
 export default function OpenSource() {
   return (
@@ -24,7 +17,7 @@ export default function OpenSource() {
       </div>
       <div className="grid">
         {openSource.map(p => (
-          <Reveal as="article" key={p.name} className="card" onPointerMove={spotlight}>
+          <Reveal as="article" key={p.name} className="card" onPointerMove={trackPointer}>
             <header><h3>{p.name}</h3><span className="org">{p.org}</span></header>
             <p className="sub">{p.sub}</p>
             <p>{p.body[0]}</p>

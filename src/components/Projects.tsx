@@ -1,4 +1,5 @@
 import { projects } from '../data';
+import { resetPointer, trackPointer } from '../hooks';
 import Icon from './Icon';
 import Reveal from './Reveal';
 import './Projects.css';
@@ -10,7 +11,7 @@ export default function Projects() {
       <h2>Things I've built</h2>
       <div className="projects">
         {projects.map((p, i) => (
-          <Reveal as="article" key={p.name} className="project">
+          <Reveal as="article" key={p.name} className="project" onPointerMove={trackPointer} onPointerLeave={resetPointer}>
             <div className="project-top">
               <span className="project-index">{String(i + 1).padStart(2, '0')}</span>
               <span className="project-kind">{p.kind}</span>
