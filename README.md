@@ -1,25 +1,32 @@
 # Portfolio
 
-Personal portfolio of Sahil Lenka. Plain HTML, CSS and JavaScript: no framework, no build step.
-
-- `index.html`: all content
-- `styles.css`: design tokens at the top, then one block per section
-- `main.js`: interactions (pipeline walkthrough, benchmark chart, skill filter, command menu on Ctrl/Cmd+K)
+Personal portfolio of Sahil Lenka, built with React, TypeScript and Vite. No UI, animation or icon libraries.
 
 ## Run locally
 
-Open `index.html` in a browser, or serve the folder with `python3 -m http.server`.
+```bash
+npm install
+npm run dev        # http://localhost:5173
+```
+
+## Where things live
+
+- `src/data.ts`: every piece of content (copy, numbers, links). Edit this to update the site.
+- `src/components/`: one component per section, each with its own CSS file.
+- `src/components/RetrievalField.tsx`: the hero canvas. Dots are passages, your cursor is the query, and the 5 nearest light up, a 2D sketch of EvidenceRAG's dense retrieval.
+- `src/components/Pipeline.tsx` and `Benchmark.tsx`: the EvidenceRAG walkthrough and chart, using numbers from that project's README.
+- `src/components/CommandMenu.tsx`: Ctrl/Cmd+K menu on the native `<dialog>` element.
+- `src/hooks.ts`: scroll reveal and active-section tracking with `IntersectionObserver`.
 
 ## Test
 
 ```bash
-npm install
 npx playwright install chromium   # first time only
-npm test
+npm run build && npm test
 ```
 
-`tests/smoke.mjs` loads the page at desktop and mobile widths, clicks through every interactive piece, and fails on JS errors or horizontal scrolling.
+`tests/smoke.mjs` serves the build, clicks through every interactive piece at desktop and phone width, and fails on JS errors or horizontal scrolling. CI runs it on every pull request.
 
 ## Deploy
 
-Any static host works. On GitHub Pages: Settings → Pages → deploy from the `main` branch, root folder.
+`npm run build` writes a static site to `dist/` with relative asset paths, so it works on Vercel, Netlify or GitHub Pages as is.
