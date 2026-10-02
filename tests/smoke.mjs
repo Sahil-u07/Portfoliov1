@@ -27,6 +27,9 @@ try {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     assert.ok(overflow <= 0, `${name}: horizontal scroll of ${overflow}px`);
 
+    // The hero photo loads.
+    assert.ok(await page.locator('.portrait img').evaluate(i => i.decode().then(() => i.naturalWidth > 0)), `${name}: hero photo did not load`);
+
     // Background ribbons are drawn.
     assert.ok(await page.locator('.ribbons').evaluate(c => c.getContext('2d').getImageData(0, 0, c.width, c.height).data.some((v, i) => i % 4 === 3 && v > 0)), `${name}: ribbons drew nothing`);
 

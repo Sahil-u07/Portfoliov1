@@ -1,4 +1,6 @@
+import photo from '../assets/sahil.webp';
 import { profile } from '../data';
+import { resetPointer, trackPointer } from '../hooks';
 import DecodeText from './DecodeText';
 import Icon from './Icon';
 import './Hero.css';
@@ -19,6 +21,9 @@ export default function Hero() {
             <a className="btn" href={`mailto:${profile.email}`}><Icon name="mail" /> Email</a>
           </div>
         </div>
+        <figure className="portrait" onPointerMove={trackPointer} onPointerLeave={resetPointer}>
+          <img src={photo} width={800} height={1000} alt="Sahil Lenka" fetchPriority="high" />
+        </figure>
       </div>
     </section>
   );
