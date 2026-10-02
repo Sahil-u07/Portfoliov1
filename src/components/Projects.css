@@ -15,7 +15,7 @@
 @media (max-width: 1000px) { .projects { grid-template-columns: 1fr; } }
 
 /* 3D tilt + spotlight from trackPointer. Keeps the reveal transitions alongside the tilt's. */
-.project { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: var(--reveal), transform 150ms ease-out, border-color var(--fast); }
+.project { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: var(--reveal), transform 400ms cubic-bezier(.22, 1, .36, 1), border-color var(--fast); }
 .project:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
 .project::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity var(--fast);
   background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), color-mix(in srgb, var(--accent) 9%, transparent), transparent 60%); }
