@@ -3,6 +3,7 @@ import Nav from './components/Nav';
 import CommandMenu from './components/CommandMenu';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
+import Projects from './components/Projects';
 import EvidenceRag from './components/EvidenceRag';
 import OpenSource from './components/OpenSource';
 import Experience from './components/Experience';
@@ -17,6 +18,7 @@ export default function App() {
       <main id="main">
         <Hero />
         <Stats />
+        <Projects />
         <EvidenceRag />
         <OpenSource />
         <Experience />

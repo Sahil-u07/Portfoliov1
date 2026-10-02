@@ -72,11 +72,29 @@ export const openSource = [
     sub: '2 PRs merged',
     body: ['Merged contributions to the GNU Radio signal-processing toolkit.'],
   },
+];
+
+export const projects = [
   {
-    name: 'ProjectMUJToppers', org: 'Live product', url: 'https://mujtoppers.in', linkText: 'mujtoppers.in', wide: true,
-    sub: 'Full-stack platform',
-    body: ['Developed and deployed a platform featuring university toppers, with authentication, an admin dashboard and student database integration. Built collaboratively with feature branching and a production deployment.'],
+    name: 'EvidenceRAG', kind: 'Personal project · AI / RAG',
+    summary: 'Local-first document Q&A that retrieves evidence first, generates only from it, and verifies every cited claim before answering. It abstains when the evidence is not enough.',
+    highlights: ['Hybrid dense + BM25 retrieval with RRF', 'Cross-encoder reranking, MRR 1.000 on its benchmark', 'NLI verification, 97 backend tests'],
+    tags: ['Python', 'FastAPI', 'React', 'Ollama'],
+    links: [{ label: 'Deep dive', href: '#evidencerag' }, { label: 'Source', href: 'https://github.com/Sahil-u07/evidencerag' }],
+  },
+  {
+    name: 'This portfolio', kind: 'Personal project · Frontend',
+    summary: 'The site you are on. Every interaction is hand-built with no UI, animation or icon libraries.',
+    highlights: ['Canvas nearest-neighbour search in the hero', 'Playwright browser test in CI on every PR', 'Auto-deploys to GitHub Pages from main'],
+    tags: ['React', 'TypeScript', 'Vite', 'Canvas'],
+    links: [{ label: 'Live', href: 'https://sahil-u07.github.io/Portfoliov1/' }, { label: 'Source', href: 'https://github.com/Sahil-u07/Portfoliov1' }],
+  },
+  {
+    name: 'ProjectMUJToppers', kind: 'Live product · Full-stack',
+    summary: 'A platform featuring university toppers, with authentication, an admin dashboard and student database integration, built collaboratively with feature branching.',
+    highlights: ['Authentication and admin dashboard', 'Student database integration', 'In production at mujtoppers.in'],
     tags: ['React.js', 'Node.js', 'MongoDB'],
+    links: [{ label: 'Live', href: 'https://mujtoppers.in' }],
   },
 ];
 
@@ -116,7 +134,7 @@ export const achievements = [
 ];
 
 export const sections = [
-  { id: 'work', label: 'Work' },
+  { id: 'projects', label: 'Projects' },
   { id: 'open-source', label: 'Open source' },
   { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },

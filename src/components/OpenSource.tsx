@@ -24,7 +24,7 @@ export default function OpenSource() {
       </div>
       <div className="grid">
         {openSource.map(p => (
-          <Reveal as="article" key={p.name} className={`card ${p.wide ? 'wide-card' : ''}`} onPointerMove={spotlight}>
+          <Reveal as="article" key={p.name} className="card" onPointerMove={spotlight}>
             <header><h3>{p.name}</h3><span className="org">{p.org}</span></header>
             <p className="sub">{p.sub}</p>
             <p>{p.body[0]}</p>
@@ -37,7 +37,7 @@ export default function OpenSource() {
             )}
             {p.body.slice(1).map(b => <p key={b}>{b}</p>)}
             {p.tags && <ul className="tags">{p.tags.map(t => <li key={t}>{t}</li>)}</ul>}
-            <a className="more" href={p.url} target="_blank" rel="noopener">{p.linkText ?? 'Repository'} <Icon name="arrow" /></a>
+            <a className="more" href={p.url} target="_blank" rel="noopener">Repository <Icon name="arrow" /></a>
           </Reveal>
         ))}
       </div>
