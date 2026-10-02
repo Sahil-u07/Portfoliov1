@@ -1,0 +1,8 @@
+.nav { position: sticky; top: 0; z-index: 5; background: rgb(2 6 23 / 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.nav-inner { display: flex; align-items: center; gap: 24px; height: 64px; }
+.logo { font: 700 20px var(--mono); text-decoration: none; }
+.logo span { color: var(--accent); }
+.nav nav { display: flex; gap: 4px; margin-left: auto; }
+.nav nav a { padding: 8px 12px; border-radius: 8px; color: var(--fg-muted); text-decoration: none; font-size: 15px; transition: color var(--fast), background var(--fast); }
+.nav nav a:hover, .nav nav a.current { color: var(--fg); background: var(--muted); }
+@media (max-width: 720px) { .nav nav { display: none; } }

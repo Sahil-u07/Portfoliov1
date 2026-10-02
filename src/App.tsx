@@ -1,3 +1,14 @@
+import Nav from './components/Nav';
+import Hero from './components/Hero';
+
 export default function App() {
-  return <main id="main"><h1>Sahil Lenka</h1></main>;
+  return (
+    <>
+      <a className="skip" href="#main">Skip to content</a>
+      <Nav />
+      <main id="main">
+        <Hero />
+      </main>
+    </>
+  );
 }

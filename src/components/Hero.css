@@ -1,0 +1,16 @@
+.hero { position: relative; overflow: hidden; }
+.hero-inner { position: relative; display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; padding: 96px 0 64px; pointer-events: none; }
+.hero-inner a, .hero-inner button { pointer-events: auto; }
+.hero h1 { font-size: clamp(44px, 7vw, 76px); margin: 16px 0 20px; }
+.lede { font-size: 19px; color: var(--fg-muted); max-width: 34ch; }
+
+.terminal { background: rgb(14 18 35 / 0.9); border: 1px solid var(--border-strong); border-radius: var(--radius); overflow: hidden; pointer-events: auto; }
+.term-bar { display: flex; align-items: center; gap: 6px; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+.term-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border-strong); }
+.term-bar span { margin-left: 8px; font: 12px var(--mono); color: var(--fg-muted); }
+.terminal pre { margin: 0; padding: 20px; font-size: 14px; line-height: 1.8; color: var(--fg-muted); overflow-x: auto; min-height: 200px; }
+.terminal .cmd { color: var(--accent); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; padding-top: 56px; } }
+@media (max-width: 720px) { .terminal pre { font-size: 12px; } }
