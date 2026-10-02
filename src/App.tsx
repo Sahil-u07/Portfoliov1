@@ -1,5 +1,6 @@
 import { profile } from './data';
 import Nav from './components/Nav';
+import CommandMenu from './components/CommandMenu';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
 import EvidenceRag from './components/EvidenceRag';
@@ -12,7 +13,7 @@ export default function App() {
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>
-      <Nav />
+      <Nav><CommandMenu /></Nav>
       <main id="main">
         <Hero />
         <Stats />
