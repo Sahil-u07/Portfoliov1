@@ -8,7 +8,7 @@ export default function Projects() {
   return (
     <section className="wrap section" id="projects">
       <p className="kicker">Projects</p>
-      <h2>Things I've built</h2>
+      <h2>Things I've <em>built</em></h2>
       <div className="projects">
         {projects.map((p, i) => (
           <Reveal as="article" key={p.name} className="project" onPointerMove={trackPointer} onPointerLeave={resetPointer}>
