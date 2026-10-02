@@ -16,6 +16,11 @@
 
 /* 3D tilt + spotlight from trackPointer. Keeps the reveal transitions alongside the tilt's. */
 .project { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: var(--reveal), transform 400ms cubic-bezier(.22, 1, .36, 1), border-color var(--fast); }
+/* Layers inside the card sit at different depths, so they shift against each other as it tilts */
+.project { transform-style: preserve-3d; }
+.project-top { transform: translateZ(30px); }
+.project h3 { transform: translateZ(22px); }
+.project-links { transform: translateZ(14px); }
 .project:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
 .project::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity var(--fast);
   background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), color-mix(in srgb, var(--accent) 9%, transparent), transparent 60%); }
