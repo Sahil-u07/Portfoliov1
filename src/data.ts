@@ -10,6 +10,20 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/sahil-lenka-3608a2311',
 };
 
+export const about = {
+  paragraphs: [
+    "I'm Sahil, a computer science student at Manipal University Jaipur, specialising in AI and machine learning. I've learned the most by shipping: two internships building real products, and a steady run of pull requests to open-source projects where maintainers review every line.",
+    'My biggest open-source piece is a security scanner for Beehive that maps every API auth check and flags the endpoints that have none. It surfaced six real vulnerabilities. I also built a DICOM routing engine for Diomede and have merged work in Concore and GNU Radio.',
+    "On my own I built EvidenceRAG, a document Q&A system that won't answer unless it can back the answer with evidence. Check before you claim: that idea runs through most of what I build.",
+  ],
+  facts: [
+    { label: 'Studying', value: 'B.Tech CSE (AIML), Manipal University Jaipur, class of 2028' },
+    { label: 'Worked at', value: 'IOTA Studio AI and Sundarone, as an intern' },
+    { label: 'Open source', value: 'Beehive, Diomede, Concore and GNU Radio' },
+    { label: 'Focus', value: 'Full-stack web, security tooling and retrieval systems' },
+  ],
+};
+
 export const stats = [
   { value: 6, label: 'real vulnerabilities found in Beehive by my audit tool' },
   { value: 30, suffix: '+', label: 'PRs across Beehive, Concore, Diomede and GNU Radio' },
@@ -134,6 +148,7 @@ export const achievements = [
 ];
 
 export const sections = [
+  { id: 'about', label: 'About' },
   { id: 'projects', label: 'Projects' },
   { id: 'open-source', label: 'Open source' },
   { id: 'experience', label: 'Experience' },
