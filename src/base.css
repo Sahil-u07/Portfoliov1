@@ -85,6 +85,17 @@ code, pre, kbd { font-family: var(--mono); }
 }
 @supports not (animation-timeline: view()) { .zoom { display: none; } }
 
+/* Scroll-linked motion: progress follows the scrollbar, so scrolling back plays it in reverse.
+   Inside @supports so browsers without scroll timelines show everything static instead of the end state. */
+@supports (animation-timeline: view()) {
+  /* The hero tips backward and fades as it leaves the top of the screen */
+  .hero-inner { transform-origin: 50% 100%; animation: hero-out linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+  /* Headings stand up from lying flat as they enter */
+  main h2 { transform-origin: 50% 100%; animation: stand-up linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+}
+@keyframes hero-out { to { transform: perspective(1000px) rotateX(32deg) scale(0.88); opacity: 0; } }
+@keyframes stand-up { from { transform: perspective(700px) rotateX(70deg); opacity: 0; } }
+
 /* Scroll reveal (see useReveal): items tip up out of the page in 3D, staggered by --i.
    Uses the separate translate/rotate/scale properties so `transform` stays free for hover tilt. */
 :has(> .reveal) { perspective: 1200px; }
