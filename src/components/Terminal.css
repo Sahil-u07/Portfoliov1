@@ -1,0 +1,4 @@
+.terminal { background: var(--card); border: 1px solid var(--border-strong); border-radius: var(--radius); overflow: hidden; }
+.terminal pre { margin: 0; padding: 20px; font-size: 14px; line-height: 1.8; color: var(--fg-muted); overflow-x: auto; min-height: 200px; }
+.terminal .cmd { color: var(--accent); }
+@media (max-width: 720px) { .terminal pre { font-size: 12px; } }

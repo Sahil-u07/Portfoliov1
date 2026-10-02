@@ -2,6 +2,7 @@ import Nav from './components/Nav';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
 import EvidenceRag from './components/EvidenceRag';
+import OpenSource from './components/OpenSource';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Hero />
         <Stats />
         <EvidenceRag />
+        <OpenSource />
       </main>
     </>
   );
