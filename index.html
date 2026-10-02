@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sahil Lenka · Full-stack & open-source developer</title>
+  <meta name="description" content="Sahil Lenka, B.Tech CSE (AIML) student at Manipal University Jaipur. Builder of EvidenceRAG and contributor to Beehive, Diomede, Concore and GNU Radio.">
+  <meta name="theme-color" content="#020617">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23020617'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='700' fill='%23FBBF24' text-anchor='middle'%3ESL%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <!-- Lucide icons, inlined once and reused with <use> -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="#top" aria-label="Sahil Lenka, back to top">SL<span>.</span></a>
+      <nav aria-label="Sections">
+        <a href="#work">Work</a>
+        <a href="#open-source">Open source</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="palette-btn" type="button" data-open-palette aria-label="Open command menu">
+        <svg class="ic"><use href="#i-search"/></svg>
+        <span class="wide">Jump to</span><kbd class="wide">Ctrl K</kbd><span class="narrow">Menu</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">B.Tech CSE (AIML) · Manipal University Jaipur · Class of 2028</p>
+        <h1>Sahil Lenka</h1>
+        <p class="lede">I build full-stack products and contribute to open source, where my code ships under real maintainer review.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#work">See EvidenceRAG <svg class="ic"><use href="#i-arrow"/></svg></a>
+          <a class="btn" href="https://github.com/Sahil-u07" target="_blank" rel="noopener"><svg class="ic"><use href="#i-github"/></svg> GitHub</a>
+          <a class="btn" href="mailto:sahillenka44@gmail.com"><svg class="ic"><use href="#i-mail"/></svg> Email</a>
+        </div>
+      </div>
+      <div class="terminal" aria-label="Contribution summary">
+        <div class="term-bar"><i></i><i></i><i></i><span>~/sahil</span></div>
+        <pre id="term" aria-live="off"><code>$ contributions --summary
+Beehive     14+ PRs   security · CI · tests
+Concore     12+ PRs merged
+Diomede      3 PRs    DICOM routing
+GNU Radio    2 PRs merged
+$ _</code></pre>
+      </div>
+    </section>
+
+    <section class="wrap stats reveal" aria-label="Highlights">
+      <div><b data-count="6">6</b><span>real vulnerabilities found in Beehive by my audit tool</span></div>
+      <div><b data-count="30" data-suffix="+">30+</b><span>PRs across Beehive, Concore, Diomede and GNU Radio</span></div>
+      <div><b>Top 35</b><span>of 10,000+ teams at HackRx 6.0 (Bajaj Finserv)</span></div>
+      <div><b data-count="97">97</b><span>backend tests passing in EvidenceRAG</span></div>
+    </section>
+
+    <section class="wrap section" id="work">
+      <p class="kicker">Featured project</p>
+      <div class="feature reveal">
+        <div class="feature-head">
+          <div>
+            <h2>EvidenceRAG</h2>
+            <p class="motto">Retrieve evidence first. Generate from it. Verify before answering.</p>
+            <p>A local-first document intelligence platform that answers questions from your own documents using hybrid retrieval, cross-encoder reranking, grounded generation, citation alignment and NLI-based verification, and abstains when the evidence isn't enough.</p>
+            <ul class="tags"><li>Python</li><li>FastAPI</li><li>React</li><li>TypeScript</li><li>Ollama</li><li>Sentence Transformers</li><li>SSE</li></ul>
+          </div>
+          <a class="btn" href="https://github.com/Sahil-u07/evidencerag" target="_blank" rel="noopener"><svg class="ic"><use href="#i-github"/></svg> View source</a>
+        </div>
+
+        <div class="demo">
+          <div class="demo-head">
+            <h3>Try the pipeline</h3>
+            <div class="demo-controls">
+              <button id="evidence-toggle" class="switch" type="button" role="switch" aria-checked="true">
+                <span class="knob"></span><span class="switch-label">Evidence: sufficient</span>
+              </button>
+              <button id="run-pipeline" class="btn primary" type="button"><svg class="ic"><use href="#i-play"/></svg> Run query</button>
+            </div>
+          </div>
+          <p class="query"><span>Query</span> <code>"What is BM25?"</code></p>
+          <ol class="pipeline" aria-label="Pipeline stages, select one for details">
+            <li><button class="stage" type="button" data-i="0">Ingest &amp; chunk</button></li>
+            <li><button class="stage" type="button" data-i="1">Index</button></li>
+            <li><button class="stage" type="button" data-i="2">Dense search</button></li>
+            <li><button class="stage" type="button" data-i="3">BM25 search</button></li>
+            <li><button class="stage" type="button" data-i="4">RRF fusion</button></li>
+            <li><button class="stage" type="button" data-i="5">Rerank</button></li>
+            <li><button class="stage" type="button" data-i="6">Generate</button></li>
+            <li><button class="stage" type="button" data-i="7">Verify (NLI)</button></li>
+          </ol>
+          <div class="demo-out">
+            <p id="stage-detail" aria-live="polite">Select a stage to see what it does, or run a query to watch the request flow through it.</p>
+            <p id="verdict" data-state="idle" aria-live="polite"></p>
+          </div>
+          <p class="note">A visual walkthrough, not a live backend. Timings are the warm-run, CPU-only numbers from the project README.</p>
+        </div>
+
+        <div class="eval">
+          <div class="demo-head">
+            <h3>Retrieval benchmark</h3>
+            <div class="metrics" role="group" aria-label="Metric">
+              <button class="metric" type="button" data-metric="r1">Recall@1</button>
+              <button class="metric" type="button" data-metric="r3">Recall@3</button>
+              <button class="metric" type="button" data-metric="r5">Recall@5</button>
+              <button class="metric active" type="button" data-metric="mrr" aria-pressed="true">MRR</button>
+              <button class="metric" type="button" data-metric="ndcg">nDCG@5</button>
+            </div>
+          </div>
+          <div class="bars"></div>
+          <p class="note">20-question controlled benchmark. Differences of a few points are within noise, so it works as a regression harness rather than a leaderboard.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section" id="open-source">
+      <p class="kicker">Open source</p>
+      <h2>Contributions under real maintainer review</h2>
+      <div class="grid">
+        <article class="card reveal">
+          <header><h3>Beehive</h3><span class="org">KathiraveluLab</span></header>
+          <p class="sub">Security Audit Tool · 14+ PRs</p>
+          <p>Built a static scanner that maps every API auth decorator and flags unprotected endpoints with exact file and line references.</p>
+          <div class="sev" aria-label="Vulnerabilities found: 1 critical, 4 high, 1 medium">
+            <span style="--n:1" class="crit">1 Critical</span><span style="--n:4" class="high">4 High</span><span style="--n:1" class="med">1 Medium</span>
+          </div>
+          <p>Other PRs covered testing infrastructure, CI linting, API refactoring and security hardening, most of them merged.</p>
+          <ul class="tags"><li>Python</li><li>Flask</li><li>GitHub Actions</li></ul>
+          <a class="more" href="https://github.com/KathiraveluLab/Beehive" target="_blank" rel="noopener">Repository <svg class="ic"><use href="#i-arrow"/></svg></a>
+        </article>
+        <article class="card reveal">
+          <header><h3>Diomede</h3><span class="org">KathiraveluLab</span></header>
+          <p class="sub">Dynamic DICOM Routing Module · 3 PRs</p>
+          <p>Implemented the routing engine, weighted destination scoring and a health-checker daemon for adaptive DICOM routing across multiple Orthanc nodes.</p>
+          <ul class="tags"><li>Python</li><li>pynetdicom</li><li>Docker Compose</li></ul>
+          <a class="more" href="https://github.com/KathiraveluLab/Diomede" target="_blank" rel="noopener">Repository <svg class="ic"><use href="#i-arrow"/></svg></a>
+        </article>
+        <article class="card reveal">
+          <header><h3>Concore</h3><span class="org">ControlCore-Project</span></header>
+          <p class="sub">12+ PRs merged</p>
+          <p>Merged contributions to Concore under maintainer review.</p>
+          <a class="more" href="https://github.com/ControlCore-Project/concore" target="_blank" rel="noopener">Repository <svg class="ic"><use href="#i-arrow"/></svg></a>
+        </article>
+        <article class="card reveal">
+          <header><h3>GNU Radio</h3><span class="org">gnuradio</span></header>
+          <p class="sub">2 PRs merged</p>
+          <p>Merged contributions to the GNU Radio signal-processing toolkit.</p>
+          <a class="more" href="https://github.com/gnuradio/gnuradio" target="_blank" rel="noopener">Repository <svg class="ic"><use href="#i-arrow"/></svg></a>
+        </article>
+        <article class="card wide-card reveal">
+          <header><h3>ProjectMUJToppers</h3><span class="org">Live product</span></header>
+          <p class="sub">Full-stack platform</p>
+          <p>Developed and deployed a platform featuring university toppers, with authentication, an admin dashboard and student database integration. Built collaboratively with feature branching and a production deployment.</p>
+          <ul class="tags"><li>React.js</li><li>Node.js</li><li>MongoDB</li></ul>
+          <a class="more" href="https://mujtoppers.in" target="_blank" rel="noopener">mujtoppers.in <svg class="ic"><use href="#i-arrow"/></svg></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap section" id="experience">
+      <p class="kicker">Experience</p>
+      <h2>Where I've shipped</h2>
+      <ol class="timeline">
+        <li class="reveal">
+          <time>Apr 2025 – Aug 2025 · Remote</time>
+          <h3>Web Development Intern <span>IOTA Studio AI</span></h3>
+          <p class="sub">AIC MUJ incubated startup</p>
+          <ul>
+            <li>Built and deployed the company's official full-stack website with React.js, Node.js and REST APIs, with 10+ production-level commits merged into the main codebase.</li>
+            <li>Designed the API architecture with clean frontend/backend separation and MongoDB/SQL integration for content handling.</li>
+          </ul>
+        </li>
+        <li class="reveal">
+          <time>Feb 2024 – May 2024</time>
+          <h3>Software Development Intern <span>Sundarone Private Limited</span></h3>
+          <p class="sub">sundaronehostel.in</p>
+          <ul>
+            <li>Integrated the Razorpay payment gateway, contributing to a 15% increase in bookings.</li>
+            <li>Led UX iteration cycles that resulted in a 20% increase in user retention.</li>
+          </ul>
+        </li>
+        <li class="reveal">
+          <time>Expected 2028</time>
+          <h3>B.Tech, Computer Science &amp; Engineering <span>Manipal University Jaipur</span></h3>
+          <p class="sub">AIML specialization · Don Bosco School, Bandel: Class XII (2024), Class X (2022)</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="wrap section" id="skills">
+      <p class="kicker">Skills</p>
+      <h2>Toolbox</h2>
+      <div class="filters" role="group" aria-label="Filter skills">
+        <button class="filter active" type="button" data-group="all" aria-pressed="true">All</button>
+        <button class="filter" type="button" data-group="lang">Languages</button>
+        <button class="filter" type="button" data-group="fw">Frameworks</button>
+        <button class="filter" type="button" data-group="db">Databases</button>
+        <button class="filter" type="button" data-group="tools">Tools</button>
+        <button class="filter" type="button" data-group="other">Other</button>
+      </div>
+      <ul class="chips">
+        <li class="chip" data-group="lang">Python</li><li class="chip" data-group="lang">JavaScript</li><li class="chip" data-group="lang">TypeScript</li><li class="chip" data-group="lang">C++</li><li class="chip" data-group="lang">Java</li><li class="chip" data-group="lang">HTML/CSS</li>
+        <li class="chip" data-group="fw">React.js</li><li class="chip" data-group="fw">Node.js</li><li class="chip" data-group="fw">Express.js</li><li class="chip" data-group="fw">Flask</li><li class="chip" data-group="fw">FastAPI</li><li class="chip" data-group="fw">TailwindCSS</li>
+        <li class="chip" data-group="db">MongoDB</li><li class="chip" data-group="db">PostgreSQL</li><li class="chip" data-group="db">SQL</li>
+        <li class="chip" data-group="tools">Git</li><li class="chip" data-group="tools">GitHub Actions (CI/CD)</li><li class="chip" data-group="tools">Docker (basics)</li><li class="chip" data-group="tools">Linux</li><li class="chip" data-group="tools">Postman</li><li class="chip" data-group="tools">Vercel</li><li class="chip" data-group="tools">Netlify</li>
+        <li class="chip" data-group="other">REST APIs</li><li class="chip" data-group="other">JWT Auth</li><li class="chip" data-group="other">RBAC</li><li class="chip" data-group="other">Security Hardening</li><li class="chip" data-group="other">Full-Stack Architecture</li>
+      </ul>
+
+      <h2 class="ach-title">Achievements</h2>
+      <ul class="achievements">
+        <li class="reveal"><b>HackRx 6.0 (Bajaj Finserv)</b><span>Top 35 out of 10,000+ teams in a national-level hackathon.</span></li>
+        <li class="reveal"><b>Smart Delhi Ideathon</b><span>3rd place in category at a government-backed tech innovation competition.</span></li>
+        <li class="reveal"><b>3× Hackathon Finalist</b><span>Reached the finals of three university-level and national hackathons.</span></li>
+      </ul>
+    </section>
+
+    <section class="wrap section contact" id="contact">
+      <p class="kicker">Contact</p>
+      <h2>Let's build something.</h2>
+      <p>Open to internships, open-source collaboration and interesting problems.</p>
+      <div class="cta-row">
+        <button class="btn primary" type="button" id="copy-email"><svg class="ic"><use href="#i-copy"/></svg> <span>sahillenka44@gmail.com</span></button>
+        <a class="btn" href="https://www.linkedin.com/in/sahil-lenka-3608a2311" target="_blank" rel="noopener"><svg class="ic"><use href="#i-linkedin"/></svg> LinkedIn</a>
+        <a class="btn" href="https://github.com/Sahil-u07" target="_blank" rel="noopener"><svg class="ic"><use href="#i-github"/></svg> GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <span>Sahil Lenka</span>
+    <span>Plain HTML, CSS and JavaScript. No framework, no build step.</span>
+  </footer>
+
+  <dialog id="palette" aria-label="Command menu">
+    <input id="palette-input" type="text" placeholder="Type a section or action…" aria-label="Search commands" autocomplete="off">
+    <ul id="palette-list" role="listbox" aria-label="Commands"></ul>
+    <p class="palette-hint"><kbd>↑</kbd><kbd>↓</kbd> move · <kbd>Enter</kbd> select · <kbd>Esc</kbd> close</p>
+  </dialog>
+</body>
+</html>
