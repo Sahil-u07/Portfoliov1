@@ -50,6 +50,7 @@ code, pre, kbd { font-family: var(--mono); }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
 .tags li { font: 12px var(--mono); padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border-strong); color: var(--fg-muted); }
 
+.toggles { display: flex; flex-wrap: wrap; gap: 6px; }
 .toggle-btn { min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--border-strong); background: transparent; color: var(--fg-muted); font-size: 14px; transition: all var(--fast); }
 .toggle-btn:hover { color: var(--fg); }
 .toggle-btn[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }

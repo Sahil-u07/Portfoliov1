@@ -4,6 +4,7 @@ import Stats from './components/Stats';
 import EvidenceRag from './components/EvidenceRag';
 import OpenSource from './components/OpenSource';
 import Experience from './components/Experience';
+import Skills from './components/Skills';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <EvidenceRag />
         <OpenSource />
         <Experience />
+        <Skills />
       </main>
     </>
   );
