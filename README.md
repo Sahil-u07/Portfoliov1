@@ -13,7 +13,7 @@ npm run dev        # http://localhost:5173
 
 - `src/data.ts`: every piece of content (copy, numbers, links). Edit this to update the site.
 - `src/components/`: one component per section, each with its own CSS file.
-- `src/components/RetrievalField.tsx`: the hero canvas. A rotating 3D point cloud, projected by hand, where a query's 5 nearest passages light up: a sketch of EvidenceRAG's dense retrieval. The pointer orbits the camera.
+- `src/components/RetrievalField.tsx`: the hero canvas. A 3D scene projected by hand: passages cluster by topic over a floor grid, and a query's 5 nearest passages light up, a sketch of EvidenceRAG's dense retrieval. Drag to spin it.
 - `src/components/Ribbons.tsx`: the flowing light ribbons behind the page, one fixed canvas with additive blending.
 - `src/base.css`: colour tokens, the 3D scroll reveal, and the scroll-linked animations (hero exit, heading rise, lime tile zoom, progress bar) in pure CSS.
 - `src/components/Pipeline.tsx` and `Benchmark.tsx`: the EvidenceRAG walkthrough and chart, using numbers from that project's README.
