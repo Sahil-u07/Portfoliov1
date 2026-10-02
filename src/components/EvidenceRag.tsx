@@ -1,4 +1,5 @@
 import { evidenceRag } from '../data';
+import Benchmark from './Benchmark';
 import Icon from './Icon';
 import Pipeline from './Pipeline';
 import Reveal from './Reveal';
@@ -19,6 +20,7 @@ export default function EvidenceRag() {
           <a className="btn" href={evidenceRag.repo} target="_blank" rel="noopener"><Icon name="github" /> View source</a>
         </div>
         <Pipeline />
+        <Benchmark />
       </Reveal>
     </section>
   );
