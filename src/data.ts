@@ -85,7 +85,7 @@ export const projects = [
   {
     name: 'This portfolio', kind: 'Personal project · Frontend',
     summary: 'The site you are on. Every interaction is hand-built with no UI, animation or icon libraries.',
-    highlights: ['Canvas nearest-neighbour search in the hero', 'Playwright browser test in CI on every PR', 'Auto-deploys to GitHub Pages from main'],
+    highlights: ['3D nearest-neighbour search in the hero, no 3D library', 'Playwright browser test in CI on every PR', 'Auto-deploys to GitHub Pages from main'],
     tags: ['React', 'TypeScript', 'Vite', 'Canvas'],
     links: [{ label: 'Live', href: 'https://sahil-u07.github.io/Portfoliov1/' }, { label: 'Source', href: 'https://github.com/Sahil-u07/Portfoliov1' }],
   },
