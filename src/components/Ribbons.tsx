@@ -19,10 +19,8 @@ export default function Ribbons() {
     let w = 0, h = 0, raf = 0;
 
     const resize = () => {
-      const dpr = Math.min(devicePixelRatio, 1.5);
-      w = innerWidth; h = innerHeight;
-      c.width = w * dpr; c.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // 1x even on retina screens: soft glowing lines don't need the extra pixels, and every pixel costs every frame.
+      c.width = w = innerWidth; c.height = h = innerHeight;
       if (still) draw(0);
     };
 
@@ -30,22 +28,22 @@ export default function Ribbons() {
       const s = scrollY / Math.max(h, 1); // viewports scrolled
       ctx.clearRect(0, 0, w, h);
       ctx.globalCompositeOperation = 'lighter';
+      ctx.lineWidth = 1;
       for (const b of BUNDLES) {
         const phase = t * b.speed + s * 0.9;
         const base = b.y + 0.18 * Math.sin(s * 1.3 + b.hue); // the bundle wanders up and down with scroll
         for (let k = 0; k < b.strands; k++) {
           const off = k / (b.strands - 1) - 0.5; // -0.5..0.5 across the bundle
           const alpha = 0.32 - Math.abs(off) * 0.4;
-          const path = new Path2D();
+          ctx.beginPath();
           for (let x = -40; x <= w + 40; x += 18) {
             const u = x / w;
             const spread = Math.sin(u * 3.1 + phase * 2) * 0.09; // pinch and fan
             const y = h * (base - b.rise * Math.min(1, w / h) * u + b.amp * Math.sin(u * b.freq * Math.PI + phase * 6) + off * spread);
-            if (x === -40) path.moveTo(x, y); else path.lineTo(x, y);
+            if (x === -40) ctx.moveTo(x, y); else ctx.lineTo(x, y);
           }
-          const color = (a: number) => `hsl(${b.hue + off * 40} 85% 62% / ${a})`;
-          if (k % 3 === 0) { ctx.lineWidth = 6; ctx.strokeStyle = color(alpha * 0.12); ctx.stroke(path); } // soft halo
-          ctx.lineWidth = 1; ctx.strokeStyle = color(alpha); ctx.stroke(path);
+          ctx.strokeStyle = `hsl(${b.hue + off * 40} 85% 62% / ${alpha})`;
+          ctx.stroke();
         }
       }
       ctx.globalCompositeOperation = 'source-over';
