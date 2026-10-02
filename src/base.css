@@ -76,7 +76,7 @@ code, pre, kbd { font-family: var(--mono); }
 .zoom { height: 170vh; view-timeline: --zoom block; }
 .zoom-stage { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; overflow: clip; }
 .zoom-tile { display: grid; place-items: center; width: 96px; aspect-ratio: 1; border-radius: 26px; background: var(--accent); color: var(--on-accent); font: 700 34px var(--mono);
-  animation: zoom linear both; animation-timeline: --zoom; animation-range: contain 0% contain 100%; }
+  animation: zoom linear both; animation-timeline: --zoom; animation-range: entry 40% contain 100%; }
 @keyframes zoom {
   0% { transform: scale(0.5) rotate(-12deg); opacity: 0; }
   30% { transform: scale(1) rotate(0); opacity: 1; }
