@@ -43,7 +43,6 @@
   .pipeline { grid-template-columns: repeat(2, 1fr); }
 }
 
-.toggles { display: flex; flex-wrap: wrap; gap: 6px; }
 .bars { display: grid; gap: 14px; margin-top: 24px; }
 .bar { display: grid; grid-template-columns: 150px 1fr 56px; align-items: center; gap: 16px; font-size: 14px; }
 .bar .track { height: 12px; border-radius: 999px; background: var(--muted); overflow: hidden; }
