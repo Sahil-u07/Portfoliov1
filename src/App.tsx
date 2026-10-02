@@ -1,5 +1,6 @@
 import Nav from './components/Nav';
 import Hero from './components/Hero';
+import Stats from './components/Stats';
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
       <Nav />
       <main id="main">
         <Hero />
+        <Stats />
       </main>
     </>
   );
