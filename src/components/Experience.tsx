@@ -6,7 +6,7 @@ export default function Experience() {
   return (
     <section className="wrap section" id="experience">
       <p className="kicker">Experience</p>
-      <h2>Where I've <em>shipped</em></h2>
+      <h2>Where I've <em>worked</em></h2>
       <ol className="timeline">
         {experience.map(x => (
           <Reveal as="li" key={x.role}>
