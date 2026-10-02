@@ -19,7 +19,9 @@ try {
     page.on('console', m => m.type() === 'error' && !m.text().startsWith('Failed to load resource') && errors.push(`${name}: ${m.text()}`));
     await page.goto(url);
 
-    assert.match(await page.textContent('h1'), /Sahil Lenka/);
+    // The name decodes from scrambled letters, so check the accessible name, then the settled text.
+    await page.getByRole('heading', { level: 1, name: 'Sahil Lenka' }).waitFor();
+    await page.waitForFunction(() => document.querySelector('h1').textContent === 'Sahil Lenka');
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     assert.ok(overflow <= 0, `${name}: horizontal scroll of ${overflow}px`);
 
@@ -34,6 +36,15 @@ try {
       return amber;
     });
     assert.ok(lit > 50, `${name}: retrieval field drew no highlighted neighbours`);
+
+    // Projects: three cards, and hovering one tilts it.
+    const cards = page.locator('.project');
+    assert.equal(await cards.count(), 3);
+    assert.deepEqual(await page.$$eval('.project h3', hs => hs.map(h => h.textContent)), ['EvidenceRAG', 'This portfolio', 'ProjectMUJToppers']);
+    await cards.first().scrollIntoViewIfNeeded();
+    const box = await cards.first().boundingBox();
+    await page.mouse.move(box.x + 10, box.y + 10);
+    assert.notEqual(await cards.first().evaluate(c => c.style.getPropertyValue('--rx')), '');
 
     // Pipeline: sufficient evidence -> verified; insufficient -> abstained.
     const runBtn = page.getByRole('button', { name: 'Run query' });
