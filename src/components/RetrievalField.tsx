@@ -52,6 +52,7 @@ export default function RetrievalField() {
     };
 
     const frame = (t: number) => {
+      if (!visible) { raf = 0; return; } // off screen: stop until the observer restarts it
       if (!still) yaw += 0.0025;
       offYaw += (aimYaw - offYaw) * 0.08; offPitch += (aimPitch - offPitch) * 0.08;
       const q: V = [0.7 * Math.sin(t / 3100), 0.6 * Math.sin(t / 2300), 0.7 * Math.cos(t / 2700)];
@@ -89,9 +90,12 @@ export default function RetrievalField() {
 
       raf = requestAnimationFrame(frame);
     };
+    let visible = true;
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible && !raf) raf = requestAnimationFrame(frame); });
+    io.observe(c);
     raf = requestAnimationFrame(frame);
 
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); c.removeEventListener('pointermove', onMove); c.removeEventListener('pointerleave', onLeave); };
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); c.removeEventListener('pointermove', onMove); c.removeEventListener('pointerleave', onLeave); };
   }, []);
 
   return (
