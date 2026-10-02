@@ -1,0 +1,10 @@
+.timeline { border-left: 1px solid var(--border-strong); margin-left: 6px; display: grid; gap: 48px; }
+.timeline > li { position: relative; padding-left: 32px; }
+.timeline > li::before { content: ""; position: absolute; left: -6px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+.timeline time { font: 13px var(--mono); color: var(--fg-muted); }
+.timeline h3 { font-size: 22px; margin: 6px 0 4px; }
+.timeline h3 span { display: block; font-size: 17px; font-weight: 500; color: var(--fg-muted); margin-top: 4px; }
+.timeline .sub { color: var(--accent); font-size: 14px; font-weight: 500; }
+.timeline ul { margin-top: 12px; display: grid; gap: 8px; color: var(--fg-muted); max-width: 72ch; }
+.timeline ul li { padding-left: 18px; position: relative; }
+.timeline ul li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); }

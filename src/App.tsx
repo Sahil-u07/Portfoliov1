@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import Stats from './components/Stats';
 import EvidenceRag from './components/EvidenceRag';
 import OpenSource from './components/OpenSource';
+import Experience from './components/Experience';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Stats />
         <EvidenceRag />
         <OpenSource />
+        <Experience />
       </main>
     </>
   );
