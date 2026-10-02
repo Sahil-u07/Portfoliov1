@@ -1,5 +1,6 @@
+import type { CSSProperties } from 'react';
 import { openSource } from '../data';
-import { trackPointer } from '../hooks';
+import { resetPointer, trackPointer } from '../hooks';
 import Icon from './Icon';
 import Reveal from './Reveal';
 import Terminal from './Terminal';
@@ -16,8 +17,8 @@ export default function OpenSource() {
         <Terminal />
       </div>
       <div className="grid">
-        {openSource.map(p => (
-          <Reveal as="article" key={p.name} className="card" onPointerMove={trackPointer}>
+        {openSource.map((p, i) => (
+          <Reveal as="article" key={p.name} className="card" onPointerMove={trackPointer} onPointerLeave={resetPointer} style={{ '--i': i % 2 } as CSSProperties}>
             <header><h3>{p.name}</h3><span className="org">{p.org}</span></header>
             <p className="sub">{p.sub}</p>
             <p>{p.body[0]}</p>

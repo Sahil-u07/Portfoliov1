@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { achievements, skills } from '../data';
 import Reveal from './Reveal';
 import './Skills.css';
@@ -24,8 +24,8 @@ export default function Skills() {
 
       <h2 className="ach-title">Achievements</h2>
       <ul className="achievements">
-        {achievements.map(a => (
-          <Reveal as="li" key={a.title}><b>{a.title}</b><span>{a.body}</span></Reveal>
+        {achievements.map((a, i) => (
+          <Reveal as="li" key={a.title} style={{ '--i': i } as CSSProperties}><b>{a.title}</b><span>{a.body}</span></Reveal>
         ))}
       </ul>
     </section>

@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { projects } from '../data';
 import { resetPointer, trackPointer } from '../hooks';
 import Icon from './Icon';
@@ -11,7 +12,7 @@ export default function Projects() {
       <h2>Things I've <em>built</em></h2>
       <div className="projects">
         {projects.map((p, i) => (
-          <Reveal as="article" key={p.name} className="project" onPointerMove={trackPointer} onPointerLeave={resetPointer}>
+          <Reveal as="article" key={p.name} className="project" onPointerMove={trackPointer} onPointerLeave={resetPointer} style={{ '--i': i } as CSSProperties}>
             <div className="project-top">
               <span className="project-index">{String(i + 1).padStart(2, '0')}</span>
               <span className="project-kind">{p.kind}</span>
