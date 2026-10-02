@@ -21,6 +21,7 @@ export default function App() {
       <main id="main">
         <Hero />
         <Stats />
+        <div className="zoom" aria-hidden="true"><div className="zoom-stage"><div className="zoom-tile">SL</div></div></div>
         <Projects />
         <EvidenceRag />
         <OpenSource />

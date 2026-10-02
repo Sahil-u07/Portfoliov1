@@ -72,12 +72,26 @@ code, pre, kbd { font-family: var(--mono); }
 @keyframes grow { to { transform: scaleX(1); } }
 @supports not (animation-timeline: scroll()) { .progress { display: none; } }
 
+/* Lime tile that grows to fill the screen as you scroll past it. Scroll-driven CSS, no JS; skipped where unsupported. */
+.zoom { height: 170vh; view-timeline: --zoom block; }
+.zoom-stage { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; overflow: clip; }
+.zoom-tile { display: grid; place-items: center; width: 96px; aspect-ratio: 1; border-radius: 26px; background: var(--accent); color: var(--on-accent); font: 700 34px var(--mono);
+  animation: zoom linear both; animation-timeline: --zoom; animation-range: contain 0% contain 100%; }
+@keyframes zoom {
+  0% { transform: scale(0.5) rotate(-12deg); opacity: 0; }
+  30% { transform: scale(1) rotate(0); opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: scale(24); opacity: 0; }
+}
+@supports not (animation-timeline: view()) { .zoom { display: none; } }
+
 /* Scroll reveal (see useReveal) */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity 500ms ease, transform 500ms ease; }
 .reveal.in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .zoom { display: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
