@@ -17,6 +17,7 @@ export default function RetrievalField() {
     const c = canvas.current!;
     const ctx = c.getContext('2d')!;
     const still = prefersReducedMotion();
+    const accent = getComputedStyle(c).getPropertyValue('--accent');
     const pts: P[] = Array.from({ length: N }, () => ({
       x: Math.random(), y: Math.random(),
       vx: (Math.random() - 0.5) * 0.0004, vy: (Math.random() - 0.5) * 0.0004,
@@ -54,18 +55,18 @@ export default function RetrievalField() {
         .sort((a, b) => a.d - b.d); // ponytail: full sort of 90 points per frame, fine at this size
 
       ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = 'rgb(148 163 184 / 0.5)';
+      ctx.fillStyle = 'rgb(200 205 190 / 0.45)';
       for (const p of ranked.slice(K)) { ctx.beginPath(); ctx.arc(p.x, p.y, 1.6, 0, 7); ctx.fill(); }
 
       ctx.font = '11px "JetBrains Mono", monospace';
       ranked.slice(0, K).forEach((p, i) => {
-        ctx.strokeStyle = `rgb(251 191 36 / ${0.55 - i * 0.08})`;
+        ctx.strokeStyle = ctx.fillStyle = accent;
+        ctx.globalAlpha = 0.55 - i * 0.08;
         ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(p.x, p.y); ctx.stroke();
-        ctx.fillStyle = '#fbbf24';
+        ctx.globalAlpha = 1;
         ctx.beginPath(); ctx.arc(p.x, p.y, 3.5, 0, 7); ctx.fill();
         ctx.fillText(String(i + 1), p.x + 7, p.y - 6);
       });
-      ctx.strokeStyle = '#fbbf24';
       ctx.beginPath(); ctx.arc(q.x, q.y, 7, 0, 7); ctx.stroke();
 
       raf = requestAnimationFrame(frame);
