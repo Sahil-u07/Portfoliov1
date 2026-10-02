@@ -74,7 +74,7 @@ export default function Pipeline() {
       <div className="demo-out">
         <p className="stage-detail" aria-live="polite">
           {selected === null
-            ? 'Select a stage to see what it does, or run a query to watch the request flow through it.'
+            ? 'Click a stage to see what it does, or run the query to watch it go through every step.'
             : <><b>{stages[selected].name}.</b> {stages[selected].detail}</>}
         </p>
         <p className="verdict" data-state={verdict.state} aria-live="polite">
@@ -83,7 +83,7 @@ export default function Pipeline() {
           {verdict.text}
         </p>
       </div>
-      <p className="note">A visual walkthrough, not a live backend. Timings are the warm-run, CPU-only numbers from the project README.</p>
+      <p className="note">This is a walkthrough, not the real backend. The timings come from the project README (warm runs, CPU only).</p>
     </div>
   );
 }

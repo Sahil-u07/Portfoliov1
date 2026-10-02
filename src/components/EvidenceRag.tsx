@@ -9,7 +9,7 @@ import './EvidenceRag.css';
 export default function EvidenceRag() {
   return (
     <section className="wrap section" id="evidencerag">
-      <p className="kicker">Deep dive</p>
+      <p className="kicker">Side project</p>
       <Reveal className="feature">
         <div className="feature-head">
           <div>
