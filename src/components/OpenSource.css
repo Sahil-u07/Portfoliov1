@@ -3,7 +3,7 @@
 
 .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .card { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 28px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
-.card { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: var(--reveal), transform 150ms ease-out, border-color var(--fast); }
+.card { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: var(--reveal), transform 400ms cubic-bezier(.22, 1, .36, 1), border-color var(--fast); }
 .card:hover { border-color: var(--border-strong); }
 @media (prefers-reduced-motion: reduce) { .card { transform: none; } }
 .card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity var(--fast);
