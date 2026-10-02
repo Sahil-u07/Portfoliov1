@@ -31,9 +31,9 @@ try {
     await page.waitForTimeout(200);
     const lit = await field.evaluate(c => {
       const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
-      let amber = 0;
-      for (let i = 0; i < d.length; i += 4) if (d[i] > 200 && d[i + 1] > 150 && d[i + 2] < 80) amber++;
-      return amber;
+      let lime = 0;
+      for (let i = 0; i < d.length; i += 4) if (d[i] > 150 && d[i + 1] > 200 && d[i + 2] < 100) lime++;
+      return lime;
     });
     assert.ok(lit > 50, `${name}: retrieval field drew no highlighted neighbours`);
 
