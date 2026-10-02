@@ -29,4 +29,4 @@ npm run build && npm test
 
 ## Deploy
 
-`npm run build` writes a static site to `dist/` with relative asset paths, so it works on Vercel, Netlify or GitHub Pages as is.
+`npm run build` writes a static site to `dist/` with relative asset paths. Every push to `main` deploys it to GitHub Pages at https://sahil-u07.github.io/Portfoliov1/ (`.github/workflows/deploy.yml`).
