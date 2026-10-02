@@ -58,6 +58,11 @@ try {
     await page.mouse.move(box.x + 10, box.y + 10);
     assert.notEqual(await cards.first().evaluate(c => c.style.getPropertyValue('--rx')), '');
 
+    // Open source: every merged PR is listed, and each links to a PR or commit.
+    const prLinks = await page.$$eval('.prs a', as => as.map(a => a.href));
+    assert.equal(prLinks.length, 33);
+    assert.ok(prLinks.every(h => /^https:\/\/github\.com\/.+\/(pull\/\d+|commit\/[0-9a-f]{7})$/.test(h)), 'bad PR link');
+
     // Pipeline: sufficient evidence -> verified; insufficient -> abstained.
     const runBtn = page.getByRole('button', { name: 'Run query' });
     await runBtn.click();
