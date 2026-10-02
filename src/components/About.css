@@ -1,0 +1,9 @@
+.about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; margin-bottom: 72px; }
+.about-text { display: grid; gap: 20px; font-size: 19px; line-height: 1.7; color: var(--fg-muted); }
+.about-text p:first-child { color: var(--fg); }
+.facts { margin: 0; padding: 8px 24px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
+.facts div { padding: 16px 0; }
+.facts div + div { border-top: 1px solid var(--border); }
+.facts dt { font: 12px var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
+.facts dd { margin: 6px 0 0; }
+@media (max-width: 900px) { .about { grid-template-columns: 1fr; gap: 32px; } .about-text { font-size: 17px; } }
