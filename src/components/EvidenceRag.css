@@ -42,3 +42,17 @@
   .feature-head { flex-direction: column; }
   .pipeline { grid-template-columns: repeat(2, 1fr); }
 }
+
+.toggles { display: flex; flex-wrap: wrap; gap: 6px; }
+.bars { display: grid; gap: 14px; margin-top: 24px; }
+.bar { display: grid; grid-template-columns: 150px 1fr 56px; align-items: center; gap: 16px; font-size: 14px; }
+.bar .track { height: 12px; border-radius: 999px; background: var(--muted); overflow: hidden; }
+.bar .fill { display: block; height: 100%; border-radius: inherit; background: var(--fg-muted); transition: width 500ms cubic-bezier(.2, .8, .2, 1); }
+.bar.best .fill { background: var(--accent); }
+.bar .val { font-family: var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
+.bar.best .val { color: var(--accent); }
+@media (max-width: 720px) {
+  .bar { grid-template-columns: 1fr 56px; }
+  .bar .name { grid-column: 1 / -1; }
+  .bar .track { grid-column: 1; grid-row: 2; }
+}
