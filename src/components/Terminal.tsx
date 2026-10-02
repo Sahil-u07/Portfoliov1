@@ -3,10 +3,10 @@ import { prefersReducedMotion, useReveal } from '../hooks';
 import './Terminal.css';
 
 const TERMINAL = `$ contributions --summary
-Beehive     14+ PRs   security · CI · tests
-Concore     12+ PRs merged
-Diomede      3 PRs    DICOM routing
-GNU Radio    2 PRs merged
+Beehive     13 merged   security · CI · tests
+Concore     13 merged   CLI · shared memory
+Diomede      5 merged   DICOM routing
+GNU Radio    2 merged   GRC · WAV blocks
 $ _`;
 
 export default function Terminal() {
