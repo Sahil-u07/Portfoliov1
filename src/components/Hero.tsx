@@ -1,38 +1,7 @@
-import { useEffect, useState } from 'react';
 import { profile } from '../data';
-import { prefersReducedMotion } from '../hooks';
 import Icon from './Icon';
+import RetrievalField from './RetrievalField';
 import './Hero.css';
-
-const TERMINAL = `$ contributions --summary
-Beehive     14+ PRs   security · CI · tests
-Concore     12+ PRs merged
-Diomede      3 PRs    DICOM routing
-GNU Radio    2 PRs merged
-$ _`;
-
-function Terminal() {
-  const [typed, setTyped] = useState(() => (prefersReducedMotion() ? TERMINAL.length : 0));
-  useEffect(() => {
-    if (typed >= TERMINAL.length) return;
-    const t = setTimeout(() => setTyped(n => n + 2), 18);
-    return () => clearTimeout(t);
-  }, [typed]);
-
-  return (
-    <div className="terminal" aria-label="Contribution summary">
-      <div className="term-bar"><i /><i /><i /><span>~/sahil</span></div>
-      <pre aria-hidden="true">
-        <code>
-          {TERMINAL.slice(0, typed).split('\n').map((line, i) => (
-            <span key={i} className={line.startsWith('$') ? 'cmd' : undefined}>{line}{'\n'}</span>
-          ))}
-        </code>
-      </pre>
-      <p className="sr-only">{TERMINAL}</p>
-    </div>
-  );
-}
 
 export default function Hero() {
   return (
@@ -48,7 +17,7 @@ export default function Hero() {
             <a className="btn" href={`mailto:${profile.email}`}><Icon name="mail" /> Email</a>
           </div>
         </div>
-        <Terminal />
+        <RetrievalField />
       </div>
     </section>
   );
