@@ -42,6 +42,13 @@ try {
     });
     assert.ok(lit > 50, `${name}: retrieval field drew no highlighted neighbours`);
 
+    // Dragging spins the field (exercises the drag handlers; any error fails the run).
+    const fb = await field.boundingBox();
+    await page.mouse.move(fb.x + fb.width / 2, fb.y + fb.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(fb.x + fb.width / 2 + 80, fb.y + fb.height / 2 + 20, { steps: 5 });
+    await page.mouse.up();
+
     // Projects: three cards, and hovering one tilts it.
     const cards = page.locator('.project');
     assert.equal(await cards.count(), 3);
