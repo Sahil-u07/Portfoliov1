@@ -1,4 +1,12 @@
 .contact { padding-bottom: 96px; }
-.contact h2 { font-size: clamp(36px, 6vw, 64px); margin: 12px 0 16px; }
-.contact > p { color: var(--fg-muted); font-size: 18px; }
+.contact-card { padding: clamp(28px, 6vw, 72px); border-radius: 28px; background: var(--accent); color: var(--on-accent); }
+.contact h2 { font-size: clamp(36px, 6vw, 64px); margin: 16px 0; }
+.contact-card > p:not(.kicker) { color: rgb(12 16 3 / 0.75); font-size: 18px; }
+.contact-card .kicker { color: var(--on-accent); border-color: rgb(12 16 3 / 0.25); background: rgb(12 16 3 / 0.06); }
+.contact-card .kicker::before { background: var(--on-accent); box-shadow: none; }
+.contact-card .btn { background: transparent; border-color: rgb(12 16 3 / 0.3); color: var(--on-accent); }
+.contact-card .btn:hover { border-color: var(--on-accent); }
+.contact-card .btn.primary { background: var(--on-accent); color: var(--accent); border-color: var(--on-accent); }
+.contact-card .btn.primary:hover { box-shadow: none; background: #1d2509; }
+.contact-card :focus-visible { outline-color: var(--on-accent); }
 .footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 32px 0; border-top: 1px solid var(--border); color: var(--fg-muted); font-size: 14px; }

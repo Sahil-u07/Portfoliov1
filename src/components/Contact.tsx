@@ -21,15 +21,17 @@ export default function Contact() {
   };
   return (
     <section className="wrap section contact" id="contact">
-      <p className="kicker">Contact</p>
-      <h2>Let's build <em>something</em>.</h2>
-      <p>Open to internships, open-source collaboration and interesting problems.</p>
-      <div className="cta-row">
-        <button className="btn primary" type="button" onClick={copy}>
-          <Icon name={copied ? 'check' : 'copy'} /> <span aria-live="polite">{copied ? 'Copied to clipboard' : profile.email}</span>
-        </button>
-        <a className="btn" href={profile.linkedin} target="_blank" rel="noopener"><Icon name="linkedin" /> LinkedIn</a>
-        <a className="btn" href={profile.github} target="_blank" rel="noopener"><Icon name="github" /> GitHub</a>
+      <div className="contact-card">
+        <p className="kicker">Contact</p>
+        <h2>Let's build <em>something</em>.</h2>
+        <p>Open to internships, open-source collaboration and interesting problems.</p>
+        <div className="cta-row">
+          <button className="btn primary" type="button" onClick={copy}>
+            <Icon name={copied ? 'check' : 'copy'} /> <span aria-live="polite">{copied ? 'Copied to clipboard' : profile.email}</span>
+          </button>
+          <a className="btn" href={profile.linkedin} target="_blank" rel="noopener"><Icon name="linkedin" /> LinkedIn</a>
+          <a className="btn" href={profile.github} target="_blank" rel="noopener"><Icon name="github" /> GitHub</a>
+        </div>
       </div>
     </section>
   );
