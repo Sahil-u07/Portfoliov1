@@ -18,6 +18,7 @@ export default function Hero() {
           <div className="cta-row">
             <a className="btn primary" href="#projects">See my projects <Icon name="down" /></a>
             <a className="btn" href={profile.github} target="_blank" rel="noopener"><Icon name="github" /> GitHub</a>
+            <a className="btn" href={profile.cv} download><Icon name="download" /> Download CV</a>
             <a className="btn" href={`mailto:${profile.email}`}><Icon name="mail" /> Email</a>
           </div>
         </div>
