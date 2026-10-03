@@ -27,6 +27,10 @@ try {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     assert.ok(overflow <= 0, `${name}: horizontal scroll of ${overflow}px`);
 
+    // Download CV serves the PDF.
+    const cv = await page.locator('.hero a[download]').evaluate(a => fetch(a.href).then(r => r.ok && r.headers.get('content-type')));
+    assert.equal(cv, 'application/pdf', `${name}: Download CV link is broken`);
+
     // The hero photo loads.
     assert.ok(await page.locator('.portrait img').evaluate(i => i.decode().then(() => i.naturalWidth > 0)), `${name}: hero photo did not load`);
 

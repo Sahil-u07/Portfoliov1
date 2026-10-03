@@ -8,6 +8,7 @@ export const profile = {
   email: 'sahillenka44@gmail.com',
   github: 'https://github.com/Sahil-u07',
   linkedin: 'https://www.linkedin.com/in/sahil-lenka-3608a2311',
+  cv: `${import.meta.env.BASE_URL}Sahil-Lenka-CV.pdf`,
 };
 
 export const about = {
