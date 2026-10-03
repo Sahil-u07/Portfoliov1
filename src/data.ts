@@ -150,6 +150,13 @@ export const projects = [
     links: [{ label: 'How it works', href: '#evidencerag' }, { label: 'Source', href: 'https://github.com/Sahil-u07/evidencerag' }],
   },
   {
+    name: 'RoadGuard AI', kind: 'Team project · Computer vision · In progress',
+    summary: "A university team project that spots potholes, cracks and speed bumps in road photos and video, so damage can be reported and fixed before it causes accidents. We're training the full model right now.",
+    highlights: ['A tested script that merges road datasets with different labels into one', 'Pilot crack model: mAP@0.5 of 0.606', 'Streamlit demo for images and video'],
+    tags: ['Python', 'YOLOv8', 'Streamlit', 'OpenCV'],
+    links: [{ label: 'Source', href: 'https://github.com/Sahil-u07/roadguard-ai' }],
+  },
+  {
     name: 'This portfolio', kind: 'Personal project · Frontend',
     summary: "The site you're on right now. The 3D search sketch, the scroll effects and the smooth scrolling are built from scratch, without any UI, animation or 3D libraries.",
     highlights: ['A 3D sketch you can drag around, on a plain canvas', 'Browser tests run on every pull request', 'Goes live on GitHub Pages with every merge'],
