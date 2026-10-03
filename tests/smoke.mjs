@@ -56,8 +56,8 @@ try {
 
     // Projects: three cards, and hovering one tilts it.
     const cards = page.locator('.project');
-    assert.equal(await cards.count(), 3);
-    assert.deepEqual(await page.$$eval('.project h3', hs => hs.map(h => h.textContent)), ['EvidenceRAG', 'This portfolio', 'ProjectMUJToppers']);
+    assert.equal(await cards.count(), 4);
+    assert.deepEqual(await page.$$eval('.project h3', hs => hs.map(h => h.textContent)), ['EvidenceRAG', 'RoadGuard AI', 'This portfolio', 'ProjectMUJToppers']);
     await cards.first().scrollIntoViewIfNeeded();
     const box = await cards.first().boundingBox();
     await page.mouse.move(box.x + 10, box.y + 10);

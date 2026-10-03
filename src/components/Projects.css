@@ -1,4 +1,4 @@
-.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .project { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 28px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
 .project-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .project-index { font: 700 40px/1 var(--mono); color: transparent; -webkit-text-stroke: 1px var(--border-strong); }
@@ -12,7 +12,7 @@
 .project-links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 4px 20px; }
 .project-links a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 500; text-decoration: none; }
 .project-links a:hover { color: var(--accent); }
-@media (max-width: 1000px) { .projects { grid-template-columns: 1fr; } }
+@media (max-width: 800px) { .projects { grid-template-columns: 1fr; } }
 
 /* 3D tilt + spotlight from trackPointer. Keeps the reveal transitions alongside the tilt's. */
 .project { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: var(--reveal), transform 400ms cubic-bezier(.22, 1, .36, 1), border-color var(--fast); }
