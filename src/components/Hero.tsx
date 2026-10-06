@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { profile } from '../data';
 import { prefersReducedMotion, resetPointer, trackPointer } from '../hooks';
 import DecodeText from './DecodeText';
@@ -18,7 +18,6 @@ const W = 480, H = 600; // one frame; avatar.mp4 stacks the colour frame above i
 function IntroVideo() {
   const video = useRef<HTMLVideoElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
-  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     const v = video.current!, out = canvas.current!.getContext('2d')!;
@@ -38,15 +37,13 @@ function IntroVideo() {
     loop();
 
     const play = () => v.play().catch(() => {});
-    const unmute = () => { v.muted = false; setMuted(false); v.currentTime = 0; play(); };
-    const firstTouch = (e: Event) => {
-      if ((e.target as Element).closest?.('.sound')) return; // the button handles its own click
-      unmute();
+    const firstTouch = () => {
+      v.muted = false; v.currentTime = 0; play();
       ['pointerdown', 'keydown', 'touchend'].forEach(t => removeEventListener(t, firstTouch));
     };
     if (!prefersReducedMotion()) {
       v.muted = false;
-      v.play().then(() => setMuted(false), () => {
+      v.play().catch(() => {
         v.muted = true; play();
         ['pointerdown', 'keydown', 'touchend'].forEach(t => addEventListener(t, firstTouch));
       });
@@ -63,13 +60,6 @@ function IntroVideo() {
     };
   }, []);
 
-  const toggle = () => {
-    const v = video.current!;
-    v.muted = !v.muted;
-    setMuted(v.muted);
-    if (!v.muted) { v.currentTime = 0; v.play().catch(() => {}); }
-  };
-
   return (
     <>
       <video ref={video} className="source" loop playsInline preload="auto" muted aria-hidden="true">
@@ -78,10 +68,6 @@ function IntroVideo() {
       </video>
       <canvas ref={canvas} width={W} height={H} role="img" style={{ backgroundImage: `url(${base}hero/poster.webp)` }}
         aria-label="Animated 3D version of me introducing myself" />
-      <button type="button" className={`sound ${muted ? 'off' : ''}`} onClick={toggle} aria-pressed={!muted}
-        aria-label={muted ? 'Play my intro with sound' : 'Mute my intro'}>
-        <Icon name={muted ? 'play' : 'pause'} />
-      </button>
     </>
   );
 }

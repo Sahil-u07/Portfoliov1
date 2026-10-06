@@ -15,11 +15,6 @@
 .portrait .source { display: none; }
 /* The poster shows behind the canvas until the first frame is drawn over it */
 .portrait canvas { display: block; width: 100%; height: auto; background: center / cover no-repeat; }
-/* Sound toggle: ▶ when the voice is off, ❚❚ when it's on. A soft ring pings while it's off. */
-.sound { position: absolute; right: 14px; bottom: 14px; display: grid; place-items: center; width: 46px; height: 46px; border: 0; border-radius: 50%; background: var(--fg); color: var(--bg); }
-.sound .ic { fill: currentColor; stroke: none; }
-.sound.off::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--fg); animation: ping 1.8s var(--ease) infinite; }
-@keyframes ping { to { transform: scale(1.6); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .portrait { transform: none; } }
 
 @media (max-width: 1000px) {
