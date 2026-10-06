@@ -18,17 +18,5 @@
 .card .more { margin-top: auto; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; width: fit-content; font-weight: 500; text-decoration: none; }
 .card .more:hover { color: var(--accent); }
 
-.sev { display: flex; gap: 4px; font: 12px var(--mono); }
-.sev span { padding: 8px 10px; border-radius: 6px; white-space: nowrap; color: var(--bg); font-weight: 500; }
-.sev .critical { background: var(--bad); }
-.sev .high { background: #fb923c; }
-.sev .medium { background: #facc15; }
 
 @media (max-width: 900px) { .os-intro, .grid { grid-template-columns: 1fr; } }
-
-.card h4 { margin: 8px 0 0; font: 500 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--fg-muted); }
-.prs { display: grid; margin-top: -6px; }
-.prs a { display: flex; gap: 10px; padding: 6px 0; font-size: 14px; color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--border); }
-.prs li:last-child a { border-bottom: 0; }
-.prs a:hover { color: var(--accent); }
-.prs code { flex: none; min-width: 7ch; font: 12px/1.7 var(--mono); color: var(--accent); }
