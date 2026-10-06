@@ -62,14 +62,13 @@ try {
     await page.mouse.move(fb.x + fb.width / 2 + 80, fb.y + fb.height / 2 + 20, { steps: 5 });
     await page.mouse.up();
 
-    // Projects: three cards, and hovering one tilts it.
-    const cards = page.locator('.project');
-    assert.equal(await cards.count(), 4);
+    // Projects: four panels, the first open; choosing another opens it and folds the first.
+    const panels = page.locator('.project');
+    assert.equal(await panels.count(), 4);
     assert.deepEqual(await page.$$eval('.project h3', hs => hs.map(h => h.textContent)), ['EvidenceRAG', 'RoadGuard AI', 'This portfolio', 'ProjectMUJToppers']);
-    await cards.first().scrollIntoViewIfNeeded();
-    const box = await cards.first().boundingBox();
-    await page.mouse.move(box.x + 10, box.y + 10);
-    assert.notEqual(await cards.first().evaluate(c => c.style.getPropertyValue('--rx')), '');
+    await panels.nth(1).locator('.spine').click();
+    assert.deepEqual(await page.$$eval('.project', ps => ps.map(p => p.classList.contains('open'))), [false, true, false, false]);
+    await page.locator('.project.open .project-links a').first().waitFor({ state: 'visible' });
 
     // Open source: every merged PR is listed, and each links to a PR or commit.
     const prLinks = await page.$$eval('.prs a', as => as.map(a => a.href));
