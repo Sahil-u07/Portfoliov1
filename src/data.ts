@@ -176,13 +176,11 @@ export const projects = [
   },
 ];
 
+// Oldest first, so the timeline reads as a path.
 export const experience = [
   {
-    when: 'Apr 2025 – Aug 2025 · Remote', role: 'Web Development Intern', org: 'IOTA Studio AI', sub: 'AIC MUJ incubated startup',
-    points: [
-      "Built the company's website from start to finish with React.js, Node.js and REST APIs, and got more than 10 commits into their production codebase.",
-      'Set up the API so the frontend and backend stayed separate, with MongoDB and SQL storing the content.',
-    ],
+    when: '2024 – 2028 (expected)', role: 'B.Tech, Computer Science & Engineering', org: 'Manipal University Jaipur',
+    sub: 'AIML specialization · Don Bosco School, Bandel: Class XII (2024), Class X (2022)', points: [],
   },
   {
     when: 'Feb 2024 – May 2024', role: 'Software Development Intern', org: 'Sundarone Private Limited', sub: 'sundaronehostel.in',
@@ -192,8 +190,11 @@ export const experience = [
     ],
   },
   {
-    when: 'Expected 2028', role: 'B.Tech, Computer Science & Engineering', org: 'Manipal University Jaipur',
-    sub: 'AIML specialization · Don Bosco School, Bandel: Class XII (2024), Class X (2022)', points: [],
+    when: 'Apr 2025 – Aug 2025 · Remote', role: 'Web Development Intern', org: 'IOTA Studio AI', sub: 'AIC MUJ incubated startup',
+    points: [
+      "Built the company's website from start to finish with React.js, Node.js and REST APIs, and got more than 10 commits into their production codebase.",
+      'Set up the API so the frontend and backend stayed separate, with MongoDB and SQL storing the content.',
+    ],
   },
 ];
 
