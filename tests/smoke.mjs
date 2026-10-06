@@ -93,9 +93,13 @@ try {
     await page.getByRole('button', { name: 'Recall@1' }).click();
     assert.notEqual(await page.textContent('.bars'), before);
 
-    // Skill filter shows only the chosen group.
+    // Skill filter dims every tile outside the chosen family, and the inspector names the hovered tile.
     await page.getByRole('button', { name: 'Databases' }).click();
-    assert.deepEqual(await page.$$eval('.chip', cs => cs.map(c => c.textContent)), ['MongoDB', 'PostgreSQL', 'SQL']);
+    assert.deepEqual(await page.$$eval('.element:not(.dim) span', cs => cs.map(c => c.textContent)), ['MongoDB', 'PostgreSQL', 'SQL']);
+    const syms = await page.$$eval('.element b', bs => bs.map(b => b.textContent));
+    assert.equal(new Set(syms).size, syms.length, `${name}: duplicate element symbols`);
+    await page.locator('.element button', { hasText: 'FastAPI' }).hover();
+    assert.match(await page.textContent('.inspector'), /FastAPI.*EvidenceRAG/);
 
     // Command menu: Ctrl+K, type, Enter jumps to the section.
     await page.keyboard.press('Control+k');
