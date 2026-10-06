@@ -23,6 +23,8 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+/* clip, not hidden: stops any stray sideways scroll without breaking the sticky nav and pinned gallery */
+html, body { overflow-x: clip; }
 body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
 h1, h2, h3 { line-height: 1.05; margin: 0; letter-spacing: -0.035em; text-wrap: balance; }
 /* One word per heading in an italic serif, for contrast with the sans */
