@@ -77,7 +77,7 @@ function IntroVideo() {
         <source src={`${base}hero/avatar.mp4`} type="video/mp4" />
       </video>
       <canvas ref={canvas} width={W} height={H} role="img" style={{ backgroundImage: `url(${base}hero/poster.webp)` }}
-        aria-label="Animated 3D version of me saying: Hi, I'm Sahil. I'm a full-stack developer." />
+        aria-label="Animated 3D version of me introducing myself" />
       <button type="button" className={`sound ${muted ? 'off' : ''}`} onClick={toggle} aria-pressed={!muted}
         aria-label={muted ? 'Play my intro with sound' : 'Mute my intro'}>
         <Icon name={muted ? 'play' : 'pause'} />
