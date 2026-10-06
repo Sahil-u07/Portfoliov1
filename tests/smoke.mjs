@@ -70,10 +70,9 @@ try {
     assert.deepEqual(await page.$$eval('.project', ps => ps.map(p => p.classList.contains('open'))), [false, true, false, false]);
     await page.locator('.project.open .project-links a').first().waitFor({ state: 'visible' });
 
-    // Open source: every merged PR is listed, and each links to a PR or commit.
-    const prLinks = await page.$$eval('.prs a', as => as.map(a => a.href));
-    assert.equal(prLinks.length, 33);
-    assert.ok(prLinks.every(h => /^https:\/\/github\.com\/.+\/(pull\/\d+|commit\/[0-9a-f]{7})$/.test(h)), 'bad PR link');
+    // Open source: one short card per project, each linking to its repository.
+    assert.deepEqual(await page.$$eval('#open-source .card h3', hs => hs.map(h => h.textContent)), ['Beehive', 'Concore', 'Diomede', 'GNU Radio']);
+    assert.ok(await page.$$eval('#open-source .more', as => as.every(a => a.href.startsWith('https://github.com/'))));
 
     // Pipeline: sufficient evidence -> verified; insufficient -> abstained.
     const runBtn = page.getByRole('button', { name: 'Run query' });

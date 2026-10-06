@@ -29,7 +29,7 @@ export const about = {
   card: [
     'Full-stack developer',
     'B.Tech CSE (AIML), Manipal University Jaipur',
-    '33 merged open-source pull requests',
+    '100+ open-source contributions',
     'Builds EvidenceRAG and RoadGuard AI',
     'Top 35 of 10,000+ teams at HackRx 6.0',
   ],
@@ -63,85 +63,30 @@ export const evidenceRag = {
 
 export type Metric = keyof typeof evidenceRag.metrics;
 
-// Every merged pull request, from each repo's git history. A number links to the PR;
-// GNU Radio lands commits directly, so its entries are commit hashes.
 export const openSource = [
   {
     name: 'Beehive', org: 'KathiraveluLab', url: 'https://github.com/KathiraveluLab/Beehive',
     sub: 'Security Audit Tool · 13 merged PRs',
-    body: [
-      'Built a static scanner that maps every API auth check and points to unprotected endpoints by exact file and line.',
-      'Around it I hardened how the app handles secrets and config, set up its first React component tests, added linting to CI for both frontend and backend, and fixed gallery bugs from audio memory leaks to broken pagination.',
-    ],
-    severity: { Critical: 1, High: 4, Medium: 1 },
+    body: 'Built a scanner that finds unprotected API endpoints, hardened secrets and config, and added tests and linting to CI.',
     tags: ['Python', 'Flask', 'React', 'GitHub Actions'],
-    prs: [
-      [550, 'Validate the secret key and remove weak defaults'],
-      [562, 'Disable debug mode in production'],
-      [552, 'Security audit tools for endpoint and secret scanning'],
-      [494, 'Server-side search and filtering for the gallery'],
-      [475, 'Validate env config and remove insecure defaults'],
-      [487, 'Fix audio memory leaks and playback races'],
-      [471, 'Fix duplicated backend pagination and frontend paging'],
-      [473, 'Move the gallery onto the shared API utility'],
-      [459, 'Backend linting in CI'],
-      [456, 'Frontend linting in CI'],
-      [460, 'Sync package-lock.json so CI installs cleanly'],
-      [448, 'Treat an empty gallery as a valid state'],
-      [443, 'React component tests with Vitest'],
-    ],
   },
   {
     name: 'Concore', org: 'ControlCore-Project', url: 'https://github.com/ControlCore-Project/concore',
     sub: 'Neuromodulation simulation protocol · 13 merged PRs',
-    body: [
-      'I started with unit tests and a CI pipeline, then built the concore command-line tool and a workflow inspect command.',
-      "Later work went deeper: fixing simulation time in the C++ and MATLAB bindings, and a seqlock under a POSIX semaphore so two writers to the same shared memory can't tear each other's data.",
-    ],
+    body: 'Built the concore command-line tool, set up tests and CI, and fixed shared-memory and simulation-time bugs.',
     tags: ['Python', 'C++', 'MATLAB', 'ZeroMQ'],
-    prs: [
-      [559, 'Stop concurrent shared-memory writers tearing data'],
-      [551, 'Docker Compose generation with restart, network and ZMQ mode'],
-      [549, 'Guard against shared-memory truncation'],
-      [353, 'Fix simtime not advancing in the MATLAB writer'],
-      [351, 'Fix simtime updates in the C++ writers'],
-      [335, 'Tests for the inspect command'],
-      [229, 'Workflow validation with source-file and port checks'],
-      [206, 'Clean up ZeroMQ on exit with atexit and signal handlers'],
-      [202, 'Workflow inspect command with rich output and JSON export'],
-      [189, 'concore CLI: init, run, validate, status and stop'],
-      [182, 'Replace bare excepts and prints with logging'],
-      [179, 'GitHub Actions CI for automated testing'],
-      [178, 'Unit tests for the core Python components'],
-    ],
   },
   {
     name: 'Diomede', org: 'KathiraveluLab', url: 'https://github.com/KathiraveluLab/Diomede',
     sub: 'Dynamic DICOM Routing Module · 5 merged PRs',
-    body: [
-      'Built the routing engine that sends medical images (DICOM) to the best of several Orthanc nodes, with weighted scoring and a health-checker that routes around unhealthy ones.',
-      'Then added regression tests for the routing endpoint and fixed the import and dependency problems that kept the package from running.',
-    ],
+    body: 'Built the routing engine that sends medical images to the healthiest of several servers, plus its tests.',
     tags: ['Python', 'pynetdicom', 'Docker Compose'],
-    prs: [
-      [115, 'Remove deprecated pydicom attributes from tests'],
-      [84, 'Routing endpoint tests against parameter-name regressions'],
-      [53, 'Dynamic DICOM routing module'],
-      [50, 'Fix import errors in the Diomedex package'],
-      [49, 'Add the missing pandas dependency'],
-    ],
   },
   {
     name: 'GNU Radio', org: 'gnuradio', url: 'https://github.com/gnuradio/gnuradio',
     sub: 'Signal-processing toolkit · 2 merged PRs',
-    body: [
-      "Fixed GNU Radio Companion's Qt editor firing redundant move actions and signals, and updated the WAV file blocks' docs and Python bindings for libsndfile support.",
-    ],
+    body: 'Fixed redundant signals in the GRC Qt editor and updated the WAV file blocks for libsndfile.',
     tags: ['Python', 'Qt', 'C++'],
-    prs: [
-      ['7449620', 'WAV file source and sink docs and bindings for libsndfile'],
-      ['6406da8', 'GRC Qt: stop redundant MoveAction and itemMoved signals'],
-    ],
   },
 ];
 
@@ -209,7 +154,7 @@ export const skills: Record<string, string[]> = {
 // Each card's big number counts up the first time it is seen.
 export const achievements: { value: number; prefix?: string; suffix?: string; label: string; caption: string; detail?: string }[] = [
   { value: 35, prefix: 'Top ', label: 'HackRx 6.0', caption: 'Bajaj Finserv national hackathon', detail: 'Top 35 out of 10,000+ teams' },
-  { value: 33, label: 'Merged pull requests', caption: 'Across four open-source projects', detail: 'Beehive, Concore, Diomede and GNU Radio' },
+  { value: 100, suffix: '+', label: 'Open-source contributions', caption: 'Across four projects', detail: 'Including 33 merged pull requests' },
   { value: 15, suffix: '%', label: 'More bookings', caption: 'Sundarone internship', detail: 'After I added Razorpay payments' },
   { value: 3, suffix: 'rd', label: 'Smart Delhi Ideathon', caption: 'Government-backed innovation contest', detail: 'Third place in our category' },
   { value: 97, label: 'Backend tests', caption: 'EvidenceRAG' },
