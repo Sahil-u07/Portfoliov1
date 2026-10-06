@@ -74,19 +74,6 @@ code, pre, kbd { font-family: var(--mono); }
 @keyframes grow { to { transform: scaleX(1); } }
 @supports not (animation-timeline: scroll()) { .progress { display: none; } }
 
-/* Lime tile that grows to fill the screen as you scroll past it. Scroll-driven CSS, no JS; skipped where unsupported. */
-.zoom { height: 170vh; view-timeline: --zoom block; }
-.zoom-stage { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; overflow: clip; }
-.zoom-tile { display: grid; place-items: center; width: 96px; aspect-ratio: 1; border-radius: 26px; background: var(--accent); color: var(--on-accent); font: 700 34px var(--mono);
-  animation: zoom linear both; animation-timeline: --zoom; animation-range: entry 40% contain 100%; }
-@keyframes zoom {
-  0% { transform: perspective(700px) rotateY(-80deg) rotateX(35deg) scale(0.5); opacity: 0; }
-  30% { transform: perspective(700px) rotateY(0) rotateX(0) scale(1); opacity: 1; }
-  85% { opacity: 1; }
-  100% { transform: perspective(700px) rotateY(0) rotateX(0) scale(24); opacity: 0; }
-}
-@supports not (animation-timeline: view()) { .zoom { display: none; } }
-
 /* Scroll-linked motion: progress follows the scrollbar, so scrolling back plays it in reverse.
    Inside @supports so browsers without scroll timelines show everything static instead of the end state. */
 @supports (animation-timeline: view()) {
@@ -113,7 +100,6 @@ code, pre, kbd { font-family: var(--mono); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .zoom { display: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; translate: none; rotate: none; scale: none; }
 }
