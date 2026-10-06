@@ -78,7 +78,7 @@ export default function RetrievalField() {
       ctx.clearRect(0, 0, w, h);
 
       // Floor grid: the strongest depth cue
-      ctx.strokeStyle = 'rgb(255 255 255 / 0.07)';
+      ctx.strokeStyle = 'rgb(13 13 13 / 0.08)';
       ctx.beginPath();
       for (let i = -1.5; i <= 1.51; i += 0.375) { line([i, FLOOR, -1.5], [i, FLOOR, 1.5]); line([-1.5, FLOOR, i], [1.5, FLOOR, i]); }
       ctx.stroke();
@@ -86,7 +86,7 @@ export default function RetrievalField() {
       // Passages, farthest first so near ones overlap them
       const drawn = ranked.slice(K).map(o => ({ o, s: project(o.p) })).sort((a, b) => a.s[2] - b.s[2]);
       for (const { o, s: [x, y, s] } of drawn) {
-        ctx.fillStyle = `hsl(${o.hue} 65% 72% / ${Math.min(1, 0.12 + 0.6 * s ** 4)})`;
+        ctx.fillStyle = `hsl(${o.hue} 55% 45% / ${Math.min(1, 0.12 + 0.6 * s ** 4)})`;
         ctx.beginPath(); ctx.arc(x, y, 2.1 * s ** 2, 0, 7); ctx.fill();
       }
 
