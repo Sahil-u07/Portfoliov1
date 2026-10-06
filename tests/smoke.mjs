@@ -31,8 +31,18 @@ try {
     const cv = await page.locator('.hero a[download]').evaluate(a => fetch(a.href).then(r => r.ok && r.headers.get('content-type')));
     assert.equal(cv, 'application/pdf', `${name}: Download CV link is broken`);
 
-    // The hero photo loads.
-    assert.ok(await page.locator('.portrait img').evaluate(i => i.decode().then(() => i.naturalWidth > 0)), `${name}: hero photo did not load`);
+    // The intro video is served, and the round button turns its sound on and off.
+    const clips = await page.$$eval('.portrait video source', ss => Promise.all(ss.map(s => fetch(s.src).then(r => r.ok && r.headers.get('content-type')))));
+    assert.deepEqual(clips, ['video/webm', 'video/mp4'], `${name}: intro video is missing`);
+    // The avatar is drawn cut out: transparent in the corner, solid in the middle.
+    await page.waitForFunction(() => { const c = document.querySelector('.portrait canvas').getContext('2d');
+      return c.getImageData(5, 5, 1, 1).data[3] === 0 && c.getImageData(240, 200, 1, 1).data[3] === 255; });
+    const sound = page.locator('.sound'), muted = () => page.locator('.portrait video').evaluate(v => v.muted);
+    const wasMuted = await muted();
+    await sound.click();
+    assert.equal(await muted(), !wasMuted, `${name}: sound button did nothing`);
+    await sound.click();
+    assert.equal(await muted(), wasMuted, `${name}: sound button did not toggle back`);
 
     // ID card flips with the keyboard and swings (the JS sets a rotation on its hanger).
     const card = page.locator('.idcard');
