@@ -3,6 +3,7 @@
 
 export const profile = {
   name: 'Sahil Lenka',
+  role: 'Full-stack developer',
   tagline: 'B.Tech CSE (AIML) · Manipal University Jaipur · Class of 2028',
   intro: "I like building things people actually use. Most of my time goes into web apps, open-source projects, and an AI side project that only answers when it can show where the answer came from.",
   email: 'sahillenka44@gmail.com',
