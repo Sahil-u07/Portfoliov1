@@ -66,25 +66,25 @@ export type Metric = keyof typeof evidenceRag.metrics;
 export const openSource = [
   {
     name: 'Beehive', org: 'KathiraveluLab', url: 'https://github.com/KathiraveluLab/Beehive',
-    sub: 'Security Audit Tool · 13 merged PRs',
+    sub: 'Security Audit Tool · 20+ contributions',
     body: 'Built a scanner that finds unprotected API endpoints, hardened secrets and config, and added tests and linting to CI.',
     tags: ['Python', 'Flask', 'React', 'GitHub Actions'],
   },
   {
     name: 'Concore', org: 'ControlCore-Project', url: 'https://github.com/ControlCore-Project/concore',
-    sub: 'Neuromodulation simulation protocol · 13 merged PRs',
+    sub: 'Neuromodulation simulation protocol · 25+ contributions',
     body: 'Built the concore command-line tool, set up tests and CI, and fixed shared-memory and simulation-time bugs.',
     tags: ['Python', 'C++', 'MATLAB', 'ZeroMQ'],
   },
   {
     name: 'Diomede', org: 'KathiraveluLab', url: 'https://github.com/KathiraveluLab/Diomede',
-    sub: 'Dynamic DICOM Routing Module · 5 merged PRs',
+    sub: 'Dynamic DICOM Routing Module · 15+ contributions',
     body: 'Built the routing engine that sends medical images to the healthiest of several servers, plus its tests.',
     tags: ['Python', 'pynetdicom', 'Docker Compose'],
   },
   {
     name: 'GNU Radio', org: 'gnuradio', url: 'https://github.com/gnuradio/gnuradio',
-    sub: 'Signal-processing toolkit · 2 merged PRs',
+    sub: 'Signal-processing toolkit · and counting',
     body: 'Fixed redundant signals in the GRC Qt editor and updated the WAV file blocks for libsndfile.',
     tags: ['Python', 'Qt', 'C++'],
   },
