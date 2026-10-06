@@ -35,9 +35,10 @@ function IdCard() {
       if (visible && !raf) raf = requestAnimationFrame(tick);
     });
     io.observe(el);
+    const onLeave = () => { lastX = 0; };
     section.addEventListener('pointermove', onMove);
-    section.addEventListener('pointerleave', () => { lastX = 0; });
-    return () => { io.disconnect(); cancelAnimationFrame(raf); section.removeEventListener('pointermove', onMove); };
+    section.addEventListener('pointerleave', onLeave);
+    return () => { io.disconnect(); cancelAnimationFrame(raf); section.removeEventListener('pointermove', onMove); section.removeEventListener('pointerleave', onLeave); };
   }, []);
 
   return (
@@ -76,7 +77,7 @@ export default function About() {
     <section className="wrap section" id="about">
       <div className="about">
         <Reveal className="about-text">
-          <p className="kicker">02 — About</p>
+          <p className="kicker">About</p>
           <h2>Hi, I'm <em>Sahil.</em></h2>
           {about.paragraphs.map(p => <p key={p}>{p}</p>)}
           <div className="cta-row">
