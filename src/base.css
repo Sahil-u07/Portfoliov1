@@ -1,24 +1,24 @@
 :root {
-  /* Paper and ink: white, black and grays only */
-  --bg: #f4f2ee;
-  --card: #fff;
-  --muted: #e9e6e0;
-  --border: rgb(13 13 13 / 0.1);
-  --border-strong: rgb(13 13 13 / 0.18);
-  --fg: #0d0d0d;
-  --fg-muted: #6b6963;
-  --accent: #0d0d0d;
-  --on-accent: #f4f2ee;
-  --ok: #15803d;
-  --bad: #b91c1c;
+  /* Soft dark: warm charcoal and off-white, no pure black or white, so it's easy on the eyes */
+  --bg: #141412;
+  --card: #1c1b19;
+  --muted: #262522;
+  --border: rgb(232 229 222 / 0.08);
+  --border-strong: rgb(232 229 222 / 0.16);
+  --fg: #e8e5de;
+  --fg-muted: #9a968d;
+  --accent: #e8e5de;
+  --on-accent: #141412;
+  --ok: #6fcf97;
+  --bad: #f08a8a;
   --ease: cubic-bezier(.16, 1, .3, 1);
-  --shadow: 0 0 0 1px rgb(13 13 13 / 0.06) inset, 0 24px 60px -24px rgb(13 13 13 / 0.18);
+  --shadow: 0 0 0 1px rgb(232 229 222 / 0.06) inset, 0 24px 60px -24px rgb(0 0 0 / 0.6);
   --sans: "Inter Tight", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   --serif: "Instrument Serif", Georgia, serif;
   --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
   --radius: 14px;
   --fast: 180ms ease;
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -51,7 +51,7 @@ code, pre, kbd { font-family: var(--mono); }
 .btn:hover { border-color: var(--fg); transform: translateY(-1px); }
 .btn:active { transform: translateY(1px); }
 .btn.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
-.btn.primary:hover { background: #2a2a2a; box-shadow: 0 10px 24px -10px rgb(13 13 13 / 0.5); }
+.btn.primary:hover { background: #d4d0c7; box-shadow: 0 10px 24px -10px rgb(0 0 0 / 0.6); }
 .btn:disabled { opacity: 0.6; cursor: progress; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
