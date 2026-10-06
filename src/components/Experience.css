@@ -1,12 +1,12 @@
 .timeline { position: relative; border-left: 1px solid var(--border-strong); margin-left: 6px; display: grid; gap: 48px; }
 /* An ink line that draws down the timeline as you scroll through it */
-.timeline::before { content: ""; position: absolute; left: -1px; top: 0; bottom: 0; width: 1px; background: var(--fg); transform-origin: top; transform: scaleY(0); }
+.timeline::before { content: ""; position: absolute; left: -1px; top: 0; bottom: 0; width: 1px; background: var(--accent); transform-origin: top; transform: scaleY(0); }
 @supports (animation-timeline: view()) { .timeline::before { animation: draw linear both; animation-timeline: view(); animation-range: entry 30% cover 70%; } }
 @keyframes draw { to { transform: scaleY(1); } }
 .timeline > li { position: relative; padding-left: 32px; }
 .timeline > li::before { content: ""; position: absolute; left: -6px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 2px solid var(--border-strong); transition: background 600ms var(--ease) 300ms, border-color 600ms var(--ease) 300ms; }
 /* Each stop lights up as it scrolls in */
-.timeline > li.in::before { background: var(--fg); border-color: var(--fg); }
+.timeline > li.in::before { background: var(--accent); border-color: var(--accent); }
 .timeline time { font: 13px var(--mono); color: var(--fg-muted); }
 .timeline h3 { font-size: 22px; margin: 6px 0 4px; }
 .timeline h3 span { display: block; font-size: 17px; font-weight: 500; color: var(--fg-muted); margin-top: 4px; }

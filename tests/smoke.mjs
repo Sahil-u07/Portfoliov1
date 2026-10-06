@@ -54,8 +54,8 @@ try {
     await field.evaluate(c => new Promise((resolve, reject) => {
       const lit = () => {
         const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
-        let ink = 0; // the query and its neighbour lines are drawn in the off-white accent
-        for (let i = 0; i < d.length; i += 4) if (d[i + 3] > 200 && d[i] > 200 && d[i + 1] > 200 && d[i + 2] > 190) ink++;
+        let ink = 0; // the query and its neighbour lines are drawn in the amber accent
+        for (let i = 0; i < d.length; i += 4) if (d[i + 3] > 200 && d[i] > 200 && d[i + 1] > 130 && d[i + 1] < 200 && d[i + 2] < 130) ink++;
         return ink > 50;
       };
       const t0 = performance.now();

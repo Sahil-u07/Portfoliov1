@@ -8,7 +8,7 @@
 .project-index { font: 12px var(--mono); color: var(--fg-muted); }
 .spine-title { writing-mode: vertical-rl; rotate: 180deg; font-weight: 600; font-size: 18px; letter-spacing: -0.02em; white-space: nowrap; }
 .plus { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border-strong); font-size: 20px; transition: rotate 400ms var(--ease), background 300ms; }
-.spine:hover .plus { rotate: 90deg; background: var(--fg); color: var(--on-accent); }
+.spine:hover .plus { rotate: 90deg; background: var(--accent); color: var(--on-accent); }
 
 /* Open: the details on the left, the wireframe on the right */
 .project-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: 32px; height: 100%; padding: 36px; min-width: 760px;
@@ -20,7 +20,7 @@
 .project-info > p:not(.project-kind) { color: var(--fg-muted); }
 .highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; font-size: 14px; }
 .highlights li { padding-left: 16px; position: relative; }
-.highlights li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--fg); }
+.highlights li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .project .tags { margin-top: 0; }
 .project-links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; }
 
@@ -32,10 +32,10 @@
 .mini-bar span { margin-left: 8px; font: 11px var(--mono); color: var(--fg-muted); }
 .mini-main { display: grid; gap: 12px; padding: 22px 20px 48px; }
 .mini-line { height: 10px; border-radius: 6px; background: var(--muted); }
-.w40 { width: 40%; } .w60 { width: 60%; background: var(--fg) !important; } .w75 { width: 75%; } .w90 { width: 90%; }
+.w40 { width: 40%; } .w60 { width: 60%; background: var(--accent) !important; } .w75 { width: 75%; } .w90 { width: 90%; }
 .mini-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 8px 0; }
 .mini-cards span { aspect-ratio: 1; border-radius: 12px; background: var(--card); box-shadow: 0 0 0 1px var(--border) inset; }
-.mini-cards span:first-child { background: var(--fg); }
+.mini-cards span:first-child { background: var(--accent); }
 .mini-ui figcaption { position: absolute; right: 14px; bottom: 12px; font: 10px var(--mono); color: var(--fg-muted); text-transform: uppercase; letter-spacing: .08em; }
 
 /* Phones and tablets: a vertical accordion */

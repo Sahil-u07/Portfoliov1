@@ -1,7 +1,7 @@
 .hero-inner { position: relative; display: grid; grid-template-columns: 1.1fr minmax(0, 440px) 1fr; gap: 32px; align-items: end; min-height: calc(100svh - 64px); padding: 48px 0 56px; }
 /* Giant outlined first name behind everything */
 .ghost { position: absolute; inset: 8% 0 auto; z-index: -1; text-align: center; font: 800 clamp(96px, 22vw, 340px)/0.9 var(--sans); letter-spacing: -0.06em; text-transform: uppercase;
-  color: transparent; -webkit-text-stroke: 1.5px var(--border-strong); user-select: none; pointer-events: none; }
+  color: transparent; -webkit-text-stroke: 1.5px rgb(242 166 90 / 0.22); user-select: none; pointer-events: none; }
 .hero h1 { font-size: clamp(48px, 5.2vw, 84px); white-space: nowrap; font-weight: 700; letter-spacing: -0.045em; margin: 16px 0 20px; }
 .hero h1 em { display: block; }
 .lede { font: 13px/1.6 var(--mono); color: var(--fg-muted); max-width: 40ch; }
@@ -13,6 +13,8 @@
 .portrait { position: relative; margin: 0; align-self: center;
   transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 400ms var(--ease); }
 .portrait .source { display: none; }
+/* Soft amber glow behind the avatar */
+.portrait::before { content: ""; position: absolute; inset: 15% 5% 5%; z-index: -1; border-radius: 50%; background: radial-gradient(closest-side, rgb(242 166 90 / 0.22), transparent); filter: blur(20px); }
 /* The poster shows behind the canvas until the first frame is drawn over it */
 .portrait canvas { display: block; width: 100%; height: auto; background: center / cover no-repeat; }
 @media (prefers-reduced-motion: reduce) { .portrait { transform: none; } }

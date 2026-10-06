@@ -5,7 +5,7 @@
 .element small { font: 10px var(--mono); color: var(--fg-muted); }
 .element b { font-size: clamp(18px, 2.2vw, 28px); letter-spacing: -0.03em; line-height: 1; }
 .element span { font-size: 11px; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.element button:hover, .element.picked button { background: var(--fg); color: var(--on-accent); translate: 0 -2px; }
+.element button:hover, .element.picked button { background: var(--accent); color: var(--on-accent); translate: 0 -2px; }
 .element button:hover small, .element.picked small { color: inherit; opacity: .6; }
 .element.dim button { opacity: .25; }
 /* Diagonal wave: each tile's delay is (row + col) × 40ms, set inline as --d */
@@ -13,7 +13,7 @@
 .elements.in .element { opacity: 1; scale: 1; }
 
 .inspector { position: sticky; top: 96px; display: grid; gap: 6px; padding: 28px; border-radius: 24px; background: var(--card); box-shadow: var(--shadow); }
-.inspector .big { display: grid; place-items: center; width: 150px; aspect-ratio: 1; margin-bottom: 16px; border-radius: 20px; background: var(--fg); color: var(--on-accent);
+.inspector .big { display: grid; place-items: center; width: 150px; aspect-ratio: 1; margin-bottom: 16px; border-radius: 20px; background: var(--accent); color: var(--on-accent);
   font-size: 64px; letter-spacing: -0.04em; animation: pop 400ms var(--ease); }
 @keyframes pop { from { scale: .7; opacity: 0; } }
 .inspector small { font: 12px var(--mono); color: var(--fg-muted); text-transform: uppercase; letter-spacing: .06em; }
