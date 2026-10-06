@@ -10,10 +10,14 @@
 .hero-side .cta-row { justify-content: flex-end; margin-top: 24px; }
 
 /* Leans toward the pointer like the cards (trackPointer sets --rx/--ry) */
-.portrait { margin: 0; align-self: center; border-radius: 28px; overflow: hidden; background: var(--card); box-shadow: var(--shadow);
+.portrait { position: relative; margin: 0; align-self: center; border-radius: 28px; overflow: hidden; background: #f4f4f4; box-shadow: var(--shadow);
   transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 400ms var(--ease); }
-.portrait img { display: block; width: 100%; height: auto; filter: grayscale(1) contrast(1.05); transition: filter 600ms var(--ease); }
-.portrait:hover img { filter: none; }
+.portrait video { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+/* Sound toggle: ▶ when the voice is off, ❚❚ when it's on. A soft ring pings while it's off. */
+.sound { position: absolute; right: 14px; bottom: 14px; display: grid; place-items: center; width: 46px; height: 46px; border: 0; border-radius: 50%; background: #0d0d0d; color: #f4f2ee; }
+.sound .ic { fill: currentColor; stroke: none; }
+.sound.off::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid #0d0d0d; animation: ping 1.8s var(--ease) infinite; }
+@keyframes ping { to { transform: scale(1.6); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .portrait { transform: none; } }
 
 @media (max-width: 1000px) {

@@ -31,8 +31,14 @@ try {
     const cv = await page.locator('.hero a[download]').evaluate(a => fetch(a.href).then(r => r.ok && r.headers.get('content-type')));
     assert.equal(cv, 'application/pdf', `${name}: Download CV link is broken`);
 
-    // The hero photo loads.
-    assert.ok(await page.locator('.portrait img').evaluate(i => i.decode().then(() => i.naturalWidth > 0)), `${name}: hero photo did not load`);
+    // The intro video is served, and the round button turns its sound on and off.
+    const clip = await page.locator('.portrait video source').evaluate(s => fetch(s.src).then(r => r.ok && r.headers.get('content-type')));
+    assert.equal(clip, 'video/mp4', `${name}: intro video is missing`);
+    const sound = page.locator('.sound');
+    await sound.click();
+    assert.equal(await page.locator('.portrait video').evaluate(v => v.muted), false, `${name}: sound did not turn on`);
+    await sound.click();
+    assert.equal(await page.locator('.portrait video').evaluate(v => v.muted), true, `${name}: sound did not turn off`);
 
     // ID card flips with the keyboard and swings (the JS sets a rotation on its hanger).
     const card = page.locator('.idcard');
