@@ -14,7 +14,7 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "Hi, I'm Sahil. I'm doing my B.Tech in Computer Science (AI and ML) at Manipal University Jaipur. Most of what I know I picked up by building things: two internships, a team project that's live, and a lot of pull requests to open-source projects.",
+    "I'm doing my B.Tech in Computer Science (AI and ML) at Manipal University Jaipur. Most of what I know I picked up by building things: two internships, a team project that's live, and a lot of pull requests to open-source projects.",
     "At IOTA Studio AI I built the company's website from start to finish with React, Node.js and a REST API. Before that, at Sundarone, I added Razorpay payments to their hostel-booking site, which helped push bookings up by 15%.",
     "My favourite side project is EvidenceRAG. You give it your documents and ask questions, and it only answers if it can point to the exact passage that backs the answer up. If it can't, it just says it doesn't know.",
   ],
@@ -23,6 +23,15 @@ export const about = {
     { label: 'Worked at', value: 'IOTA Studio AI and Sundarone, as an intern' },
     { label: 'Stack', value: 'React, Node.js, Python, FastAPI and MongoDB' },
     { label: 'Into', value: 'Web development, security tooling and search' },
+  ],
+  quote: 'Most of what I know I picked up by building things.',
+  // Back of the ID card: one line each, all from the resume.
+  card: [
+    'Full-stack developer',
+    'B.Tech CSE (AIML), Manipal University Jaipur',
+    '33 merged open-source pull requests',
+    'Builds EvidenceRAG and RoadGuard AI',
+    'Top 35 of 10,000+ teams at HackRx 6.0',
   ],
 };
 

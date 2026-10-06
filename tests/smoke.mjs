@@ -34,6 +34,13 @@ try {
     // The hero photo loads.
     assert.ok(await page.locator('.portrait img').evaluate(i => i.decode().then(() => i.naturalWidth > 0)), `${name}: hero photo did not load`);
 
+    // ID card flips with the keyboard and swings (the JS sets a rotation on its hanger).
+    const card = page.locator('.idcard');
+    await card.focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await card.getAttribute('aria-pressed'), 'true', `${name}: ID card did not flip`);
+    await page.waitForFunction(() => document.querySelector('.hanger').style.transform.startsWith('rotate'));
+
     // 3D search sketch: it only animates while on screen, so wait for it to draw the query's neighbours.
     const field = page.locator('.field canvas');
     await field.hover();
