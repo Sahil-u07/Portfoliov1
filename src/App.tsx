@@ -10,12 +10,10 @@ import OpenSource from './components/OpenSource';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
-import Ribbons from './components/Ribbons';
 
 export default function App() {
   return (
     <>
-      <Ribbons />
       <div className="progress" aria-hidden="true" />
       <a className="skip" href="#main">Skip to content</a>
       <Nav><CommandMenu /></Nav>

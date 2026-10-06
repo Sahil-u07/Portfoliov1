@@ -1,29 +1,32 @@
 :root {
-  --bg: #060706;
-  --card: rgb(17 19 15 / 0.82);
-  --muted: #191c16;
-  --border: rgb(255 255 255 / 0.07);
-  --border-strong: rgb(255 255 255 / 0.14);
-  --fg: #f4f5f0;
-  --fg-muted: #9a9f93;
-  --accent: #c8f031;
-  --on-accent: #0c1003;
-  --ok: #34d399;
-  --bad: #f87171;
-  --sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Paper and ink: white, black and grays only */
+  --bg: #f4f2ee;
+  --card: #fff;
+  --muted: #e9e6e0;
+  --border: rgb(13 13 13 / 0.1);
+  --border-strong: rgb(13 13 13 / 0.18);
+  --fg: #0d0d0d;
+  --fg-muted: #6b6963;
+  --accent: #0d0d0d;
+  --on-accent: #f4f2ee;
+  --ok: #15803d;
+  --bad: #b91c1c;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --shadow: 0 0 0 1px rgb(13 13 13 / 0.06) inset, 0 24px 60px -24px rgb(13 13 13 / 0.18);
+  --sans: "Inter Tight", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   --serif: "Instrument Serif", Georgia, serif;
   --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
   --radius: 14px;
   --fast: 180ms ease;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
-h1, h2, h3 { line-height: 1.15; margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
+h1, h2, h3 { line-height: 1.05; margin: 0; letter-spacing: -0.035em; text-wrap: balance; }
 /* One word per heading in an italic serif, for contrast with the sans */
-h1 em, h2 em { font: italic 400 1.06em var(--serif); letter-spacing: -0.01em; }
+h1 em, h2 em { font: italic 400 1.06em var(--serif); letter-spacing: -0.01em; color: var(--fg-muted); }
 p { margin: 0; }
 a { color: inherit; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
@@ -38,16 +41,17 @@ code, pre, kbd { font-family: var(--mono); }
 .skip:focus { top: 12px; }
 
 .section { padding: 112px 0 0; }
-.section > h2 { font-size: clamp(28px, 4vw, 40px); margin: 12px 0 40px; }
-.kicker { display: flex; align-items: center; gap: 8px; width: fit-content; padding: 4px 12px; border: 1px solid var(--border-strong); border-radius: 999px; background: rgb(255 255 255 / 0.03); font: 12px var(--mono); color: var(--fg-muted); }
-.kicker::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+.section > h2 { font-size: clamp(36px, 6vw, 64px); font-weight: 700; margin: 16px 0 48px; }
+/* Section tag: a mono index and a label, e.g. "02 — About" */
+.kicker { display: flex; align-items: center; gap: 10px; width: fit-content; font: 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); }
+.kicker::before { content: ""; width: 28px; height: 1px; background: var(--border-strong); }
 .note { margin-top: 16px; font-size: 13px; color: var(--fg-muted); }
 
 .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--card); text-decoration: none; font-weight: 500; transition: background var(--fast), border-color var(--fast), transform var(--fast); }
-.btn:hover { border-color: var(--fg-muted); }
+.btn:hover { border-color: var(--fg); transform: translateY(-1px); }
 .btn:active { transform: translateY(1px); }
 .btn.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
-.btn.primary:hover { background: #d8f760; box-shadow: 0 0 24px rgb(200 240 49 / 0.35); }
+.btn.primary:hover { background: #2a2a2a; box-shadow: 0 10px 24px -10px rgb(13 13 13 / 0.5); }
 .btn:disabled { opacity: 0.6; cursor: progress; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
@@ -64,8 +68,6 @@ code, pre, kbd { font-family: var(--mono); }
 .term-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border-strong); }
 .term-bar span { margin-left: 8px; font: 12px var(--mono); color: var(--fg-muted); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-
-.ribbons { position: fixed; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; }
 
 /* Scroll progress bar: a native CSS scroll-driven animation, no JS. Hidden where unsupported. */
 .progress { position: fixed; inset: 0 0 auto; z-index: 10; height: 2px; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); animation: grow linear both; animation-timeline: scroll(root); }

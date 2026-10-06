@@ -34,18 +34,15 @@ try {
     // The hero photo loads.
     assert.ok(await page.locator('.portrait img').evaluate(i => i.decode().then(() => i.naturalWidth > 0)), `${name}: hero photo did not load`);
 
-    // Background ribbons are drawn.
-    assert.ok(await page.locator('.ribbons').evaluate(c => c.getContext('2d').getImageData(0, 0, c.width, c.height).data.some((v, i) => i % 4 === 3 && v > 0)), `${name}: ribbons drew nothing`);
-
     // 3D search sketch: it only animates while on screen, so wait for it to draw the query's neighbours.
     const field = page.locator('.field canvas');
     await field.hover();
     await field.evaluate(c => new Promise((resolve, reject) => {
       const lit = () => {
         const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
-        let lime = 0;
-        for (let i = 0; i < d.length; i += 4) if (d[i] > 150 && d[i + 1] > 200 && d[i + 2] < 100) lime++;
-        return lime > 50;
+        let ink = 0; // the query and its neighbour lines are drawn in the ink accent
+        for (let i = 0; i < d.length; i += 4) if (d[i + 3] > 200 && d[i] < 40 && d[i + 1] < 40 && d[i + 2] < 40) ink++;
+        return ink > 50;
       };
       const t0 = performance.now();
       (function poll() { lit() ? resolve() : performance.now() - t0 > 5000 ? reject(new Error('3D sketch drew no highlighted neighbours')) : requestAnimationFrame(poll); })();
