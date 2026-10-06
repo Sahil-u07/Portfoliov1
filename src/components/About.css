@@ -12,7 +12,7 @@ blockquote { margin: 16px 0 0; font: italic 26px/1.25 var(--serif); color: var(-
 
 /* The lanyard: a strap hanging from the top of the section, a clip, then the card. JS sets the swing rotation. */
 .hanger { display: grid; justify-items: center; margin-top: -112px; transform-origin: 50% 0; will-change: transform; }
-.strap { width: 30px; height: 150px; overflow: hidden; background: var(--fg); color: var(--on-accent); border-radius: 0 0 4px 4px; }
+.strap { width: 30px; height: 150px; overflow: hidden; background: var(--accent); color: var(--on-accent); border-radius: 0 0 4px 4px; }
 .strap span { display: block; writing-mode: vertical-rl; font: 10px/30px var(--mono); letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; animation: strap 14s linear infinite; }
 @keyframes strap { to { transform: translateY(-50%); } }
 .clip { width: 34px; height: 26px; margin-top: -4px; border-radius: 6px 6px 10px 10px; background: linear-gradient(#d9d7d2, #9e9b95); box-shadow: inset 0 0 0 1px rgb(13 13 13 / .2); }
@@ -24,7 +24,7 @@ blockquote { margin: 16px 0 0; font: italic 26px/1.25 var(--serif); color: var(-
 .back { transform: rotateY(180deg); justify-content: space-between; padding-bottom: 22px; }
 .idcard.flipped .front { transform: rotateY(-180deg); }
 .idcard.flipped .back { transform: rotateY(0); }
-.band { align-self: stretch; padding: 16px; background: var(--fg); color: var(--on-accent); font: 600 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+.band { align-self: stretch; padding: 16px; background: var(--accent); color: var(--on-accent); font: 600 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; }
 .photo { width: 128px; height: 156px; margin: 22px 0 16px; padding: 4px; border-radius: 16px; background: linear-gradient(135deg, #d6d3cd, #8f8c86); box-shadow: 0 10px 30px -8px rgb(13 13 13 / .35); }
 .photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; border-radius: 12px; filter: grayscale(1); transition: scale 500ms var(--ease); }
 .idcard:hover .photo img { scale: 1.06; }
@@ -35,7 +35,7 @@ blockquote { margin: 16px 0 0; font: italic 26px/1.25 var(--serif); color: var(-
 .barcode { width: 70%; height: 30px; margin-top: auto; margin-bottom: 18px; background: repeating-linear-gradient(90deg, var(--fg) 0 2px, transparent 2px 4px, var(--fg) 4px 5px, transparent 5px 8px); opacity: .8; }
 .lines { display: grid; gap: 10px; padding: 0 26px; text-align: left; font-size: 14px; }
 .lines span { padding-left: 16px; position: relative; }
-.lines span::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; border-radius: 50%; background: var(--fg); }
+.lines span::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .sign { font: italic 34px var(--serif); border-bottom: 1px solid var(--border-strong); padding: 0 24px 2px; }
 
 @media (max-width: 1000px) {

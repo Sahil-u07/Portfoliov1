@@ -8,7 +8,7 @@
 .email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 32px; }
 .email { font-size: clamp(22px, 3.4vw, 40px); font-weight: 600; letter-spacing: -0.03em; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; overflow-wrap: anywhere; }
 .chip-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--card); font: 13px var(--mono); }
-.chip-btn:hover { background: var(--fg); color: var(--on-accent); }
+.chip-btn:hover { background: var(--accent); color: var(--on-accent); }
 .badge { position: absolute; right: 0; top: 140px; width: 120px; animation: spin 18s linear infinite; }
 .badge text { font: 500 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; fill: var(--fg); }
 .badge circle { fill: var(--fg); }
