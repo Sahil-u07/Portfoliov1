@@ -1,16 +1,25 @@
-.hero-inner { display: grid; grid-template-columns: 1fr minmax(0, 380px); gap: 64px; align-items: center; padding: 96px 0 72px; }
-.hero h1 { font-size: clamp(44px, 7vw, 76px); margin: 16px 0 20px; }
-.lede { font-size: 20px; color: var(--fg-muted); max-width: 46ch; }
-
+.hero-inner { position: relative; display: grid; grid-template-columns: 1.25fr minmax(0, 340px) 1fr; gap: 48px; align-items: end; min-height: calc(100svh - 64px); padding: 48px 0 56px; }
+/* Giant outlined first name behind everything */
+.ghost { position: absolute; inset: 8% 0 auto; z-index: -1; text-align: center; font: 800 clamp(96px, 22vw, 340px)/0.9 var(--sans); letter-spacing: -0.06em; text-transform: uppercase;
+  color: transparent; -webkit-text-stroke: 1.5px var(--border-strong); user-select: none; pointer-events: none; }
+.hero h1 { font-size: clamp(48px, 5.2vw, 84px); white-space: nowrap; font-weight: 700; letter-spacing: -0.045em; margin: 16px 0 20px; }
+.hero h1 em { display: block; }
+.lede { font: 13px/1.6 var(--mono); color: var(--fg-muted); max-width: 40ch; }
+.hero-side { display: grid; gap: 4px; justify-items: end; text-align: right; }
+.hero-side p { color: var(--fg-muted); max-width: 36ch; }
+.hero-side .cta-row { justify-content: flex-end; margin-top: 24px; }
 
 /* Leans toward the pointer like the cards (trackPointer sets --rx/--ry) */
-.portrait { margin: 0; border: 1px solid var(--border-strong); border-radius: 24px; overflow: hidden; background: var(--card);
-  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 400ms cubic-bezier(.22, 1, .36, 1); }
-.portrait img { display: block; width: 100%; height: auto; }
+.portrait { margin: 0; align-self: center; border-radius: 28px; overflow: hidden; background: var(--card); box-shadow: var(--shadow);
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 400ms var(--ease); }
+.portrait img { display: block; width: 100%; height: auto; filter: grayscale(1) contrast(1.05); transition: filter 600ms var(--ease); }
+.portrait:hover img { filter: none; }
 @media (prefers-reduced-motion: reduce) { .portrait { transform: none; } }
 
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 32px; padding-top: 48px; }
-  .portrait { order: -1; width: 160px; border-radius: 50%; aspect-ratio: 1; }
-  .portrait img { height: 100%; object-fit: cover; scale: 1.7; transform-origin: 48% 30%; } /* zoom in on the face */
+@media (max-width: 1000px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 28px; min-height: 0; padding-top: 40px; align-items: start; }
+  .ghost { inset: 24px 0 auto; }
+  .portrait { order: -1; width: min(260px, 70%); justify-self: center; }
+  .hero-side { justify-items: start; text-align: left; }
+  .hero-side .cta-row { justify-content: flex-start; }
 }

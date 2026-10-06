@@ -35,7 +35,7 @@ code, pre, kbd { font-family: var(--mono); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 ::selection { background: var(--accent); color: var(--on-accent); }
 
-.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+.wrap { width: min(1240px, 100% - 32px); margin-inline: auto; }
 .ic { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .skip { position: absolute; left: 16px; top: -48px; padding: 8px 14px; background: var(--accent); color: var(--on-accent); border-radius: 8px; z-index: 10; }
 .skip:focus { top: 12px; }
