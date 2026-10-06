@@ -1,7 +1,6 @@
 import { useState, type CSSProperties } from 'react';
-import { achievements, evidenceRag, openSource, projects, skills } from '../data';
+import { evidenceRag, openSource, projects, skills } from '../data';
 import { useReveal } from '../hooks';
-import Reveal from './Reveal';
 import './Skills.css';
 
 const COLS = 8;
@@ -67,12 +66,6 @@ export default function Skills() {
         </aside>
       </div>
 
-      <h2 className="ach-title">Achievements</h2>
-      <ul className="achievements">
-        {achievements.map((a, i) => (
-          <Reveal as="li" key={a.title} style={{ '--i': i } as CSSProperties}><b>{a.title}</b><span>{a.body}</span></Reveal>
-        ))}
-      </ul>
     </section>
   );
 }

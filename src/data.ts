@@ -35,13 +35,6 @@ export const about = {
   ],
 };
 
-export const stats = [
-  { value: 15, suffix: '%', label: 'more bookings after my Razorpay integration at Sundarone' },
-  { value: 33, label: 'merged pull requests across four open-source projects' },
-  { text: 'Top 35', label: 'out of 10,000+ teams at HackRx 6.0' },
-  { value: 97, label: 'backend tests in EvidenceRAG' },
-];
-
 export const evidenceRag = {
   repo: 'https://github.com/Sahil-u07/evidencerag',
   motto: 'Retrieve evidence first. Generate from it. Verify before answering.',
@@ -212,10 +205,14 @@ export const skills: Record<string, string[]> = {
   Other: ['REST APIs', 'JWT Auth', 'RBAC', 'Security Hardening', 'Full-Stack Architecture'],
 };
 
-export const achievements = [
-  { title: 'HackRx 6.0 (Bajaj Finserv)', body: 'Made the top 35 out of 10,000+ teams in this national hackathon.' },
-  { title: 'Smart Delhi Ideathon', body: 'Came 3rd in our category at this government-backed innovation contest.' },
-  { title: '3× Hackathon Finalist', body: 'Made it to the finals of three hackathons, at university and national level.' },
+// Each card's big number counts up the first time it is seen.
+export const achievements: { value: number; prefix?: string; suffix?: string; label: string; caption: string; detail?: string }[] = [
+  { value: 35, prefix: 'Top ', label: 'HackRx 6.0', caption: 'Bajaj Finserv national hackathon', detail: 'Top 35 out of 10,000+ teams' },
+  { value: 33, label: 'Merged pull requests', caption: 'Across four open-source projects', detail: 'Beehive, Concore, Diomede and GNU Radio' },
+  { value: 15, suffix: '%', label: 'More bookings', caption: 'Sundarone internship', detail: 'After I added Razorpay payments' },
+  { value: 3, suffix: 'rd', label: 'Smart Delhi Ideathon', caption: 'Government-backed innovation contest', detail: 'Third place in our category' },
+  { value: 97, label: 'Backend tests', caption: 'EvidenceRAG' },
+  { value: 3, suffix: '×', label: 'Hackathon finalist', caption: 'University and national level' },
 ];
 
 export const sections = [
@@ -224,5 +221,6 @@ export const sections = [
   { id: 'projects', label: 'Projects' },
   { id: 'open-source', label: 'Open source' },
   { id: 'skills', label: 'Skills' },
+  { id: 'achievements', label: 'Achievements' },
   { id: 'contact', label: 'Contact' },
 ];

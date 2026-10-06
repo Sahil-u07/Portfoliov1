@@ -100,6 +100,11 @@ try {
     await page.locator('.element button', { hasText: 'FastAPI' }).hover();
     assert.match(await page.textContent('.inspector'), /FastAPI.*EvidenceRAG/);
 
+    // Achievements: scrolling through the pinned section slides the cards sideways, and numbers count up.
+    await page.evaluate(() => { const s = document.getElementById('achievements'); scrollTo({ top: s.offsetTop + (s.offsetHeight - innerHeight) / 2, behavior: 'instant' }); });
+    await page.waitForFunction(() => new DOMMatrix(getComputedStyle(document.querySelector('.ach-track')).transform).m41 < -50);
+    await page.waitForFunction(() => /[1-9]/.test(document.querySelector('.ach.near .ach-num')?.textContent));
+
     // Command menu: Ctrl+K, type, Enter jumps to the section.
     await page.keyboard.press('Control+k');
     await page.waitForSelector('.palette[open]');
