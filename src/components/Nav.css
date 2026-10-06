@@ -1,5 +1,5 @@
 .nav { position: sticky; top: 0; z-index: 5; transition: background 400ms var(--ease), box-shadow 400ms var(--ease); }
-.nav.scrolled { background: rgb(244 242 238 / 0.72); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--border); }
+.nav.scrolled { background: rgb(20 20 18 / 0.75); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--border); }
 .nav-inner { display: flex; align-items: center; gap: 24px; height: 64px; }
 .logo { display: flex; align-items: center; gap: 12px; margin-right: auto; text-decoration: none; font-weight: 600; letter-spacing: -0.02em; }
 /* Round initials mark: outlined, solid once you scroll, spins on hover */
@@ -8,7 +8,7 @@
 .nav.scrolled .mark { background: var(--fg); color: var(--on-accent); }
 .logo-name { transition: opacity 400ms var(--ease); }
 .nav.scrolled .logo-name { opacity: 0; }
-.nav nav { position: relative; flex: none; display: flex; padding: 4px; border-radius: 999px; background: rgb(255 255 255 / 0.7); box-shadow: 0 0 0 1px var(--border) inset; }
+.nav nav { position: relative; flex: none; display: flex; padding: 4px; border-radius: 999px; background: rgb(232 229 222 / 0.04); box-shadow: 0 0 0 1px var(--border) inset; }
 .nav nav a { position: relative; padding: 7px 12px; white-space: nowrap; border-radius: 999px; color: var(--fg-muted); text-decoration: none; font-size: 14px; transition: color 300ms var(--ease); }
 .nav nav a:hover { color: var(--fg); }
 .nav nav a.current { color: var(--on-accent); }
