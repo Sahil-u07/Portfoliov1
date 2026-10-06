@@ -1,28 +1,52 @@
-.projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.project { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 28px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
-.project-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.project-index { font: 700 40px/1 var(--mono); color: transparent; -webkit-text-stroke: 1px var(--border-strong); }
-.project-kind { font: 12px var(--mono); color: var(--accent); text-align: right; }
-.project h3 { font-size: 24px; }
-.project > p { color: var(--fg-muted); }
-.highlights { display: grid; gap: 6px; font-size: 14px; }
-.highlights li { padding-left: 18px; position: relative; }
-.highlights li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); }
-.project .tags { margin-top: 0; }
-.project-links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 4px 20px; }
-.project-links a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 500; text-decoration: none; }
-.project-links a:hover { color: var(--accent); }
-@media (max-width: 800px) { .projects { grid-template-columns: 1fr; } }
+.gallery { display: flex; gap: 12px; height: min(78svh, 600px); }
+.project { position: relative; flex: 1; min-width: 0; overflow: hidden; border-radius: 28px; background: var(--card); box-shadow: 0 0 0 1px var(--border) inset; transition: flex 700ms var(--ease), box-shadow 400ms var(--ease); }
+.project.open { flex: 8; box-shadow: var(--shadow); }
 
-/* 3D tilt + spotlight from trackPointer. Keeps the reveal transitions alongside the tilt's. */
-.project { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: var(--reveal), transform 400ms cubic-bezier(.22, 1, .36, 1), border-color var(--fast); }
-/* Layers inside the card sit at different depths, so they shift against each other as it tilts */
-.project { transform-style: preserve-3d; }
-.project-top { transform: translateZ(30px); }
-.project h3 { transform: translateZ(22px); }
-.project-links { transform: translateZ(14px); }
-.project:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
-.project::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity var(--fast);
-  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), color-mix(in srgb, var(--accent) 9%, transparent), transparent 60%); }
-.project:hover::before { opacity: 1; }
-@media (prefers-reduced-motion: reduce) { .project { transform: none; } }
+/* Closed: a slim spine with the number, a vertical title and a + */
+.spine { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 24px 0; border: 0; background: none; transition: opacity 300ms var(--ease); }
+.project.open .spine { opacity: 0; pointer-events: none; }
+.project-index { font: 12px var(--mono); color: var(--fg-muted); }
+.spine-title { writing-mode: vertical-rl; rotate: 180deg; font-weight: 600; font-size: 18px; letter-spacing: -0.02em; white-space: nowrap; }
+.plus { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border-strong); font-size: 20px; transition: rotate 400ms var(--ease), background 300ms; }
+.spine:hover .plus { rotate: 90deg; background: var(--fg); color: var(--on-accent); }
+
+/* Open: the details on the left, the wireframe on the right */
+.project-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: 32px; height: 100%; padding: 36px; min-width: 760px;
+  visibility: hidden; opacity: 0; transition: opacity 300ms var(--ease), visibility 0s 300ms; }
+.project.open .project-body { visibility: visible; opacity: 1; transition: opacity 500ms var(--ease) 250ms; }
+.project-info { display: flex; flex-direction: column; gap: 14px; overflow: auto; }
+.project-kind { font: 12px var(--mono); color: var(--fg-muted); text-transform: uppercase; letter-spacing: .06em; }
+.project h3 { font-size: clamp(30px, 3.4vw, 44px); font-weight: 700; }
+.project-info > p:not(.project-kind) { color: var(--fg-muted); }
+.highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; font-size: 14px; }
+.highlights li { padding-left: 16px; position: relative; }
+.highlights li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--fg); }
+.project .tags { margin-top: 0; }
+.project-links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; }
+
+.mini-ui { position: relative; margin: 0; align-self: center; border-radius: 18px; background: var(--bg); box-shadow: 0 0 0 1px var(--border) inset; overflow: hidden;
+  clip-path: inset(0 100% 0 0 round 18px); transition: clip-path 900ms var(--ease) 300ms; }
+.project.open .mini-ui { clip-path: inset(0 0 0 0 round 18px); }
+.mini-bar { display: flex; align-items: center; gap: 6px; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+.mini-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--border-strong); }
+.mini-bar span { margin-left: 8px; font: 11px var(--mono); color: var(--fg-muted); }
+.mini-main { display: grid; gap: 12px; padding: 22px 20px 48px; }
+.mini-line { height: 10px; border-radius: 6px; background: var(--muted); }
+.w40 { width: 40%; } .w60 { width: 60%; background: var(--fg) !important; } .w75 { width: 75%; } .w90 { width: 90%; }
+.mini-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 8px 0; }
+.mini-cards span { aspect-ratio: 1; border-radius: 12px; background: var(--card); box-shadow: 0 0 0 1px var(--border) inset; }
+.mini-cards span:first-child { background: var(--fg); }
+.mini-ui figcaption { position: absolute; right: 14px; bottom: 12px; font: 10px var(--mono); color: var(--fg-muted); text-transform: uppercase; letter-spacing: .08em; }
+
+/* Phones and tablets: a vertical accordion */
+@media (max-width: 900px) {
+  .gallery { flex-direction: column; height: auto; }
+  .project { flex: none; }
+  .spine { position: static; flex-direction: row; padding: 18px 20px; gap: 14px; width: 100%; }
+  .spine-title { writing-mode: horizontal-tb; rotate: none; margin-right: auto; }
+  .project.open .spine { display: none; }
+  .project-body { display: none; min-width: 0; padding: 24px 20px; }
+  .project.open .project-body { display: block; }
+  .highlights { grid-template-columns: 1fr; }
+  .mini-ui { display: none; }
+}
