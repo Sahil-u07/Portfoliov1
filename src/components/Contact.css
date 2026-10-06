@@ -1,12 +1,19 @@
-.contact { padding-bottom: 96px; }
-.contact-card { padding: clamp(28px, 6vw, 72px); border-radius: 28px; background: var(--accent); color: var(--on-accent); }
-.contact h2 { font-size: clamp(36px, 6vw, 64px); margin: 16px 0; }
-.contact-card > p:not(.kicker) { color: rgb(12 16 3 / 0.75); font-size: 18px; }
-.contact-card .kicker { color: var(--on-accent); border-color: rgb(12 16 3 / 0.25); background: rgb(12 16 3 / 0.06); }
-.contact-card .kicker::before { background: var(--on-accent); box-shadow: none; }
-.contact-card .btn { background: transparent; border-color: rgb(12 16 3 / 0.3); color: var(--on-accent); }
-.contact-card .btn:hover { border-color: var(--on-accent); }
-.contact-card .btn.primary { background: var(--on-accent); color: var(--accent); border-color: var(--on-accent); }
-.contact-card .btn.primary:hover { box-shadow: none; background: #1d2509; }
-.contact-card :focus-visible { outline-color: var(--on-accent); }
+.contact { position: relative; padding-bottom: 96px; }
+.hop { font-size: clamp(44px, 9vw, 128px) !important; font-weight: 700; letter-spacing: -0.05em; line-height: .95; margin: 16px 0 28px !important; }
+.hop > span > span, .hop em > span { display: block; }
+.hop span span { display: inline-block; }
+.hop .hopping { animation: hop 500ms var(--ease); }
+@keyframes hop { 40% { transform: translateY(-0.18em); } }
+.contact-lede { color: var(--fg-muted); max-width: 52ch; font-size: 18px; }
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 32px; }
+.email { font-size: clamp(22px, 3.4vw, 40px); font-weight: 600; letter-spacing: -0.03em; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; overflow-wrap: anywhere; }
+.chip-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--card); font: 13px var(--mono); }
+.chip-btn:hover { background: var(--fg); color: var(--on-accent); }
+.badge { position: absolute; right: 0; top: 140px; width: 120px; animation: spin 18s linear infinite; }
+.badge text { font: 500 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; fill: var(--fg); }
+.badge circle { fill: var(--fg); }
+@keyframes spin { to { rotate: 360deg; } }
+@media (max-width: 720px) { .badge { display: none; } }
 .footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 32px 0; border-top: 1px solid var(--border); color: var(--fg-muted); font-size: 14px; }
+.footer a { text-decoration: none; }
+.footer a:hover { color: var(--fg); }

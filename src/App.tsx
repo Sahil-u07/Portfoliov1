@@ -30,7 +30,8 @@ export default function App() {
         <Contact />
       </main>
       <footer className="wrap footer">
-        <span>{profile.name}</span>
+        <span>© {new Date().getFullYear()} {profile.name}</span>
+        <a href="#top">Back to top ↑</a>
         <span>Made with React and Vite.</span>
       </footer>
     </>
