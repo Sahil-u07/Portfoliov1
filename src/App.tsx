@@ -3,7 +3,7 @@ import Nav from './components/Nav';
 import CommandMenu from './components/CommandMenu';
 import Hero from './components/Hero';
 import About from './components/About';
-import Stats from './components/Stats';
+import Achievements from './components/Achievements';
 import Projects from './components/Projects';
 import EvidenceRag from './components/EvidenceRag';
 import OpenSource from './components/OpenSource';
@@ -20,13 +20,13 @@ export default function App() {
       <main id="main">
         <Hero />
         <About />
-        <Stats />
         <div className="zoom" aria-hidden="true"><div className="zoom-stage"><div className="zoom-tile">SL</div></div></div>
         <Experience />
         <Projects />
         <EvidenceRag />
         <OpenSource />
         <Skills />
+        <Achievements />
         <Contact />
       </main>
       <footer className="wrap footer">

@@ -1,0 +1,22 @@
+.pinned { position: relative; margin-top: 112px; }
+.pin-stage { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: 40px; overflow: hidden; }
+.pin-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.pin-head h2 { font-size: clamp(36px, 6vw, 64px); font-weight: 700; margin-top: 16px; }
+.pin-progress { width: min(240px, 30vw); height: 2px; background: var(--border); }
+.pin-progress span { display: block; height: 100%; background: var(--fg); transform-origin: 0 50%; transform: scaleX(0); }
+
+.ach-track { display: flex; gap: 24px; padding: 24px max(16px, (100% - 1240px) / 2); will-change: transform; }
+.ach { flex: none; display: flex; flex-direction: column; justify-content: space-between; width: clamp(300px, 40vw, 540px); height: clamp(260px, 36vh, 310px); padding: 28px;
+  border-radius: 28px; background: var(--card); box-shadow: 0 0 0 1px var(--border) inset; transition: translate 600ms var(--ease), box-shadow 600ms var(--ease); }
+.ach.near { translate: 0 -12px; box-shadow: var(--shadow); }
+.ach-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.ach-caption { max-width: 60%; font: 12px var(--mono); color: var(--fg-muted); text-transform: uppercase; letter-spacing: .06em; }
+.ach.near .ach-caption { color: var(--fg); }
+.ach-index { font: 12px var(--mono); color: var(--fg-muted); }
+.ach-bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.ach h3 { font-size: clamp(20px, 2vw, 26px); }
+.ach p { color: var(--fg-muted); font-size: 14px; margin-top: 4px; }
+.ach-num { font-size: clamp(56px, 7vw, 96px); font-weight: 700; letter-spacing: -0.05em; line-height: .9; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ach-num small { font: 600 .3em var(--sans); letter-spacing: 0; color: var(--fg-muted); margin-right: 4px; }
+.ach-end { flex: none; align-self: center; padding: 0 40px; font-size: 28px; white-space: nowrap; }
+.ach-end em { font: italic 1.2em var(--serif); color: var(--fg-muted); }
