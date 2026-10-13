@@ -15,7 +15,7 @@ export const profile = {
 export const about = {
   paragraphs: [
     "I'm doing my B.Tech in Computer Science (AI and ML) at Manipal University Jaipur. Most of what I know I picked up by building things: two internships, a team project that's live, and a lot of pull requests to open-source projects.",
-    "At IOTA Studio AI I built the company's website from start to finish with React, Node.js and a REST API. Before that, at Sundarone, I added Razorpay payments to their hostel-booking site, which helped push bookings up by 15%.",
+    "At IOTA Studio AI I built the company's website from start to finish with React, Node.js and a REST API. This summer, at Sundarone, I added Razorpay payments to their hostel-booking site, which helped push bookings up by 15%.",
     "My favourite side project is EvidenceRAG. You give it your documents and ask questions, and it only answers if it can point to the exact passage that backs the answer up. If it can't, it just says it doesn't know.",
   ],
   facts: [
@@ -128,17 +128,17 @@ export const experience = [
     sub: 'AIML specialization · Don Bosco School, Bandel: Class XII (2024), Class X (2022)', points: [],
   },
   {
-    when: 'Feb 2024 – May 2024', role: 'Software Development Intern', org: 'Sundarone Private Limited', sub: 'sundaronehostel.in',
-    points: [
-      'Added Razorpay payments to the booking flow, which helped bookings go up 15%.',
-      'Ran a few rounds of UX changes that improved user retention by 20%.',
-    ],
-  },
-  {
     when: 'Apr 2025 – Aug 2025 · Remote', role: 'Web Development Intern', org: 'IOTA Studio AI', sub: 'AIC MUJ incubated startup',
     points: [
       "Built the company's website from start to finish with React.js, Node.js and REST APIs, and got more than 10 commits into their production codebase.",
       'Set up the API so the frontend and backend stayed separate, with MongoDB and SQL storing the content.',
+    ],
+  },
+  {
+    when: 'May 2026 – Aug 2026', role: 'Software Development Intern', org: 'Sundarone Private Limited', sub: 'sundaronehostel.in',
+    points: [
+      'Added Razorpay payments to the booking flow, which helped bookings go up 15%.',
+      'Ran a few rounds of UX changes that improved user retention by 20%.',
     ],
   },
 ];
