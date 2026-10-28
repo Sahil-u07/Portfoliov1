@@ -21,9 +21,15 @@ try {
     page.on('console', m => m.type() === 'error' && !m.text().startsWith('Failed to load resource') && errors.push(`${name}: ${m.text()}`));
     // Serve a fixed year of contributions so the heatmap is tested offline.
     await page.route(u => u.href.startsWith(activityUrl), r => r.fulfill({ json: { contributions: year } }));
+    await page.route(u => u.hostname === 'api.github.com', r => {
+      const q = new URL(r.request().url()).searchParams.get('q');
+      if (q.includes('is:unmerged')) return r.fulfill({ status: 403, json: {} });
+      const tab = q.includes('is:merged') ? 'merged' : 'open';
+      r.fulfill({ json: { total_count: 33, items: [1, 2].map(i => ({ title: `${tab} PR ${i}`, html_url: `https://github.com/o/r/pull/${i}`, repository_url: 'https://api.github.com/repos/o/r' })) } });
+    });
     await page.goto(url);
 
-    await page.getByRole('heading', { level: 1, name: 'Sahil Lenka.' }).waitFor();
+    await page.getByRole('heading', { level: 1, name: 'Sahil Lenka' }).waitFor();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     assert.ok(overflow <= 0, `${name}: horizontal scroll of ${overflow}px`);
 
@@ -33,7 +39,7 @@ try {
 
     // The banner clock ticks.
     const t0 = await page.textContent('.clock');
-    assert.match(t0, /^\d\d\.\d\d\.\d\d$/);
+    assert.match(t0, /^\d{6}$/); // HH MM SS, the colons are drawn dots
     await page.waitForFunction(t => document.querySelector('.clock').textContent !== t, t0);
 
     // The intro video is served.
@@ -51,13 +57,33 @@ try {
       assert.equal(await page.locator(href).count(), 1, `${name}: ${href} has no section`);
 
     assert.deepEqual(await page.$$eval('#projects h3', hs => hs.map(h => h.textContent)), ['EvidenceRAG', 'RoadGuard AI', 'ProjectMUJToppers', 'This portfolio']);
-    assert.deepEqual(await page.$$eval('#open-source h3', hs => hs.map(h => h.textContent)), ['Beehive', 'Concore', 'Diomede', 'GNU Radio']);
-    assert.ok(await page.$$eval('#open-source .more', as => as.every(a => a.href.startsWith('https://github.com/'))));
+    // Open source: per-project counts link to each repo; the PR list is live, one search per tab.
+    assert.ok(await page.$$eval('#open-source .more', as => as.length === 4 && as.every(a => a.href.startsWith('https://github.com/'))));
+    await page.waitForSelector('.prs h3');
+    assert.deepEqual(await page.$$eval('.prs h3', hs => hs.map(h => h.textContent)), ['merged PR 1', 'merged PR 2']);
+    assert.match(await page.textContent('#open-source .view-all'), /View All \(31 more\)/);
+    await page.getByRole('tab', { name: 'open' }).click();
+    await page.waitForFunction(() => document.querySelector('.prs h3')?.textContent === 'open PR 1');
+    // If GitHub refuses (rate limit), the closed tab falls back to the project list instead of going blank.
+    await page.getByRole('tab', { name: 'closed' }).click();
+    await page.waitForFunction(() => [...document.querySelectorAll('.prs h3')].map(h => h.textContent).join() === 'Beehive,Concore,Diomede,GNU Radio');
+
+    // Experience rows fold open to show their details.
+    const row = page.locator('.xp-row').first();
+    await row.click();
+    assert.equal(await row.getAttribute('aria-expanded'), 'true');
+    await page.locator('.fold.open .points li').first().waitFor({ state: 'visible' });
+
+    // The theme toggle flips and remembers the theme.
+    await page.getByRole('button', { name: 'Toggle theme' }).click();
+    await page.waitForFunction(() => document.documentElement.dataset.theme === 'light' && localStorage.getItem('theme') === 'light');
+    await page.getByRole('button', { name: 'Toggle theme' }).click();
+    await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
 
     // The heatmap draws one cell per day from the (mocked) contribution feed.
-    await page.waitForSelector('.cells i[data-level]');
-    assert.equal(await page.locator('.cells i[data-level]').count(), 365);
-    assert.match(await page.textContent('.activity'), /contributions in the last year/);
+    await page.waitForSelector('.heat i[data-level]');
+    assert.equal(await page.locator('.heat i[data-level]').count(), 365);
+    assert.match(await page.textContent('#activity .sec-note'), /^\d+ GitHub contributions in the last year$/);
 
     // Command menu: Ctrl+K, type, Enter jumps to the section.
     await page.keyboard.press('Control+k');
