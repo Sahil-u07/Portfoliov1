@@ -1,11 +1,10 @@
-import { useEffect, useRef } from 'react';
-import { profile } from '../data';
-import { prefersReducedMotion, resetPointer, trackPointer } from '../hooks';
-import DecodeText from './DecodeText';
+import { useEffect, useRef, useState } from 'react';
+import { profile, sections } from '../data';
+import { prefersReducedMotion } from '../hooks';
+import CommandMenu from './CommandMenu';
 import Icon from './Icon';
 import './Hero.css';
 
-const [first, ...rest] = profile.role.split(' ');
 const base = import.meta.env.BASE_URL;
 
 const W = 480, H = 600; // one frame; avatar.mp4 stacks the colour frame above its cut-out mask (2H tall)
@@ -13,7 +12,7 @@ const W = 480, H = 600; // one frame; avatar.mp4 stacks the colour frame above i
 /**
  * The talking 3D intro, cut out of its background. Browsers only allow video to autoplay with sound
  * after the visitor has interacted with the page, so it tries sound first, falls back to muted, and
- * turns the voice on at the first click, tap or key press. It pauses when the hero scrolls out of view.
+ * turns the voice on at the first click, tap or key press. It pauses when the avatar scrolls out of view.
  */
 function IntroVideo() {
   const video = useRef<HTMLVideoElement>(null);
@@ -52,7 +51,7 @@ function IntroVideo() {
       if (e.intersectionRatio < 0.35) v.pause();
       else if (!prefersReducedMotion() || !v.muted) play();
     }, { threshold: [0, 0.35, 1] });
-    io.observe(v.closest('section')!);
+    io.observe(v.closest('figure')!);
     return () => {
       io.disconnect();
       v.cancelVideoFrameCallback ? v.cancelVideoFrameCallback(handle) : cancelAnimationFrame(handle);
@@ -72,28 +71,46 @@ function IntroVideo() {
   );
 }
 
+/** Live local time on the banner, like a watch face: HH.MM.SS */
+function Clock() {
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => { const t = setInterval(() => setNow(new Date()), 1000); return () => clearInterval(t); }, []);
+  return <time className="clock" dateTime={now.toISOString()}>{now.toTimeString().slice(0, 8).replaceAll(':', '.')}</time>;
+}
+
+const socials = [
+  { label: 'GitHub', href: profile.github, icon: 'github' },
+  { label: 'LinkedIn', href: profile.linkedin, icon: 'linkedin' },
+  { label: 'Email', href: `mailto:${profile.email}`, icon: 'mail' },
+] as const;
+
 export default function Hero() {
   return (
-    <section className="hero" id="top">
-      <div className="wrap hero-inner">
-        <span className="ghost" aria-hidden="true">{profile.name.split(' ')[0]}</span>
-        <div className="hero-copy">
-          <p className="kicker">{profile.name}</p>
-          <h1><DecodeText text={first} /> <em><DecodeText text={rest.join(' ')} /></em></h1>
-          <p className="lede">{profile.tagline}</p>
-        </div>
-        <figure className="portrait" onPointerMove={trackPointer} onPointerLeave={resetPointer}>
-          <IntroVideo />
-        </figure>
-        <div className="hero-side">
-          <p>{profile.intro}</p>
-          <div className="cta-row">
-            <a className="btn primary" href="#projects">Explore work <Icon name="down" /></a>
-            <a className="btn" href="#contact">Let's talk</a>
-            <a className="btn" href={profile.cv} download><Icon name="download" /> Résumé</a>
-          </div>
+    <header className="hero" id="top">
+      <div className="banner" aria-hidden="true"><Clock /></div>
+      <div className="profile">
+        <figure className="portrait"><IntroVideo /></figure>
+        <div>
+          <h1>{profile.name}.</h1>
+          <p className="muted">{profile.tagline}</p>
         </div>
       </div>
-    </section>
+      <nav className="index" aria-label="Sections">
+        {sections.map(s => <a key={s.id} href={`#${s.id}`}>{s.label}</a>)}
+        <CommandMenu />
+      </nav>
+      <p className="intro">{profile.intro}</p>
+      <ul className="bullets">{profile.bullets.map(b => <li key={b}>{b}</li>)}</ul>
+      <div className="cta-row">
+        <a className="btn primary" href={profile.cv} download><Icon name="download" /> Download CV</a>
+        <a className="btn" href={`mailto:${profile.email}`}><Icon name="mail" /> Send an email</a>
+      </div>
+      <h2 className="socials-title">Here are my socials</h2>
+      <ul className="socials">
+        {socials.map(s => (
+          <li key={s.label}><a href={s.href} target={s.icon === 'mail' ? undefined : '_blank'} rel="noopener"><Icon name={s.icon} /> {s.label}</a></li>
+        ))}
+      </ul>
+    </header>
   );
 }

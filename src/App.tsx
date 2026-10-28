@@ -1,38 +1,36 @@
 import { profile } from './data';
-import Nav from './components/Nav';
-import CommandMenu from './components/CommandMenu';
 import Hero from './components/Hero';
-import About from './components/About';
-import Achievements from './components/Achievements';
-import Projects from './components/Projects';
-import EvidenceRag from './components/EvidenceRag';
-import OpenSource from './components/OpenSource';
 import Experience from './components/Experience';
+import Projects from './components/Projects';
+import GithubActivity from './components/GithubActivity';
+import OpenSource from './components/OpenSource';
 import Skills from './components/Skills';
-import Contact from './components/Contact';
+import Highlights from './components/Highlights';
+import './components/Sections.css';
 
 export default function App() {
   return (
     <>
-      <div className="progress" aria-hidden="true" />
       <a className="skip" href="#main">Skip to content</a>
-      <Nav><CommandMenu /></Nav>
-      <main id="main">
+      <div className="page">
         <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <EvidenceRag />
-        <OpenSource />
-        <Skills />
-        <Achievements />
-        <Contact />
-      </main>
-      <footer className="wrap footer">
-        <span>© {new Date().getFullYear()} {profile.name}</span>
-        <a href="#top">Back to top ↑</a>
-        <span>Made with React and Vite.</span>
-      </footer>
+        <main id="main">
+          <Experience />
+          <Projects />
+          <GithubActivity />
+          <OpenSource />
+          <Skills />
+          <Highlights />
+          <figure className="quote">
+            <blockquote>“{profile.quote}”</blockquote>
+            <figcaption>{profile.name}</figcaption>
+          </figure>
+        </main>
+        <footer className="footer muted">
+          <span>© {new Date().getFullYear()} {profile.name}</span>
+          <a href="#top">Back to top ↑</a>
+        </footer>
+      </div>
     </>
   );
 }

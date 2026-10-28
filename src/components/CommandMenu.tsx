@@ -1,22 +1,24 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
-import { evidenceRag, profile, sections } from '../data';
-import { copyEmail } from './Contact';
+import { profile, sections } from '../data';
 import Icon from './Icon';
 import './CommandMenu.css';
 
 type Command = { label: string; hint: string; run: () => void };
+
+/** Copies the email address; falls back to opening the mail client if the clipboard is unavailable. */
+const copyEmail = () => navigator.clipboard.writeText(profile.email).catch(() => { location.href = `mailto:${profile.email}`; });
 
 const go = (id: string) => () => { location.hash = id; };
 const open = (url: string) => () => window.open(url, '_blank', 'noopener');
 
 const COMMANDS: Command[] = [
   ...sections.map(s => ({ label: s.label, hint: `Jump to ${s.label.toLowerCase()}`, run: go(s.id) })),
-  { label: 'How EvidenceRAG works', hint: 'Pipeline demo and benchmark', run: go('evidencerag') },
+  { label: 'GitHub activity', hint: 'Contribution graph', run: go('activity') },
   { label: 'Back to top', hint: 'Home', run: go('top') },
   { label: 'Copy email address', hint: profile.email, run: () => void copyEmail() },
   { label: 'GitHub profile', hint: 'github.com/Sahil-u07', run: open(profile.github) },
   { label: 'LinkedIn profile', hint: 'linkedin.com/in/sahil-lenka-3608a2311', run: open(profile.linkedin) },
-  { label: 'EvidenceRAG source', hint: 'github.com/Sahil-u07/evidencerag', run: open(evidenceRag.repo) },
+  { label: 'Download CV', hint: 'PDF', run: open(profile.cv) },
 ];
 
 /** Ctrl/Cmd+K (or "/") command menu. Native <dialog> gives focus trapping, Esc and the backdrop for free. */
@@ -56,7 +58,7 @@ export default function CommandMenu() {
     <>
       <button className="menu-btn" type="button" onClick={show} aria-label="Open command menu">
         <Icon name="search" />
-        <span className="wide">Jump to</span><kbd className="wide">Ctrl K</kbd><span className="narrow">Menu</span>
+        <kbd>Ctrl K</kbd>
       </button>
       <dialog ref={dialog} className="palette" aria-label="Command menu"
         onClick={e => { if (e.target === dialog.current) dialog.current.close(); }}>
