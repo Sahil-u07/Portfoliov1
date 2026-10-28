@@ -43,12 +43,13 @@ export const openSource = [
   },
 ];
 
-export const projects = [
+export const projects: { name: string; status: string; summary: string; tags: string[]; href: string; image?: string }[] = [
   {
     name: 'EvidenceRAG', status: 'On GitHub',
     summary: "Ask a question about your own documents and get an answer you can check. It finds the evidence first, answers only from it, verifies every citation, and says so when the evidence isn't there.",
     tags: ['Python', 'FastAPI', 'React', 'Ollama'],
     href: 'https://github.com/Sahil-u07/evidencerag',
+    image: 'evidencerag.webp', // the app in its built-in demo mode
   },
   {
     name: 'RoadGuard AI', status: 'Building',
@@ -67,6 +68,7 @@ export const projects = [
     summary: "The site you're on right now, built with React and Vite and no UI libraries. Browser tests run on every pull request.",
     tags: ['React', 'TypeScript', 'Vite'],
     href: 'https://github.com/Sahil-u07/Portfoliov1',
+    image: 'portfolio.webp',
   },
 ];
 

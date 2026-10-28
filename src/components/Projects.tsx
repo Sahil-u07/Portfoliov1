@@ -13,8 +13,10 @@ export default function Projects() {
             <li key={p.name}>
               <a className="project" href={p.href} target="_blank" rel="noopener">
                 <div className="frame">
-                  {/* No screenshots yet, so the "screen" shows the name on a tinted gradient */}
-                  <div className="screen" style={{ '--h': 210 + i * 40 } as CSSProperties} aria-hidden="true"><span>{p.name}</span></div>
+                  {/* A screenshot where there is one, otherwise the name on a tinted gradient */}
+                  <div className="screen" style={{ '--h': 210 + i * 40 } as CSSProperties}>
+                    {p.image ? <img src={`${import.meta.env.BASE_URL}projects/${p.image}`} alt={`Screenshot of ${p.name}`} loading="lazy" /> : <span aria-hidden="true">{p.name}</span>}
+                  </div>
                 </div>
                 <div className="project-head"><h3>{p.name}</h3><span className="status"><i className={dot[p.status] ?? 'live'} />{p.status}</span></div>
                 <p className="project-text">{p.summary}</p>
