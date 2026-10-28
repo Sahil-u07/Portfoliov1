@@ -12,7 +12,7 @@ export default function App() {
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>
-      <div className="page">
+      <div className="site"><div className="page">
         <Hero />
         <main id="main">
           <Experience />
@@ -22,15 +22,12 @@ export default function App() {
           <Skills />
           <Highlights />
           <figure className="quote">
-            <blockquote>“{profile.quote}”</blockquote>
-            <figcaption>{profile.name}</figcaption>
+            <blockquote>"{profile.quote}"</blockquote>
+            <figcaption><i />{profile.name}<i /></figcaption>
           </figure>
         </main>
-        <footer className="footer muted">
-          <span>© {new Date().getFullYear()} {profile.name}</span>
-          <a href="#top">Back to top ↑</a>
-        </footer>
-      </div>
+        <div className="floor rule-top" aria-hidden="true"><i className="dots" style={{ top: -1 }} /></div>
+      </div></div>
     </>
   );
 }

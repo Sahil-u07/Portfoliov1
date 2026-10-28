@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { profile, sections } from '../data';
-import Icon from './Icon';
 import './CommandMenu.css';
 
 type Command = { label: string; hint: string; run: () => void };
@@ -56,9 +55,8 @@ export default function CommandMenu() {
 
   return (
     <>
-      <button className="menu-btn" type="button" onClick={show} aria-label="Open command menu">
-        <Icon name="search" />
-        <kbd>Ctrl K</kbd>
+      <button className="menu-btn ring" type="button" onClick={show} aria-label="Open command menu">
+        <kbd><span>⌘</span><span>K</span></kbd>
       </button>
       <dialog ref={dialog} className="palette" aria-label="Command menu"
         onClick={e => { if (e.target === dialog.current) dialog.current.close(); }}>

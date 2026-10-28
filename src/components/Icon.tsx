@@ -10,6 +10,9 @@ const paths = {
   play: <polygon points="6 3 20 12 6 21 6 3" />,
   search: <><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></>,
   check: <path d="M20 6 9 17l-5-5" />,
+  sun: <><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2m-7.07-2.93 1.41-1.41m11.32-11.32 1.41-1.41M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41" /></>,
+  moon: <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />,
+  chevron: <path d="m6 9 6 6 6-6" />,
   x: <><path d="M18 6 6 18" /><path d="m6 6 12 12" /></>,
 };
 
