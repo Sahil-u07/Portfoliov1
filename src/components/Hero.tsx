@@ -123,7 +123,11 @@ export default function Hero() {
   return (
     <header className="hero" id="top">
       <IndexNav />
-      <div className="banner" aria-hidden="true"><i className="stars" /><i className="hill far" /><i className="hill" /><Clock /></div>
+      <div className="banner" aria-hidden="true">
+        <img className="dark-only" src={`${base}banner-dark.webp`} alt="" fetchPriority="high" />
+        <img className="light-only" src={`${base}banner-light.webp`} alt="" />
+        <Clock />
+      </div>
       <div className="profile rule-top rule-bottom">
         <i className="dots" style={{ top: -1 }} /><i className="dots" style={{ bottom: -1 }} />
         <figure className="portrait"><div><IntroVideo /></div></figure>
