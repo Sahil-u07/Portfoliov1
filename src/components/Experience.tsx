@@ -1,30 +1,39 @@
-import { experience } from '../data';
+import { useState } from 'react';
+import { experience, profile } from '../data';
+import Icon from './Icon';
+import Section, { ViewAll } from './Section';
 
 export default function Experience() {
+  const [open, setOpen] = useState<string | null>(null);
   return (
-    <section className="section" id="experience">
-      <h2>Experiences</h2>
-      <ol className="stack">
-        {experience.map(x => (
-          <li key={x.org} className="card xp">
-            <header>
-              <span className="logo" aria-hidden="true">{x.org.split(' ').map(w => w[0]).slice(0, 2).join('')}</span>
-              <div>
-                <h3>{x.org}</h3>
-                <p className="muted">{x.role}</p>
+    <Section id="experience" title="Experiences">
+      <ol>
+        {experience.map(x => {
+          const isOpen = open === x.org;
+          const hasMore = x.points.length + x.stats.length + x.tags.length > 0;
+          return (
+            <li key={x.org} className="xp rule-bottom">
+              <button className="xp-row" type="button" aria-expanded={isOpen} disabled={!hasMore} onClick={() => setOpen(isOpen ? null : x.org)}>
+                <span className="logo" aria-hidden="true"><span>{x.org.split(' ').map(w => w[0]).slice(0, 2).join('')}</span></span>
+                <span className="xp-title"><b>{x.org}</b><span>{x.role}</span></span>
+                <span className="xp-when"><span>{x.when}{hasMore && <Icon name="chevron" />}</span><span>{x.sub}</span></span>
+              </button>
+              <div className={`fold ${isOpen ? 'open' : ''}`}>
+                <div>
+                  <div className="xp-body">
+                    {x.stats.length > 0 && (
+                      <dl className="stats">{x.stats.map(s => <div key={s.label}><dd>{s.value}</dd><dt>{s.label}</dt></div>)}</dl>
+                    )}
+                    {x.points.length > 0 && <ul className="points">{x.points.map(p => <li key={p}><span>•</span><span>{p}</span></li>)}</ul>}
+                    {x.tags.length > 0 && <ul className="tags">{x.tags.map(t => <li key={t}>{t}</li>)}</ul>}
+                  </div>
+                </div>
               </div>
-              <p className="when">{x.when}<span>{x.sub}</span></p>
-            </header>
-            {x.stats.length > 0 && (
-              <dl className="stats">
-                {x.stats.map(s => <div key={s.label}><dt>{s.label}</dt><dd>{s.value}</dd></div>)}
-              </dl>
-            )}
-            {x.points.length > 0 && <ul className="points">{x.points.map(p => <li key={p}>{p}</li>)}</ul>}
-            {x.tags.length > 0 && <ul className="tags">{x.tags.map(t => <li key={t}>{t}</li>)}</ul>}
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ol>
-    </section>
+      <ViewAll href={profile.linkedin} />
+    </Section>
   );
 }
