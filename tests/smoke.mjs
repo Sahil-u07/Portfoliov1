@@ -8,8 +8,10 @@ import assert from 'node:assert/strict';
 const shots = process.env.SHOTS; // optional dir for screenshots
 const server = await preview({ preview: { port: 4173, strictPort: true, open: false }, logLevel: 'silent' });
 const url = server.resolvedUrls.local[0];
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: process.env.CHROMIUM }); // CHROMIUM: optional path to a preinstalled browser
 const errors = [];
+const activityUrl = 'https://github-contributions-api.jogruber.de/v4/Sahil-u07';
+const year = Array.from({ length: 365 }, (_, i) => ({ date: new Date(Date.UTC(2025, 9, 28 + i)).toISOString().slice(0, 10), count: i % 5, level: i % 5 }));
 
 try {
   for (const [name, viewport] of [['desktop', { width: 1440, height: 900 }], ['mobile', { width: 375, height: 812 }]]) {
@@ -17,19 +19,22 @@ try {
     page.on('pageerror', e => errors.push(`${name}: ${e.message}`));
     // Network failures (e.g. fonts blocked offline) are not page bugs.
     page.on('console', m => m.type() === 'error' && !m.text().startsWith('Failed to load resource') && errors.push(`${name}: ${m.text()}`));
+    // Serve a fixed year of contributions so the heatmap is tested offline.
+    await page.route(u => u.href.startsWith(activityUrl), r => r.fulfill({ json: { contributions: year } }));
     await page.goto(url);
 
-    // The role decodes from scrambled letters, so check the accessible name, then the settled text.
-    await page.getByRole('heading', { level: 1, name: 'Full-stack developer' }).waitFor();
-    await page.waitForFunction(() => document.querySelector('h1').textContent === 'Full-stack developer');
-    // The hero must be fully at rest at the top: any leftover scroll transform blurs its text.
-    assert.ok(['none', 'matrix(1, 0, 0, 1, 0, 0)'].includes(await page.$eval('.hero-inner', e => getComputedStyle(e).transform)), `${name}: hero is transformed at the top`);
+    await page.getByRole('heading', { level: 1, name: 'Sahil Lenka.' }).waitFor();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     assert.ok(overflow <= 0, `${name}: horizontal scroll of ${overflow}px`);
 
     // Download CV serves the PDF.
     const cv = await page.locator('.hero a[download]').evaluate(a => fetch(a.href).then(r => r.ok && r.headers.get('content-type')));
     assert.equal(cv, 'application/pdf', `${name}: Download CV link is broken`);
+
+    // The banner clock ticks.
+    const t0 = await page.textContent('.clock');
+    assert.match(t0, /^\d\d\.\d\d\.\d\d$/);
+    await page.waitForFunction(t => document.querySelector('.clock').textContent !== t, t0);
 
     // The intro video is served.
     const clips = await page.$$eval('.portrait video source', ss => Promise.all(ss.map(s => fetch(s.src).then(r => r.ok && r.headers.get('content-type')))));
@@ -38,85 +43,28 @@ try {
     await page.waitForFunction(() => { const c = document.querySelector('.portrait canvas').getContext('2d');
       return c.getImageData(5, 5, 1, 1).data[3] === 0 && c.getImageData(240, 200, 1, 1).data[3] === 255; });
     // The first click anywhere on the page turns the voice on.
-    await page.locator('.lede').click();
+    await page.locator('.intro').click();
     assert.equal(await page.locator('.portrait video').evaluate(v => v.muted), false, `${name}: first click did not turn the sound on`);
 
-    // ID card flips with the keyboard and swings (the JS sets a rotation on its hanger).
-    const card = page.locator('.idcard');
-    await card.focus();
-    await page.keyboard.press('Enter');
-    assert.equal(await card.getAttribute('aria-pressed'), 'true', `${name}: ID card did not flip`);
-    await page.waitForFunction(() => document.querySelector('.hanger').style.transform.startsWith('rotate'));
+    // Every index link points at a section that exists.
+    for (const href of await page.$$eval('.index a', as => as.map(a => a.getAttribute('href'))))
+      assert.equal(await page.locator(href).count(), 1, `${name}: ${href} has no section`);
 
-    // 3D search sketch: it only animates while on screen, so wait for it to draw the query's neighbours.
-    const field = page.locator('.field canvas');
-    await field.hover();
-    await field.evaluate(c => new Promise((resolve, reject) => {
-      const lit = () => {
-        const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
-        let ink = 0; // the query and its neighbour lines are drawn in the amber accent
-        for (let i = 0; i < d.length; i += 4) if (d[i + 3] > 200 && d[i] > 200 && d[i + 1] > 130 && d[i + 1] < 200 && d[i + 2] < 130) ink++;
-        return ink > 50;
-      };
-      const t0 = performance.now();
-      (function poll() { lit() ? resolve() : performance.now() - t0 > 5000 ? reject(new Error('3D sketch drew no highlighted neighbours')) : requestAnimationFrame(poll); })();
-    }));
-
-    // Dragging spins the field (exercises the drag handlers; any error fails the run).
-    const fb = await field.boundingBox();
-    await page.mouse.move(fb.x + fb.width / 2, fb.y + fb.height / 2);
-    await page.mouse.down();
-    await page.mouse.move(fb.x + fb.width / 2 + 80, fb.y + fb.height / 2 + 20, { steps: 5 });
-    await page.mouse.up();
-
-    // Projects: four panels, the first open; choosing another opens it and folds the first.
-    const panels = page.locator('.project');
-    assert.equal(await panels.count(), 4);
-    assert.deepEqual(await page.$$eval('.project h3', hs => hs.map(h => h.textContent)), ['EvidenceRAG', 'RoadGuard AI', 'This portfolio', 'ProjectMUJToppers']);
-    await panels.nth(1).locator('.spine').click();
-    assert.deepEqual(await page.$$eval('.project', ps => ps.map(p => p.classList.contains('open'))), [false, true, false, false]);
-    await page.locator('.project.open .project-links a').first().waitFor({ state: 'visible' });
-
-    // Open source: one short card per project, each linking to its repository.
-    assert.deepEqual(await page.$$eval('#open-source .card h3', hs => hs.map(h => h.textContent)), ['Beehive', 'Concore', 'Diomede', 'GNU Radio']);
+    assert.deepEqual(await page.$$eval('#projects h3', hs => hs.map(h => h.textContent)), ['EvidenceRAG', 'RoadGuard AI', 'ProjectMUJToppers', 'This portfolio']);
+    assert.deepEqual(await page.$$eval('#open-source h3', hs => hs.map(h => h.textContent)), ['Beehive', 'Concore', 'Diomede', 'GNU Radio']);
     assert.ok(await page.$$eval('#open-source .more', as => as.every(a => a.href.startsWith('https://github.com/'))));
 
-    // Pipeline: sufficient evidence -> verified; insufficient -> abstained.
-    const runBtn = page.getByRole('button', { name: 'Run query' });
-    await runBtn.click();
-    await page.waitForSelector('.verdict[data-state="verified"]', { timeout: 15000 });
-    await page.getByRole('switch').click();
-    await runBtn.click();
-    await page.waitForSelector('.verdict[data-state="abstained"]', { timeout: 15000 });
-
-    // Clicking a stage explains it.
-    await page.locator('.stage').nth(4).click();
-    assert.match(await page.textContent('.stage-detail'), /Reciprocal Rank Fusion/);
-
-    // Metric toggle changes the chart.
-    const before = await page.textContent('.bars');
-    await page.getByRole('button', { name: 'Recall@1' }).click();
-    assert.notEqual(await page.textContent('.bars'), before);
-
-    // Skill filter dims every tile outside the chosen family, and the inspector names the hovered tile.
-    await page.getByRole('button', { name: 'Databases' }).click();
-    assert.deepEqual(await page.$$eval('.element:not(.dim) span', cs => cs.map(c => c.textContent)), ['MongoDB', 'PostgreSQL', 'SQL']);
-    const syms = await page.$$eval('.element b', bs => bs.map(b => b.textContent));
-    assert.equal(new Set(syms).size, syms.length, `${name}: duplicate element symbols`);
-    await page.locator('.element button', { hasText: 'FastAPI' }).hover();
-    assert.match(await page.textContent('.inspector'), /FastAPI.*EvidenceRAG/);
-
-    // Achievements: scrolling through the pinned section slides the cards sideways, and numbers count up.
-    await page.evaluate(() => { const s = document.getElementById('achievements'); scrollTo({ top: s.offsetTop + (s.offsetHeight - innerHeight) / 2, behavior: 'instant' }); });
-    await page.waitForFunction(() => new DOMMatrix(getComputedStyle(document.querySelector('.ach-track')).transform).m41 < -50);
-    await page.waitForFunction(() => /[1-9]/.test(document.querySelector('.ach.near .ach-num')?.textContent));
+    // The heatmap draws one cell per day from the (mocked) contribution feed.
+    await page.waitForSelector('.cells i[data-level]');
+    assert.equal(await page.locator('.cells i[data-level]').count(), 365);
+    assert.match(await page.textContent('.activity'), /contributions in the last year/);
 
     // Command menu: Ctrl+K, type, Enter jumps to the section.
     await page.keyboard.press('Control+k');
     await page.waitForSelector('.palette[open]');
-    await page.keyboard.type('contact');
+    await page.keyboard.type('skills');
     await page.keyboard.press('Enter');
-    await page.waitForFunction(() => !document.querySelector('.palette').open && location.hash === '#contact');
+    await page.waitForFunction(() => !document.querySelector('.palette').open && location.hash === '#skills');
 
     // Wheel scrolling glides to its target instead of jumping, but still gets there.
     await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
