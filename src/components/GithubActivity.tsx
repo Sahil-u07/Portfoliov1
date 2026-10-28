@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { profile } from '../data';
+import Section from './Section';
 
 type Day = { date: string; count: number; level: number };
 // Public mirror of the GitHub contribution graph; GitHub's own API needs a token.
@@ -18,39 +19,34 @@ export default function GithubActivity() {
   }, []);
 
   const total = days?.reduce((n, d) => n + d.count, 0) ?? 0;
-  // Pad the first column so each column is one Sunday-to-Saturday week.
+  // One column per Sunday-to-Saturday week; the first column is padded up to the first day's weekday.
   const pad = days?.length ? new Date(days[0].date).getUTCDay() : 0;
-  const weeks = days ? Math.ceil((pad + days.length) / 7) : 0;
-  // A month label sits over the first column that starts in that month.
-  const labels = days ? Array.from({ length: weeks }, (_, w) => {
-    const d = days[Math.max(0, w * 7 - pad)];
-    const prev = w > 0 ? days[Math.max(0, (w - 1) * 7 - pad)] : null;
-    const m = new Date(d.date).getUTCMonth();
-    return !prev || new Date(prev.date).getUTCMonth() !== m ? MONTHS[m] : '';
-  }) : [];
+  const weeks: (Day | null)[][] = [];
+  days?.forEach((d, i) => { const w = Math.floor((i + pad) / 7); (weeks[w] ??= Array(i === 0 ? pad : 0).fill(null)).push(d); });
+  // Month names in order, starting from the month the year begins in.
+  const first = days?.length ? new Date(days[0].date).getUTCMonth() : 0;
+  const months = Array.from({ length: 12 }, (_, i) => MONTHS[(first + i) % 12]);
+  const summary = `${total} GitHub contributions in the last year`;
 
   return (
-    <section className="section" id="activity">
-      <h2>GitHub Activity</h2>
-      {failed ? (
-        <p className="muted">Couldn't load the activity graph right now. It's all on <a href={profile.github}>my GitHub profile</a>.</p>
-      ) : !days ? (
-        <p className="muted" aria-live="polite">Loading GitHub contribution activity…</p>
-      ) : (
-        <div className="card activity">
-          <p className="muted"><b>{total}</b> contributions in the last year</p>
-          <div className="heat-scroll">
-            <div className="heat" style={{ gridTemplateColumns: `repeat(${weeks}, var(--cell))` }}>
-              {labels.map((l, w) => <span key={w} className="month">{l}</span>)}
-              <div className="cells" style={{ gridColumn: `1 / span ${weeks}` }}>
-                {Array.from({ length: pad }, (_, i) => <i key={`p${i}`} className="blank" />)}
-                {days.map(d => <i key={d.date} data-level={d.level} title={`${d.count} on ${d.date}`} />)}
-              </div>
+    <Section id="activity" title="GitHub Activity" aside={days && <p className="sec-note" aria-live="polite">{summary}</p>}>
+      <div className="activity">
+        {failed ? (
+          <p className="muted">Couldn't load the activity graph right now. It's all on <a className="link" href={profile.github}>my GitHub profile</a>.</p>
+        ) : !days ? (
+          <p className="muted" aria-live="polite">Loading GitHub contribution activity…</p>
+        ) : (
+          <>
+            <div className="months" aria-hidden="true">{months.map(m => <span key={m}>{m}</span>)}</div>
+            <div className="heat" role="img" aria-label={summary} style={{ gridTemplateColumns: `repeat(${weeks.length}, minmax(0, 1fr))` }}>
+              {weeks.map((w, i) => (
+                <div key={i}>{w.map((d, j) => d ? <i key={d.date} data-level={d.level} title={`${d.count} contributions on ${d.date}`} /> : <i key={j} className="blank" />)}</div>
+              ))}
             </div>
-          </div>
-          <p className="legend muted">Less active {[0, 1, 2, 3, 4].map(l => <i key={l} data-level={l} />)} More active</p>
-        </div>
-      )}
-    </section>
+            <div className="legend"><span>Less active</span><span>{[0, 1, 2, 3, 4].map(l => <i key={l} data-level={l} />)} More active</span></div>
+          </>
+        )}
+      </div>
+    </Section>
   );
 }
