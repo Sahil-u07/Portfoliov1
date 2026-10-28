@@ -1,28 +1,40 @@
-.hero-inner { position: relative; display: grid; grid-template-columns: 1.1fr minmax(0, 440px) 1fr; gap: 32px; align-items: end; min-height: calc(100svh - 64px); padding: 48px 0 56px; }
-/* Giant outlined first name behind everything */
-.ghost { position: absolute; inset: 8% 0 auto; z-index: -1; text-align: center; font: 800 clamp(96px, 22vw, 340px)/0.9 var(--sans); letter-spacing: -0.06em; text-transform: uppercase;
-  color: transparent; -webkit-text-stroke: 1.5px rgb(242 166 90 / 0.22); user-select: none; pointer-events: none; }
-.hero h1 { font-size: clamp(48px, 5.2vw, 84px); white-space: nowrap; font-weight: 700; letter-spacing: -0.045em; margin: 16px 0 20px; }
-.hero h1 em { display: block; }
-.lede { font: 13px/1.6 var(--mono); color: var(--fg-muted); max-width: 40ch; }
-.hero-side { display: grid; gap: 4px; justify-items: end; text-align: right; }
-.hero-side p { color: var(--fg-muted); max-width: 36ch; }
-.hero-side .cta-row { justify-content: flex-end; margin-top: 24px; }
+/* Banner: warm gradient with a faint dot grid, the clock in its corner */
+.banner { position: relative; height: 200px; border-radius: var(--radius); border: 1px solid var(--border);
+  background: radial-gradient(rgb(232 229 222 / 0.10) 1px, transparent 1px) 0 0 / 18px 18px,
+    radial-gradient(120% 140% at 85% 0%, rgb(242 166 90 / 0.45), transparent 60%),
+    linear-gradient(160deg, #2a241c, var(--card) 60%); }
+.clock { position: absolute; right: 18px; bottom: 14px; font: 500 14px var(--mono); letter-spacing: 0.08em; color: var(--fg-muted); }
 
-/* Leans toward the pointer like the cards (trackPointer sets --rx/--ry) */
-.portrait { position: relative; margin: 0; align-self: center;
-  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 400ms var(--ease); }
+.profile { margin: -56px 0 0 20px; position: relative; }
+.profile h1 { margin-top: 12px; }
+.hero h1 { font-size: clamp(30px, 6vw, 40px); font-weight: 700; letter-spacing: -0.04em; }
+.profile .muted { font-size: 14px; margin-top: 4px; }
+
+/* The talking avatar, cropped to its head inside a round frame. The canvas is the full 480x600 clip;
+   size and offsets put the head (roughly x 165-325, y 8-168 in the clip) in the circle. */
+.portrait { --s: 0.7; /* 112px circle / 160px head box */ flex: none; position: relative; width: 112px; height: 112px; margin: 0; overflow: hidden; border-radius: 50%;
+  border: 4px solid var(--bg); background: radial-gradient(circle at 50% 30%, #3a2f22, var(--muted)); }
 .portrait .source { display: none; }
-/* Soft amber glow behind the avatar */
-.portrait::before { content: ""; position: absolute; inset: 15% 5% 5%; z-index: -1; border-radius: 50%; background: radial-gradient(closest-side, rgb(242 166 90 / 0.22), transparent); filter: blur(20px); }
 /* The poster shows behind the canvas until the first frame is drawn over it */
-.portrait canvas { display: block; width: 100%; height: auto; background: center / cover no-repeat; }
-@media (prefers-reduced-motion: reduce) { .portrait { transform: none; } }
+.portrait canvas { position: absolute; width: calc(480px * var(--s)); height: auto; left: calc(-165px * var(--s)); top: calc(-8px * var(--s)); background: center / cover no-repeat; }
 
-@media (max-width: 1000px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 28px; min-height: 0; padding-top: 40px; align-items: start; }
-  .ghost { inset: 24px 0 auto; }
-  .portrait { order: -1; width: min(320px, 85%); justify-self: center; }
-  .hero-side { justify-items: start; text-align: left; }
-  .hero-side .cta-row { justify-content: flex-start; }
+.index { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; margin-top: 28px; padding-bottom: 14px; border-bottom: 1px solid var(--border); font-size: 15px; }
+.index a { color: var(--fg-muted); text-decoration: none; transition: color var(--fast); }
+.index a:hover { color: var(--accent); }
+.index .menu-btn { margin-left: auto; }
+
+.intro { margin-top: 28px; font-size: 19px; font-weight: 500; letter-spacing: -0.01em; }
+.bullets { margin-top: 14px; display: grid; gap: 8px; color: var(--fg-muted); }
+.bullets li { position: relative; padding-left: 20px; }
+.bullets li::before { content: ""; position: absolute; left: 4px; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+.socials-title { margin-top: 36px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+.socials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.socials a { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); text-decoration: none; font-size: 14px; color: var(--fg-muted); transition: color var(--fast), border-color var(--fast); }
+.socials a:hover { color: var(--fg); border-color: var(--border-strong); }
+
+@media (max-width: 560px) {
+  .banner { height: 140px; }
+  .profile { margin: -44px 0 0 12px; }
+  .portrait { --s: 0.55; width: 88px; height: 88px; }
 }

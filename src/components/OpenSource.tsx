@@ -1,32 +1,28 @@
-import type { CSSProperties } from 'react';
 import { openSource } from '../data';
-import { resetPointer, trackPointer } from '../hooks';
 import Icon from './Icon';
-import Reveal from './Reveal';
-import Terminal from './Terminal';
-import './OpenSource.css';
+
+const max = Math.max(...openSource.map(p => p.count));
 
 export default function OpenSource() {
   return (
-    <section className="wrap section" id="open-source">
-      <div className="os-intro">
-        <div>
-          <p className="kicker">Open source</p>
-          <h2>100+ open-source <em>contributions.</em></h2>
-        </div>
-        <Terminal />
-      </div>
-      <div className="grid">
-        {openSource.map((p, i) => (
-          <Reveal as="article" key={p.name} className="card" onPointerMove={trackPointer} onPointerLeave={resetPointer} style={{ '--i': i % 2 } as CSSProperties}>
-            <header><h3>{p.name}</h3><span className="org">{p.org}</span></header>
-            <p className="sub">{p.sub}</p>
-            <p>{p.body}</p>
-            {p.tags && <ul className="tags">{p.tags.map(t => <li key={t}>{t}</li>)}</ul>}
-            <a className="more" href={p.url} target="_blank" rel="noopener">Repository <Icon name="arrow" /></a>
-          </Reveal>
+    <section className="section" id="open-source">
+      <h2>Open Source Contributions</h2>
+      <p className="muted lead"><b>100+</b> contributions across four projects.</p>
+      <ul className="stack">
+        {openSource.map(p => (
+          <li key={p.name} className="card os">
+            <header>
+              <h3>{p.name}</h3><span className="muted">{p.org}</span>
+              <a className="more" href={p.url} target="_blank" rel="noopener" aria-label={`${p.name} repository`}><Icon name="arrow" /></a>
+            </header>
+            <p className="muted">{p.body}</p>
+            <div className="bar" role="img" aria-label={p.sub}>
+              <i style={{ width: `${(p.count / max) * 100}%` }} />
+              <span>{p.count ? `${p.count}+` : 'counting…'}</span>
+            </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
