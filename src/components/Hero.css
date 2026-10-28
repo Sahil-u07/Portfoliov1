@@ -1,40 +1,77 @@
-/* Banner: warm gradient with a faint dot grid, the clock in its corner */
-.banner { position: relative; height: 200px; border-radius: var(--radius); border: 1px solid var(--border);
-  background: radial-gradient(rgb(232 229 222 / 0.10) 1px, transparent 1px) 0 0 / 18px 18px,
-    radial-gradient(120% 140% at 85% 0%, rgb(242 166 90 / 0.45), transparent 60%),
-    linear-gradient(160deg, #2a241c, var(--card) 60%); }
-.clock { position: absolute; right: 18px; bottom: 14px; font: 500 14px var(--mono); letter-spacing: 0.08em; color: var(--fg-muted); }
+/* Banner: a night field drawn in CSS (stars, two rolling hills), soft-faded at the edges, clock in the corner */
+.banner { position: relative; height: 22vh; min-height: 150px; margin: 0 calc(-1 * var(--gutter)); overflow: hidden;
+  background: linear-gradient(#070b1d, #0d1736 55%, #13224a); box-shadow: 0 4px 12px rgb(2 6 23 / 0.1); }
+:root[data-theme="light"] .banner { background: linear-gradient(#cfe0f0, #e4eef6 55%, #f1f5f9); }
+.banner::before, .banner::after { content: ""; position: absolute; top: 0; bottom: 0; width: 32px; z-index: 3; pointer-events: none; }
+.banner::before { left: 0; background: linear-gradient(to right, rgb(0 0 0 / 0.4), transparent); }
+.banner::after { right: 0; background: linear-gradient(to left, rgb(0 0 0 / 0.4), transparent); }
+.stars { position: absolute; inset: 0 0 40%; opacity: 0.8;
+  background: radial-gradient(1px 1px at 12% 22%, #fff, transparent), radial-gradient(1px 1px at 28% 58%, #dbe4ff, transparent),
+    radial-gradient(1.5px 1.5px at 41% 18%, #fff, transparent), radial-gradient(1px 1px at 57% 44%, #fff, transparent),
+    radial-gradient(1px 1px at 66% 12%, #cdd8ff, transparent), radial-gradient(1.5px 1.5px at 79% 36%, #fff, transparent),
+    radial-gradient(1px 1px at 88% 16%, #fff, transparent), radial-gradient(1px 1px at 94% 60%, #dbe4ff, transparent),
+    radial-gradient(1px 1px at 6% 66%, #fff, transparent), radial-gradient(1px 1px at 35% 34%, #fff, transparent);
+  animation: twinkle 4s ease-in-out infinite alternate; }
+:root[data-theme="light"] .stars { display: none; }
+@keyframes twinkle { to { opacity: 0.4; } }
+.hill { position: absolute; left: -10%; right: -10%; bottom: -55%; height: 100%; border-radius: 50% 50% 0 0;
+  background: radial-gradient(1px 1px at 50% 50%, rgb(255 255 255 / 0.35), transparent) 0 0 / 7px 6px, linear-gradient(#1b2d63, #0a1330 60%); }
+.hill.far { bottom: -35%; left: -30%; right: 20%; opacity: 0.6; }
+:root[data-theme="light"] .hill { background: linear-gradient(#b9cbe0, #dce6f0); }
+/* Fades the banner's bottom into the page */
+.banner > .hill:last-of-type::after { content: ""; position: absolute; inset: auto 0 0; height: 40px; background: linear-gradient(to top, rgb(0 0 0 / 0.5), transparent); }
 
-.profile { margin: -56px 0 0 20px; position: relative; }
-.profile h1 { margin-top: 12px; }
-.hero h1 { font-size: clamp(30px, 6vw, 40px); font-weight: 700; letter-spacing: -0.04em; }
-.profile .muted { font-size: 14px; margin-top: 4px; }
+.clock { position: absolute; right: 8px; bottom: 12px; z-index: 4; display: flex; align-items: center; height: 24px;
+  font: 700 24px/1 Doto, var(--mono); letter-spacing: 0.15em; color: #71717a; }
+.colon { display: flex; flex-direction: column; gap: 8px; margin: 0 4px; translate: -3px 0; }
+.colon b { width: 2px; height: 2px; background: #71717a; }
 
-/* The talking avatar, cropped to its head inside a round frame. The canvas is the full 480x600 clip;
-   size and offsets put the head (roughly x 165-325, y 8-168 in the clip) in the circle. */
-.portrait { --s: 0.7; /* 112px circle / 160px head box */ flex: none; position: relative; width: 112px; height: 112px; margin: 0; overflow: hidden; border-radius: 50%;
-  border: 4px solid var(--bg); background: radial-gradient(circle at 50% 30%, #3a2f22, var(--muted)); }
+/* Profile strip: 112px tall between two full-width dashed rules */
+.profile { display: flex; align-items: center; gap: 20px; height: 112px; }
+.profile .dots { position: absolute; }
+.portrait { flex: none; margin: 0; padding: 3px; border-radius: 8px; border: 1.5px solid var(--line); }
+.portrait > div { position: relative; width: 80px; height: 80px; border-radius: 5px; overflow: hidden; background: #18181b; }
 .portrait .source { display: none; }
-/* The poster shows behind the canvas until the first frame is drawn over it */
-.portrait canvas { position: absolute; width: calc(480px * var(--s)); height: auto; left: calc(-165px * var(--s)); top: calc(-8px * var(--s)); background: center / cover no-repeat; }
+/* The talking avatar's full 480x600 clip, scaled and shifted so its head (about x 165-325, y 8-168) fills the frame */
+.portrait canvas { --s: 0.5; position: absolute; width: calc(480px * var(--s)); height: auto; left: calc(-165px * var(--s)); top: calc(-8px * var(--s)); background: center / cover no-repeat; }
+.who { padding-top: 32px; }
+.hero h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.025em; line-height: 1; margin-bottom: 2px; color: var(--fg);
+  text-shadow: -1.5px 0 0 rgb(0 200 255 / 0.6), 1.5px 0 0 rgb(255 80 0 / 0.6); }
+:root[data-theme="light"] .hero h1 { text-shadow: -1.5px 0 0 rgb(0 200 255 / 0.3), 1.5px 0 0 rgb(255 80 0 / 0.3); }
+.who p { font-size: 14px; color: var(--fg-muted); }
+.tools { align-self: flex-start; display: flex; align-items: flex-start; gap: 12px; margin-left: auto; padding-top: 18px; }
+.theme-btn { display: grid; place-items: center; width: 18px; height: 18px; margin-top: 3px; color: var(--fg-muted); transition: color 300ms, scale 150ms; }
+.theme-btn:hover { color: var(--fg); }
+.theme-btn:active { scale: 0.95; }
+.theme-btn .ic { width: 18px; height: 18px; }
 
-.index { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; margin-top: 28px; padding-bottom: 14px; border-bottom: 1px solid var(--border); font-size: 15px; }
-.index a { color: var(--fg-muted); text-decoration: none; transition: color var(--fast); }
-.index a:hover { color: var(--accent); }
-.index .menu-btn { margin-left: auto; }
+/* Index: fixed beside the column, wide screens only */
+.index { display: none; }
+@media (min-width: 1024px) {
+  .index { position: fixed; top: 22vh; left: calc(70% + 32px); z-index: 50; display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+  .index h3 { margin-bottom: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-faint); }
+  .index a { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; color: var(--fg-faint); transition: color 300ms var(--ease); }
+  .index a:hover { color: var(--fg-muted); }
+  .index a span { height: 1px; width: 0; background: transparent; transition: width 300ms var(--ease), background 300ms; }
+  .index a.on { color: var(--fg); }
+  .index a.on span { width: 16px; background: var(--fg); }
+}
 
-.intro { margin-top: 28px; font-size: 19px; font-weight: 500; letter-spacing: -0.01em; }
-.bullets { margin-top: 14px; display: grid; gap: 8px; color: var(--fg-muted); }
-.bullets li { position: relative; padding-left: 20px; }
-.bullets li::before { content: ""; position: absolute; left: 4px; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.intro { margin-top: 16px; color: var(--fg-2); }
+.bullets { margin-top: 16px; padding-left: 16px; color: var(--fg-2); }
+.bullets li { display: flex; gap: 6px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.socials-title { margin: 24px 0 8px; font-size: 14px; font-weight: 400; color: #71717a; }
+.socials-title b { font-weight: 500; color: var(--fg-2); }
+.socials { display: flex; flex-wrap: wrap; gap: 6px; }
 
-.socials-title { margin-top: 36px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
-.socials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-.socials a { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); text-decoration: none; font-size: 14px; color: var(--fg-muted); transition: color var(--fast), border-color var(--fast); }
-.socials a:hover { color: var(--fg); border-color: var(--border-strong); }
-
-@media (max-width: 560px) {
-  .banner { height: 140px; }
-  .profile { margin: -44px 0 0 12px; }
-  .portrait { --s: 0.55; width: 88px; height: 88px; }
+@media (max-width: 639px) {
+  body { font-size: 14px; }
+  .profile { gap: 16px; }
+  .portrait > div { width: 64px; height: 64px; }
+  .portrait canvas { --s: 0.4; }
+  .hero h1 { font-size: 20px; }
+  .who p { font-size: 13px; }
+  .clock { font-size: 20px; }
+  .colon { margin: 0 2px; translate: -2px 0; }
 }
