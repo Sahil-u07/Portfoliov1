@@ -1,69 +1,121 @@
-:root {
-  /* Soft dark: warm charcoal and off-white with one warm amber accent, no pure black or white */
-  --bg: #141412;
-  --card: #1c1b19;
-  --muted: #262522;
-  --border: rgb(232 229 222 / 0.08);
-  --border-strong: rgb(232 229 222 / 0.16);
-  --fg: #e8e5de;
-  --fg-muted: #9a968d;
-  --accent: #f2a65a;
-  --on-accent: #1b1206;
-  --ok: #6fcf97;
-  --bad: #f08a8a;
-  --ease: cubic-bezier(.16, 1, .3, 1);
-  --shadow: 0 0 0 1px rgb(232 229 222 / 0.06) inset, 0 24px 60px -24px rgb(0 0 0 / 0.6);
-  --sans: "Inter Tight", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
-  --radius: 14px;
-  --fast: 180ms ease;
+:root, :root[data-theme="dark"] {
+  /* Zinc greys on pure black, like the reference */
+  --bg: #000;
+  --card: #09090b;
+  --card-hover: #121214;
+  --chip: #0a0a0a;
+  --tile: #111;
+  --fg: #f4f4f5;
+  --fg-2: #d4d4d8;
+  --fg-muted: #a1a1aa;
+  --fg-faint: #52525b;
+  --line: rgb(255 255 255 / 0.15);
+  --dot: rgb(255 255 255 / 0.25);
+  --edge: rgb(255 255 255 / 0.05);
+  --edge-hover: rgb(255 255 255 / 0.1);
+  --row-hover: rgb(24 24 27 / 0.2);
+  --btn-bg: #fff;
+  --btn-fg: #18181b;
+  --lift: 0 10px 15px -3px rgb(0 0 0 / 0.8);
+  --heat: #27272a, #52525b, #71717a, #d4d4d8, #f4f4f5;
   color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #fff;
+  --card: #fafafa;
+  --card-hover: #f4f4f5;
+  --chip: #fafafa;
+  --tile: #fafafa;
+  --fg: #18181b;
+  --fg-2: #27272a;
+  --fg-muted: #52525b;
+  --fg-faint: #a1a1aa;
+  --line: rgb(0 0 0 / 0.3);
+  --dot: rgb(0 0 0 / 0.5);
+  --edge: rgb(0 0 0 / 0.05);
+  --edge-hover: rgb(0 0 0 / 0.1);
+  --row-hover: #fafafa;
+  --btn-bg: #18181b;
+  --btn-fg: #fafafa;
+  --lift: 0 1px 2px rgb(0 0 0 / 0.2);
+  color-scheme: light;
+}
+:root {
+  --sans: Geist, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, Consolas, monospace;
+  --ease: cubic-bezier(.33, 1, .68, 1);
+  --fast: 200ms ease;
+  /* 1px on, 5px off: every rule on the page is this dashed hairline */
+  --dash-x: repeating-linear-gradient(to right, #000 0 1px, transparent 1px 6px);
+  --dash-y: repeating-linear-gradient(to bottom, #000 0 1px, transparent 1px 6px);
+  --gutter: 16px;
 }
 
 * { box-sizing: border-box; }
 /* Wide screens open at 80% scale, the size the layout looks best at */
 @media (min-width: 1200px) { html { zoom: 0.8; } }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-/* clip, not hidden: stops any stray sideways scroll without breaking the sticky nav and pinned gallery */
-html, body { overflow-x: clip; }
-body { margin: 0; background: radial-gradient(900px 600px at 85% -10%, rgb(242 166 90 / 0.10), transparent 70%), radial-gradient(800px 600px at -10% 40%, rgb(120 150 255 / 0.05), transparent 70%), var(--bg); background-attachment: fixed; color: var(--fg); font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
-h1, h2, h3 { line-height: 1.05; margin: 0; letter-spacing: -0.035em; text-wrap: balance; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+/* The full-width dashed rules stick out of the column; this wrapper trims them at the screen edge */
+.site { overflow-x: clip; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.6 var(--sans); -webkit-font-smoothing: antialiased; transition: background 300ms, color 300ms; }
+h1, h2, h3 { margin: 0; line-height: 1.25; }
 p { margin: 0; }
-a { color: inherit; }
+a { color: inherit; text-decoration: none; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
-button { font: inherit; color: inherit; cursor: pointer; }
-code, pre, kbd { font-family: var(--mono); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-::selection { background: var(--accent); color: var(--on-accent); }
+button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; padding: 0; }
+kbd { font-family: var(--mono); }
+:focus-visible { outline: 2px solid var(--fg-muted); outline-offset: 2px; border-radius: 4px; }
 
-.ic { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.skip { position: absolute; left: 16px; top: -48px; padding: 8px 14px; background: var(--accent); color: var(--on-accent); border-radius: 8px; z-index: 10; }
+.ic { width: 14px; height: 14px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.skip { position: absolute; left: 16px; top: -48px; padding: 8px 14px; background: var(--btn-bg); color: var(--btn-fg); border-radius: 6px; z-index: 60; }
 .skip:focus { top: 12px; }
-
-/* One narrow column, like a CV you scroll */
-.page { width: min(760px, 100% - 32px); margin-inline: auto; padding: 24px 0 48px; }
-.section { padding-top: 72px; }
-.section > h2 { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 20px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .muted { color: var(--fg-muted); }
 
-.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 10px; border: 1px solid var(--border-strong); background: var(--card); text-decoration: none; font-weight: 500; font-size: 15px; transition: background var(--fast), border-color var(--fast), transform var(--fast); }
-.btn:hover { border-color: var(--fg-muted); transform: translateY(-1px); }
-.btn:active { transform: translateY(1px); }
-.btn.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
-.btn.primary:hover { background: #f6ba7c; }
-.btn.small { min-height: 36px; padding: 0 12px; font-size: 14px; }
-.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+/* The column: full width on phones, the middle 40% of the screen from tablet up, edged by dashed lines */
+.page { position: relative; min-height: 100vh; padding: 0 var(--gutter); }
+@media (min-width: 768px) {
+  .page { margin: 0 30%; }
+  .page::before, .page::after { content: ""; position: absolute; top: 0; bottom: 0; border-left: 1px solid var(--line); mask-image: var(--dash-y); pointer-events: none; }
+  .page::before { left: 0; }
+  .page::after { right: 0; }
+}
 
-.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
-.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
-.tags li { font: 12px var(--mono); padding: 3px 9px; border-radius: 6px; background: var(--muted); color: var(--fg-muted); }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* A dashed rule across the whole screen, with a dot where it crosses each column edge.
+   .rule-top / .rule-bottom put it on that edge of any positioned element inside the column. */
+.rule-top, .rule-bottom { position: relative; }
+.rule-top::before, .rule-bottom::after { content: ""; position: absolute; left: -100vw; right: -100vw; height: 0; border-top: 1px solid var(--line); mask-image: var(--dash-x); pointer-events: none; }
+.rule-top::before { top: 0; }
+.rule-bottom::after { bottom: 0; }
+.dots { position: absolute; left: calc(-1 * var(--gutter) - 1px); right: calc(-1 * var(--gutter) - 1px); height: 2px; pointer-events: none; z-index: 2;
+  background: linear-gradient(to right, var(--dot) 2px, transparent 2px calc(100% - 2px), var(--dot) 0); }
+
+/* Small dark buttons with a faint outer ring, used for ⌘K, View All, the tabs */
+.ring { position: relative; display: inline-flex; }
+.ring::before { content: ""; position: absolute; inset: -4.5px; border: 1px solid var(--edge); border-radius: 9px; pointer-events: none; transition: border-color 300ms; }
+.ring:hover::before { border-color: var(--edge-hover); }
+.soft { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 6px; background: var(--card); border: 1px solid var(--edge); box-shadow: var(--lift);
+  font-size: 13px; font-weight: 500; color: var(--fg-muted); transition: background 300ms, color 300ms; }
+.soft:hover { background: var(--card-hover); color: var(--fg); }
+.view-all { display: flex; justify-content: center; margin-top: 16px; }
+
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 500; letter-spacing: -0.01em;
+  background: #0c0c0e; border: 1px solid var(--edge); color: rgb(212 212 216 / 0.8); transition: background var(--fast), border-color var(--fast), color var(--fast); }
+:root[data-theme="light"] .chip { background: rgb(255 255 255 / 0.9); color: #171717; }
+.chip:hover { background: var(--card-hover); border-color: var(--edge-hover); color: var(--fg); }
+.chip.solid { background: var(--btn-bg); color: var(--btn-fg); border-color: transparent; font-weight: 600; }
+.chip.solid:hover { opacity: 0.92; }
 
 /* Sections fade up as they come into view: a native scroll-driven animation, static where unsupported */
 @supports (animation-timeline: view()) {
-  main > .section { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+  main > .section { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 30%; }
 }
-@keyframes rise { from { opacity: 0; translate: 0 24px; } }
+@keyframes rise { from { opacity: 0; translate: 0 16px; } }
+
+/* Theme switch: the new theme grows out of the middle of the screen through a triangle */
+::view-transition-old(root) { animation: none; }
+::view-transition-new(root) { animation: 0.7s both theme-in; mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><path d='m20 0 20 35H0z'/></svg>") 50% / 0 no-repeat; }
+@keyframes theme-in { to { mask-size: 300vmax; } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
