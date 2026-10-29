@@ -1,5 +1,5 @@
-import { highlights } from '../data';
-import Section from './Section';
+import { highlights, profile } from '../data';
+import Section, { ViewAll } from './Section';
 
 const Card = ({ h, copy }: { h: (typeof highlights)[number]; copy?: boolean }) => (
   <li className="hl ring" aria-hidden={copy || undefined}>
@@ -20,6 +20,7 @@ export default function Highlights() {
           {highlights.map(h => <Card key={`${h.label}-copy`} h={h} copy />)}
         </ul>
       </div>
+      <ViewAll href={profile.linkedin} />
     </Section>
   );
 }
