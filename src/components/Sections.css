@@ -148,9 +148,10 @@
 
 /* Skills: chips that stretch so every row is full */
 .skills { display: flex; flex-wrap: wrap; gap: 8px; padding: 24px 0 8px; }
-.skills li { flex-grow: 1; display: flex; justify-content: center; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--chip);
+.skills li { flex-grow: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--chip);
   font-size: 13px; font-weight: 500; color: var(--fg-muted); transition: background var(--fast); }
 .skills li:hover { background: var(--card-hover); }
+.skills svg { width: 14px; height: 14px; flex: none; fill: #71717a; opacity: 0.8; }
 
 /* Highlights marquee: the track holds two copies and slides by half its width */
 .marquee { position: relative; margin-top: 16px; padding: 8px 4px; overflow: hidden; }
