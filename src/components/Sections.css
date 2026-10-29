@@ -160,14 +160,6 @@
   .track > [aria-hidden] { display: none; }
 }
 
-.quotes { display: grid; gap: 12px; margin-top: 16px; }
-@media (min-width: 640px) { .quotes { grid-template-columns: 1fr 1fr; } }
-.quotes li { display: flex; flex-direction: column; justify-content: space-between; gap: 12px; padding: 16px 18px; border: 1px solid var(--line); border-left: 2px solid #e11d1d; border-radius: 10px; background: var(--tile); }
-.quotes blockquote { margin: 0; font-size: 15px; font-weight: 500; line-height: 1.5; color: var(--fg); }
-.quotes blockquote::before { content: "\201C"; margin-right: 2px; color: #e11d1d; }
-.quotes blockquote::after { content: "\201D"; color: #e11d1d; }
-.quotes span { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-faint); }
-
 .quote { display: flex; flex-direction: column; align-items: center; margin: 32px 0 0; padding: 24px 0; }
 .quote blockquote { max-width: 480px; margin: 0 0 24px; font-size: 16px; font-weight: 500; font-style: italic; line-height: 1.6; text-align: center; color: var(--fg-muted); }
 .quote figcaption { display: flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-faint); }

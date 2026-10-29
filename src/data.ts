@@ -13,7 +13,8 @@ export const profile = {
     '100+ open-source contributions to Beehive, Concore, Diomede and GNU Radio.',
     'Currently building **EvidenceRAG** and **RoadGuard AI**.',
   ],
-  quote: 'Most of what I know I picked up by building things.',
+  quote: 'Do so much work that it would be unreasonable for you to not be successful.',
+  quoteBy: 'Alex Hormozi',
   email: 'sahillenka44@gmail.com',
   github: 'https://github.com/Sahil-u07',
   githubUser: 'Sahil-u07',
@@ -135,14 +136,6 @@ export const highlights: { value: string; label: string; caption: string }[] = [
   { value: '3rd', label: 'Smart Delhi Ideathon', caption: 'Third place in our category at a government-backed contest.' },
   { value: '97', label: 'Backend tests', caption: 'Written for EvidenceRAG.' },
   { value: '3×', label: 'Hackathon finalist', caption: 'At university and national level.' },
-];
-
-// Quotes from Alex Hormozi shown near the bottom of the page.
-export const quotes = [
-  'Volume negates luck.',
-  'A focused fool can accomplish more than a distracted genius.',
-  'Who you compare yourself to dictates who you become.',
-  "Do what you are most afraid of because it's usually the thing you need to do most.",
 ];
 
 export const sections = [
