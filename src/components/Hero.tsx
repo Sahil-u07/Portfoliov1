@@ -76,7 +76,10 @@ export default function Hero() {
       <p className="intro">{profile.intro}</p>
       <ul className="bullets">{profile.bullets.map(b => <li key={b}><span>•</span><span>{b.split('**').map((t, i) => i % 2 ? <b key={i}>{t}</b> : t)}</span></li>)}</ul>
       <div className="cta-row">
-        <a className="chip solid" href={profile.cv} download><Icon name="download" /> Download CV</a>
+        <span className="flip">
+          <a className="chip inner" href={profile.cv} download><Icon name="download" /> Download CV</a>
+          <span className="lid" aria-hidden="true"><span><Icon name="download" /> Download CV</span></span>
+        </span>
         <a className="chip" href={`mailto:${profile.email}`}><Icon name="mail" /> Send an email</a>
       </div>
       <h2 className="socials-title">Here are my <b>socials</b></h2>
