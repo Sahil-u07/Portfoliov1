@@ -89,11 +89,16 @@ try {
     await page.waitForFunction(() => !document.querySelector('.palette').open && location.hash === '#skills');
 
     // Wheel scrolling glides to its target instead of jumping, but still gets there.
+    // Let the smooth jump to #skills finish first, or it nudges the starting point.
+    const settled = () => new Promise(r => { const y = scrollY; requestAnimationFrame(() => requestAnimationFrame(() => r(scrollY === y))); });
+    await page.waitForFunction(settled);
     await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+    await page.waitForFunction(settled);
+    const y0 = await page.evaluate(() => scrollY);
     await page.mouse.move(viewport.width / 2, viewport.height / 2);
     await page.mouse.wheel(0, 400);
-    assert.ok(await page.evaluate(() => scrollY) < 400, `${name}: wheel scroll jumped instead of gliding`);
-    await page.waitForFunction(() => Math.abs(scrollY - 400) < 1);
+    assert.ok(await page.evaluate(() => scrollY) < y0 + 400, `${name}: wheel scroll jumped instead of gliding`);
+    await page.waitForFunction(y0 => Math.abs(scrollY - y0 - 400) < 1, y0);
 
     if (shots) {
       await page.goto(url);
