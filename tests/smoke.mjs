@@ -42,15 +42,9 @@ try {
     assert.match(t0, /^\d{6}$/); // HH MM SS, the colons are drawn dots
     await page.waitForFunction(t => document.querySelector('.clock').textContent !== t, t0);
 
-    // The intro video is served.
-    const clips = await page.$$eval('.portrait video source', ss => Promise.all(ss.map(s => fetch(s.src).then(r => r.ok && r.headers.get('content-type')))));
-    assert.deepEqual(clips, ['video/webm', 'video/mp4'], `${name}: intro video is missing`);
-    // The avatar is drawn cut out: transparent in the corner, solid in the middle.
-    await page.waitForFunction(() => { const c = document.querySelector('.portrait canvas').getContext('2d');
-      return c.getImageData(5, 5, 1, 1).data[3] === 0 && c.getImageData(240, 200, 1, 1).data[3] === 255; });
-    // The first click anywhere on the page turns the voice on.
-    await page.locator('.intro').click();
-    assert.equal(await page.locator('.portrait video').evaluate(v => v.muted), false, `${name}: first click did not turn the sound on`);
+    // The profile picture, the banner skyline and every experience logo load.
+    await page.waitForFunction(() => [...document.querySelectorAll('.portrait img, .banner img, .xp .logo img')].every(i => i.complete && i.naturalWidth > 0));
+    assert.equal(await page.locator('.xp .logo img').count(), 3, `${name}: an experience logo is missing`);
 
     // Every index link points at a section that exists.
     for (const href of await page.$$eval('.index a', as => as.map(a => a.getAttribute('href'))))
