@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { profile, sections } from '../data';
+import CityBanner from './CityBanner';
 import CommandMenu from './CommandMenu';
 import { prefersReducedMotion } from '../hooks';
 import Icon from './Icon';
@@ -60,9 +61,7 @@ export default function Hero() {
     <header className="hero" id="top">
       <IndexNav />
       <div className="banner" aria-hidden="true">
-        <i className="halo" /><i className="beam" /><i className="beam two" />
-        <img src={`${base}banner-city.webp`} alt="" fetchPriority="high" />
-        <i className="rain" /><i className="flash" />
+        <CityBanner />
         <Clock />
       </div>
       <div className="profile rule-top rule-bottom">

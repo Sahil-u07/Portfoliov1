@@ -43,7 +43,9 @@ try {
     await page.waitForFunction(t => document.querySelector('.clock').textContent !== t, t0);
 
     // The profile picture, the banner skyline and every experience logo load.
-    await page.waitForFunction(() => [...document.querySelectorAll('.portrait img, .banner img, .xp .logo img')].every(i => i.complete && i.naturalWidth > 0));
+    await page.waitForFunction(() => [...document.querySelectorAll('.portrait img, .xp .logo img')].every(i => i.complete && i.naturalWidth > 0));
+    // The banner scene is drawn: the sky's top-left is dark red, not blank.
+    await page.waitForFunction(() => { const [r, g, b, a] = document.querySelector('.city').getContext('2d').getImageData(2, 2, 1, 1).data; return a === 255 && r > g && r > b; });
     assert.equal(await page.locator('.xp .logo img').count(), 3, `${name}: an experience logo is missing`);
 
     // Every index link points at a section that exists.
