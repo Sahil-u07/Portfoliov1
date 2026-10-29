@@ -14,7 +14,7 @@ export default function Experience() {
           return (
             <li key={x.org} className="xp rule-bottom">
               <button className="xp-row" type="button" aria-expanded={isOpen} disabled={!hasMore} onClick={() => setOpen(isOpen ? null : x.org)}>
-                <span className="logo" aria-hidden="true"><span><img src={`${import.meta.env.BASE_URL}logos/${x.logo}`} alt="" /></span></span>
+                <span className="logo" aria-hidden="true"><span>{x.logo === 'github' ? <Icon name="github" /> : <img src={`${import.meta.env.BASE_URL}logos/${x.logo}`} alt="" />}</span></span>
                 <span className="xp-title"><b>{x.org}</b><span>{x.role}</span></span>
                 <span className="xp-when"><span>{x.when}{hasMore && <Icon name="chevron" />}</span><span>{x.sub}</span></span>
               </button>

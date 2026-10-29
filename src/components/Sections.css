@@ -14,13 +14,13 @@
 .stats div:nth-child(n+3) { border-top: 1px solid var(--line); }
 .stats dd { margin: 0; font-size: 16px; font-weight: 700; line-height: 1; white-space: nowrap; color: var(--fg); }
 .stats dt { margin-top: 4px; font-size: 10px; font-weight: 500; text-transform: uppercase; color: var(--fg-faint); }
-@media (min-width: 1536px) {
+@media (min-width: 1200px) {
   .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .stats div:not(:last-child)::after { content: ""; position: absolute; top: 0; bottom: 0; right: 0; border-right: 1px solid var(--line); mask-image: var(--dash-y); }
   .stats div:nth-child(n+3) { border-top: 0; }
 }
 
-/* Experience: one row per role, the details fold open below it */
+/* Experience: one row per role, the details fold open below it. From 1200px (where the page zooms to 80%) the column fits the date beside the title. */
 .xp::after { left: calc(-1 * var(--gutter)) !important; right: calc(-1 * var(--gutter)) !important; }
 .xp-row { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; width: calc(100% + 2 * var(--gutter)); margin: 0 calc(-1 * var(--gutter)); padding: 16px var(--gutter);
   border-radius: 8px; text-align: left; transition: background var(--fast); }
@@ -38,7 +38,7 @@
 .xp-when > span:first-child { display: flex; align-items: center; gap: 6px; font-weight: 500; color: var(--fg); }
 .xp-when .ic { color: var(--fg-muted); transition: rotate 300ms var(--ease); }
 .xp-row[aria-expanded="true"] .xp-when .ic { rotate: 180deg; color: var(--fg); }
-@media (min-width: 1536px) {
+@media (min-width: 1200px) {
   .xp-row { flex-wrap: nowrap; align-items: center; }
   .xp-when { flex-basis: auto; padding-left: 0; align-items: flex-end; text-align: right; }
 }
@@ -78,6 +78,10 @@
 .status i.live { background: #10b981; }
 .status i.building { background: #ef4444; }
 .project-text { margin-top: 6px; padding: 0 8px 0 2px; font-size: 13px; line-height: 1.6; color: var(--fg-muted); }
+.tech { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.tech svg { display: block; width: 15px; height: 15px; fill: var(--fg-faint); transition: fill 200ms; }
+.tech span { font: 600 10px/1 var(--mono); color: var(--fg-faint); } /* a tech with no logo, like YOLOv8 */
+.project:hover .tech svg { fill: var(--fg-muted); }
 .project-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; padding: 0 2px; }
 .view { display: inline-flex; align-items: center; gap: 4px; flex: none; font-size: 12px; font-weight: 500; color: #71717a; transition: color var(--fast); }
 .view .ic { width: 12px; height: 12px; }
