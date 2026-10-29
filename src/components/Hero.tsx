@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { profile, sections } from '../data';
-import CityBanner from './CityBanner';
+import NightBanner from './NightBanner';
 import CommandMenu from './CommandMenu';
 import { prefersReducedMotion } from '../hooks';
 import Icon from './Icon';
@@ -61,7 +61,7 @@ export default function Hero() {
     <header className="hero" id="top">
       <IndexNav />
       <div className="banner" aria-hidden="true">
-        <CityBanner />
+        <NightBanner />
         <Clock />
       </div>
       <div className="profile rule-top rule-bottom">
@@ -74,7 +74,7 @@ export default function Hero() {
         <div className="tools"><CommandMenu /><ThemeButton /></div>
       </div>
       <p className="intro">{profile.intro}</p>
-      <ul className="bullets">{profile.bullets.map(b => <li key={b}><span>•</span><span>{b}</span></li>)}</ul>
+      <ul className="bullets">{profile.bullets.map(b => <li key={b}><span>•</span><span>{b.split('**').map((t, i) => i % 2 ? <b key={i}>{t}</b> : t)}</span></li>)}</ul>
       <div className="cta-row">
         <a className="chip solid" href={profile.cv} download><Icon name="download" /> Download CV</a>
         <a className="chip" href={`mailto:${profile.email}`}><Icon name="mail" /> Send an email</a>
