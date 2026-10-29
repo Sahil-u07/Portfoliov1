@@ -48,6 +48,8 @@ try {
     await page.waitForFunction(() => { const [r, g, b, a] = document.querySelector('.city').getContext('2d').getImageData(2, 2, 1, 1).data; return a === 255 && r > g && r > b; });
     assert.equal(await page.locator('.xp .logo img').count(), 3, `${name}: an experience logo is missing`);
 
+    assert.equal(await page.locator('#quotes li').count(), 4, `${name}: the quotes are missing`);
+
     // Every index link points at a section that exists.
     for (const href of await page.$$eval('.index a', as => as.map(a => a.getAttribute('href'))))
       assert.equal(await page.locator(href).count(), 1, `${name}: ${href} has no section`);

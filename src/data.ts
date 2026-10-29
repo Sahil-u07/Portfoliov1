@@ -115,6 +115,14 @@ export const highlights: { value: string; label: string; caption: string }[] = [
   { value: '3×', label: 'Hackathon finalist', caption: 'At university and national level.' },
 ];
 
+// Quotes from Alex Hormozi shown near the bottom of the page.
+export const quotes = [
+  'Volume negates luck.',
+  'A focused fool can accomplish more than a distracted genius.',
+  'Who you compare yourself to dictates who you become.',
+  "Do what you are most afraid of because it's usually the thing you need to do most.",
+];
+
 export const sections = [
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
