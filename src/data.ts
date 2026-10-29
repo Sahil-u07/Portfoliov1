@@ -75,7 +75,7 @@ export const projects: { name: string; status: string; summary: string; tags: st
 // Newest first, like a CV.
 export const experience = [
   {
-    when: 'May 2026 – Aug 2026', role: 'Software Development Intern', org: 'Sundarone Private Limited', sub: 'sundaronehostel.in',
+    when: 'May 2026 – Aug 2026', role: 'Software Development Intern', org: 'Sundarone Private Limited', logo: 'sundarone.webp', sub: 'sundaronehostel.in',
     stats: [{ value: '15%', label: 'More bookings' }, { value: '20%', label: 'Better retention' }],
     points: [
       'Added Razorpay payments to the booking flow, which helped bookings go up 15%.',
@@ -84,7 +84,7 @@ export const experience = [
     tags: ['Razorpay'],
   },
   {
-    when: 'Apr 2025 – Aug 2025', role: 'Web Development Intern', org: 'IOTA Studio AI', sub: 'AIC MUJ incubated startup · Remote',
+    when: 'Apr 2025 – Aug 2025', role: 'Web Development Intern', org: 'IOTA Studio AI', logo: 'iota-studio.webp', sub: 'AIC MUJ incubated startup · Remote',
     stats: [{ value: '10+', label: 'Production commits' }],
     points: [
       "Built the company's website from start to finish with React.js, Node.js and REST APIs, and got more than 10 commits into their production codebase.",
@@ -93,7 +93,7 @@ export const experience = [
     tags: ['React.js', 'Node.js', 'REST APIs', 'MongoDB', 'SQL'],
   },
   {
-    when: '2024 – 2028 (expected)', role: 'B.Tech, Computer Science & Engineering', org: 'Manipal University Jaipur',
+    when: '2024 – 2028 (expected)', role: 'B.Tech, Computer Science & Engineering', org: 'Manipal University Jaipur', logo: 'manipal.webp',
     sub: 'AIML specialization · Don Bosco School, Bandel: Class XII (2024), Class X (2022)', stats: [], points: [], tags: [],
   },
 ];
