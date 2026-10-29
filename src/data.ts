@@ -3,14 +3,15 @@
 
 export const profile = {
   name: 'Sahil Lenka',
-  role: 'Full-stack developer',
+  role: '20', // shown under the name
   tagline: 'B.Tech CSE (AIML) · Manipal University Jaipur · Class of 2028',
-  intro: 'Full-stack developer. I like building things people actually use.',
+  intro: 'Full-stack developer / Open-source contributor. I like building things people actually use.',
+  // **text** is shown in bold
   bullets: [
     'Studying Computer Science (AI and ML) at Manipal University Jaipur, class of 2028.',
     'Interned at IOTA Studio AI and Sundarone, building websites and payment flows.',
     '100+ open-source contributions to Beehive, Concore, Diomede and GNU Radio.',
-    'Building EvidenceRAG, a document Q&A tool that only answers when it can show its source.',
+    'Currently building **EvidenceRAG** and **RoadGuard AI**.',
   ],
   quote: 'Most of what I know I picked up by building things.',
   email: 'sahillenka44@gmail.com',
@@ -76,7 +77,7 @@ export const projects: { name: string; status: string; summary: string; tags: st
 export const experience = [
   {
     when: 'May 2026 – Aug 2026', role: 'Software Development Intern', org: 'Sundarone Private Limited', logo: 'sundarone.webp', sub: 'sundaronehostel.in',
-    stats: [{ value: '15%', label: 'More bookings' }, { value: '20%', label: 'Better retention' }],
+    stats: [{ value: '15%', label: 'More bookings' }, { value: '20%', label: 'Better retention' }, { value: 'Razorpay', label: 'Payments' }, { value: 'May–Aug', label: 'Term' }],
     points: [
       'Added Razorpay payments to the booking flow, which helped bookings go up 15%.',
       'Ran a few rounds of UX changes that improved user retention by 20%.',
@@ -84,8 +85,20 @@ export const experience = [
     tags: ['Razorpay'],
   },
   {
+    // shortcut: no start date yet, add it when known
+    when: 'Ongoing', role: 'KathiraveluLab, ControlCore & GNU Radio', org: 'Open Source Contributor', logo: 'github', sub: 'Remote',
+    stats: [{ value: '100+', label: 'Contributions' }, { value: '33', label: 'Merged PRs' }, { value: '4', label: 'Projects' }, { value: '3', label: 'Orgs' }],
+    points: [
+      'Beehive: built a scanner that finds unprotected API endpoints, hardened secrets and config, and added tests and linting to CI.',
+      'Concore: built the concore command-line tool, set up tests and CI, and fixed shared-memory and simulation-time bugs.',
+      'Diomede: built the routing engine that sends medical images to the healthiest of several servers, plus its tests.',
+      'GNU Radio: fixed redundant signals in the GRC Qt editor and updated the WAV file blocks for libsndfile.',
+    ],
+    tags: ['Python', 'CI/CD', 'Security', 'DICOM', 'CLI', 'C++'],
+  },
+  {
     when: 'Apr 2025 – Aug 2025', role: 'Web Development Intern', org: 'IOTA Studio AI', logo: 'iota-studio.webp', sub: 'AIC MUJ incubated startup · Remote',
-    stats: [{ value: '10+', label: 'Production commits' }],
+    stats: [{ value: '10+', label: 'Production commits' }, { value: 'Apr–Aug', label: 'Term' }, { value: 'React + Node', label: 'Stack' }, { value: 'MongoDB + SQL', label: 'Storage' }],
     points: [
       "Built the company's website from start to finish with React.js, Node.js and REST APIs, and got more than 10 commits into their production codebase.",
       'Set up the API so the frontend and backend stayed separate, with MongoDB and SQL storing the content.',
@@ -94,7 +107,8 @@ export const experience = [
   },
   {
     when: '2024 – 2028 (expected)', role: 'B.Tech, Computer Science & Engineering', org: 'Manipal University Jaipur', logo: 'manipal.webp',
-    sub: 'AIML specialization · Don Bosco School, Bandel: Class XII (2024), Class X (2022)', stats: [], points: [], tags: [],
+    sub: 'Jaipur, India', stats: [{ value: 'AIML', label: 'Specialization' }, { value: '2028', label: 'Graduation' }],
+    points: ['Before that: Don Bosco School, Bandel. Class XII (2024), Class X (2022).'], tags: [],
   },
 ];
 

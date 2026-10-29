@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 import { profile, projects } from '../data';
+import { techIcons } from '../techIcons';
 import Section, { ViewAll } from './Section';
 
 const dot: Record<string, string> = { Live: 'live', Building: 'building' };
@@ -21,7 +22,9 @@ export default function Projects() {
                 <div className="project-head"><h3>{p.name}</h3><span className="status"><i className={dot[p.status] ?? 'live'} />{p.status}</span></div>
                 <p className="project-text">{p.summary}</p>
                 <div className="project-foot">
-                  <ul className="tags">{p.tags.map(t => <li key={t}>{t}</li>)}</ul>
+                  <ul className="tech">
+                    {p.tags.map(t => <li key={t} title={t}>{techIcons[t] ? <svg viewBox="0 0 24 24" role="img" aria-label={t}><path d={techIcons[t]} /></svg> : <span>{t}</span>}</li>)}
+                  </ul>
                   <span className="view">View Project <svg className="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7" /></svg></span>
                 </div>
               </a>
