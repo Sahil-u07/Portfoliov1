@@ -86,8 +86,7 @@ export const experience = [
     tags: ['Razorpay', 'Payments', 'Booking flow', 'UX'],
   },
   {
-    // shortcut: no start date yet, add it when known
-    when: 'Ongoing', role: 'KathiraveluLab, ControlCore, Krkn (CNCF) & GNU Radio', org: 'Open Source Contributor', logo: 'github', sub: 'Remote',
+    when: 'Dec 2024 – Present', role: 'KathiraveluLab, ControlCore, Krkn (CNCF) & GNU Radio', org: 'Open Source Contributor', logo: 'github', sub: 'Remote',
     stats: [{ value: '100+', label: 'Contributions' }, { value: '40+', label: 'Merged PRs' }, { value: '6', label: 'Vulns found' }, { value: '5', label: 'Projects' }],
     points: [
       'Concore (15 merged PRs): tracked down a race where two writers could corrupt the same shared-memory message, and fixed it with a sequence counter and a POSIX semaphore in Python and C++, backed by 3 regression tests and a C++ CI job.',
