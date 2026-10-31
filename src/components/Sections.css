@@ -198,6 +198,8 @@
 .quote { display: flex; flex-direction: column; align-items: center; margin: 0; padding: 32px 0 24px; }
 #highlights .view-all { margin-top: 24px; padding-bottom: 16px; }
 .quote blockquote { max-width: 480px; margin: 0 0 24px; font-size: 16px; font-weight: 500; font-style: italic; line-height: 1.6; text-align: center; color: var(--fg-muted); }
+.quote br { display: none; }
+@media (min-width: 768px) { .quote br { display: inline; } }
 .quote figcaption { display: flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-faint); }
 .quote figcaption i { width: 16px; height: 1px; background: #27272a; }
 :root[data-theme="light"] .quote figcaption i { background: #e4e4e7; }
