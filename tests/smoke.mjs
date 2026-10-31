@@ -90,6 +90,16 @@ try {
     assert.equal(await page.locator('.heat i[data-level]').count(), 365);
     assert.match(await page.textContent('#activity .sec-note'), /^\d+ GitHub activities in the last year$/);
 
+    // Hovering a day shows its tooltip right above that cell (the page is zoomed to 80% on desktop).
+    if (name === 'desktop') {
+      const cell = page.locator('.heat i[data-level]').nth(200);
+      await cell.scrollIntoViewIfNeeded();
+      await cell.hover();
+      const [c, t] = await Promise.all([cell.boundingBox(), page.locator('.heat-tip').boundingBox()]);
+      assert.ok(Math.abs(t.x + t.width / 2 - (c.x + c.width / 2)) < 3 && t.y + t.height <= c.y && c.y - (t.y + t.height) < 12, `tooltip not over its cell: ${JSON.stringify({ c, t })}`);
+      await page.mouse.move(0, 0);
+    }
+
     // Command menu: Ctrl+K, type, Enter jumps to the section.
     await page.keyboard.press('Control+k');
     await page.waitForSelector('.palette[open]');
