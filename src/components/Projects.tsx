@@ -8,7 +8,7 @@ const dot: Record<string, string> = { Live: 'live', Building: 'building' };
 export default function Projects() {
   return (
     <Section id="projects" title="Projects">
-      <div className="projects">
+      <div className="projects rule-bottom">
         <ul className="grid">
           {projects.map((p, i) => (
             <li key={p.name}>
@@ -31,8 +31,10 @@ export default function Projects() {
             </li>
           ))}
         </ul>
-        <ViewAll href={`${profile.github}?tab=repositories`} />
+        <i className="dots" style={{ bottom: -1, left: -1, right: -1 }} />
       </div>
+      {/* Sits on the dashed line that closes the grid */}
+      <div className="on-line"><ViewAll href={`${profile.github}?tab=repositories`} /></div>
     </Section>
   );
 }

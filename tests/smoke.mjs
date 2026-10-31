@@ -22,7 +22,9 @@ try {
     // Serve a fixed year of contributions so the heatmap is tested offline.
     await page.route(u => u.href.startsWith(activityUrl), r => r.fulfill({ json: { contributions: year } }));
     await page.route(u => u.hostname === 'api.github.com', r => {
-      const q = new URL(r.request().url()).searchParams.get('q');
+      const u = new URL(r.request().url());
+      if (u.pathname.startsWith('/users/')) return r.fulfill({ json: { name: 'Sahil Lenka', login: 'Sahil-u07', bio: null, location: null, public_repos: 12, followers: 3 } });
+      const q = u.searchParams.get('q');
       if (q.includes('is:unmerged')) return r.fulfill({ status: 403, json: {} });
       const tab = q.includes('is:merged') ? 'merged' : 'open';
       r.fulfill({ json: { total_count: 33, items: [1, 2].map(i => ({ title: `${tab} PR ${i}`, html_url: `https://github.com/o/r/pull/${i}`, repository_url: 'https://api.github.com/repos/o/r' })) } });
@@ -36,6 +38,13 @@ try {
     // Download CV serves the PDF.
     const cv = await page.locator('.hero a[download]').evaluate(a => fetch(a.href).then(r => r.ok && r.headers.get('content-type')));
     assert.equal(cv, 'application/pdf', `${name}: Download CV link is broken`);
+
+    // The GitHub hover card shows the live repo count.
+    if (name === 'desktop') {
+      await page.locator('.social').first().hover();
+      await page.locator('.social-card .sc-stats').filter({ hasText: '12 Repositories' }).waitFor({ state: 'visible' });
+      await page.mouse.move(0, 0);
+    }
 
     // The banner clock ticks.
     const t0 = await page.textContent('.clock');
@@ -79,7 +88,7 @@ try {
     // The heatmap draws one cell per day from the (mocked) contribution feed.
     await page.waitForSelector('.heat i[data-level]');
     assert.equal(await page.locator('.heat i[data-level]').count(), 365);
-    assert.match(await page.textContent('#activity .sec-note'), /^\d+ GitHub contributions in the last year$/);
+    assert.match(await page.textContent('#activity .sec-note'), /^\d+ GitHub activities in the last year$/);
 
     // Command menu: Ctrl+K, type, Enter jumps to the section.
     await page.keyboard.press('Control+k');

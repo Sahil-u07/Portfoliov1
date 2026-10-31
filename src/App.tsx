@@ -31,7 +31,7 @@ export default function App() {
           const r = e.currentTarget.getBoundingClientRect(), z = e.currentTarget.offsetWidth / r.width;
           e.currentTarget.style.setProperty('--x', `${(e.clientX - r.left) * z}px`);
           e.currentTarget.style.setProperty('--y', `${(e.clientY - r.top) * z}px`);
-        }}><i className="dots" style={{ top: -1 }} /></div>
+        }}><i className="dots" style={{ top: -1 }} /><b /></div>
       </div></div>
     </>
   );
