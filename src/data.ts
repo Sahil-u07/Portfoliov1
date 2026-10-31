@@ -13,7 +13,7 @@ export const profile = {
     '100+ open-source contributions to Beehive, Concore, Diomede and GNU Radio.',
     'Currently building **EvidenceRAG** and **RoadGuard AI**.',
   ],
-  quote: 'Do so much work that it would be unreasonable for you to not be successful.',
+  quote: 'Do so much work that it would be unreasonable\nfor you to not be successful.', // \n = line break on wide screens
   quoteBy: 'Alex Hormozi',
   email: 'sahillenka44@gmail.com',
   github: 'https://github.com/Sahil-u07',

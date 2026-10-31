@@ -23,7 +23,7 @@ export default function App() {
           <Highlights />
           <figure className="quote rule-top">
             <i className="dots" style={{ top: -1 }} />
-            <blockquote>"{profile.quote}"</blockquote>
+            <blockquote>"{profile.quote.split('\n').map((l, i) => <span key={i}>{i > 0 && <br />}{l}{i === 0 && ' '}</span>)}"</blockquote>
             <figcaption><i />{profile.quoteBy}<i /></figcaption>
           </figure>
         </main>
