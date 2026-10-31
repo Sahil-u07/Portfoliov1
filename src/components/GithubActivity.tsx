@@ -48,7 +48,7 @@ export default function GithubActivity() {
             <div className="months" aria-hidden="true">{months.map(m => <span key={m}>{m}</span>)}</div>
             <div className="heat" role="img" aria-label={summary} style={{ gridTemplateColumns: `repeat(${weeks.length}, minmax(0, 1fr))` }}>
               {weeks.map((w, i) => (
-                <div key={i}>{w.map((d, j) => d ? <i key={d.date} data-level={d.level} onMouseEnter={e => { const r = e.currentTarget.getBoundingClientRect(), z = parseFloat(getComputedStyle(document.documentElement).zoom) || 1; setTip({ text: `${d.count} contributions on ${nice(d.date)}`, x: (r.left + r.width / 2) / z, y: r.top / z }); }} onMouseLeave={() => setTip(null)} /> : <i key={j} className="blank" />)}</div>
+                <div key={i}>{w.map((d, j) => d ? <i key={d.date} data-level={d.level} onMouseEnter={e => { const box = e.currentTarget.closest('.activity') as HTMLElement, r = e.currentTarget.getBoundingClientRect(), b = box.getBoundingClientRect(), k = box.offsetWidth / b.width; setTip({ text: `${d.count} contributions on ${nice(d.date)}`, x: (r.left + r.width / 2 - b.left) * k, y: (r.top - b.top) * k }); }} onMouseLeave={() => setTip(null)} /> : <i key={j} className="blank" />)}</div>
               ))}
             </div>
             {tip && <div className="heat-tip" style={{ left: tip.x, top: tip.y }}>{tip.text}</div>}

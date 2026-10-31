@@ -113,7 +113,7 @@
 .project:hover .view { color: var(--fg-2); }
 
 /* GitHub activity: grey heatmap, columns stretch to fill the column */
-.activity { padding: 16px 0; }
+.activity { position: relative; padding: 16px 0; }
 .months { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 10px; color: #71717a; }
 .heat { display: grid; column-gap: 2px; }
 .heat > div { display: flex; flex-direction: column; gap: 2px; }
@@ -125,8 +125,9 @@
 .heat.loading i { opacity: 1; background: #27272a; animation: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite; }
 :root[data-theme="light"] .heat.loading i { background: #f4f4f5; }
 @keyframes pulse { 50% { opacity: 0.5; } }
-/* Fixed to the viewport: x/y come from the hovered cell's screen box */
-.heat-tip { position: fixed; z-index: 100; translate: -50% calc(-100% - 8px); padding: 6px 10px; border-radius: 6px; pointer-events: none; white-space: nowrap;
+/* Placed inside .activity at the hovered cell. Screen boxes are converted back to layout px by
+   offsetWidth / rect width, so it lands right whatever the page zoom and however the browser reports it. */
+.heat-tip { position: absolute; z-index: 100; translate: -50% calc(-100% - 8px); padding: 6px 10px; border-radius: 6px; pointer-events: none; white-space: nowrap;
   background: #09090b; border: 1px solid rgb(255 255 255 / 0.1); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4); font-size: 11px; font-weight: 500; color: #e4e4e7; }
 :root[data-theme="light"] .heat-tip { background: #fff; border-color: #e4e4e7; box-shadow: 0 10px 15px -3px rgb(9 9 11 / 0.1); color: #3f3f46; }
 [data-level="0"] { background: #27272a; }
