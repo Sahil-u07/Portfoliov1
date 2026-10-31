@@ -99,12 +99,21 @@ kbd { font-family: var(--mono); }
 .soft:hover { background: var(--card-hover); color: var(--fg); }
 .view-all { display: flex; justify-content: center; margin-top: 16px; }
 
+/* Soft pill buttons: a faint top sheen and bottom shade, label at 70% until hover, a tiny press */
 .chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 500; letter-spacing: -0.01em;
-  background: #0c0c0e; border: 1px solid var(--edge); color: rgb(212 212 216 / 0.8); transition: background var(--fast), border-color var(--fast), color var(--fast); }
-:root[data-theme="light"] .chip { background: rgb(255 255 255 / 0.9); color: #171717; }
-.chip:hover { background: var(--card-hover); border-color: var(--edge-hover); color: var(--fg); }
-.chip.solid { background: var(--btn-bg); color: var(--btn-fg); border-color: transparent; font-weight: 600; }
-.chip.solid:hover { opacity: 0.92; }
+  background: #0c0c0e; border: 1px solid var(--edge); color: rgb(212 212 212 / 0.7); backdrop-filter: blur(6px);
+  background-image: radial-gradient(65.62% 65.62% at 50% 100%, rgb(0 0 0 / 0.1), transparent), linear-gradient(rgb(255 255 255 / 0.04), transparent);
+  transition: background-color var(--fast), border-color var(--fast), color 300ms, scale 200ms; }
+:root[data-theme="light"] .chip { background-color: rgb(255 255 255 / 0.9); color: rgb(23 23 23 / 0.7);
+  background-image: linear-gradient(99deg, transparent 27.7%, rgb(255 255 255 / 0.05) 60.19%, transparent 86.06%), radial-gradient(65.62% 65.62% at 50% 100%, rgb(0 0 0 / 0.04), transparent),
+    linear-gradient(rgb(255 255 255 / 0.16), transparent), linear-gradient(rgb(0 0 0 / 0.02), rgb(0 0 0 / 0.02)); }
+.chip:hover { background-color: var(--card-hover); border-color: var(--edge-hover); color: var(--fg); }
+:root[data-theme="light"] .chip:hover { background-color: #fff; color: #171717; }
+.chip:active { scale: 0.99; transition-duration: 50ms; }
+.chip.solid { background-color: var(--btn-bg); color: var(--btn-fg); border-color: rgb(255 255 255 / 0.1); font-weight: 500;
+  background-image: radial-gradient(65.62% 65.62% at 50% 100%, rgb(0 0 0 / 0.32), transparent), linear-gradient(rgb(255 255 255 / 0.12), transparent); }
+:root[data-theme="light"] .chip.solid { background-color: var(--btn-bg); border-color: rgb(0 0 0 / 0.1); color: #fafafa;
+  background-image: radial-gradient(65.62% 65.62% at 50% 100%, rgb(0 0 0 / 0.32), transparent), linear-gradient(rgb(255 255 255 / 0.12), transparent); }
 
 /* Sections fade up as they come into view: a native scroll-driven animation, static where unsupported */
 @supports (animation-timeline: view()) {
