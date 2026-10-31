@@ -38,7 +38,7 @@ function IndexNav() {
   const [active, setActive] = useState('');
   useEffect(() => {
     // The header counts too, so scrolling back to the top clears the highlight.
-    const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && setActive(e.target.id)), { rootMargin: '-40% 0px -55% 0px' });
+    const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && setActive(e.target.id)), { rootMargin: '-20% 0px -60% 0px' });
     ['top', ...sections.map(s => s.id)].forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
     return () => io.disconnect();
   }, []);
@@ -47,6 +47,34 @@ function IndexNav() {
       <h3>Index</h3>
       {sections.map(s => <a key={s.id} href={`#${s.id}`} className={active === s.id ? 'on' : undefined}><span />{s.label}</a>)}
     </nav>
+  );
+}
+
+type GitHubUser = { name: string | null; login: string; bio: string | null; location: string | null; public_repos: number; followers: number };
+let ghUser: Promise<GitHubUser | null> | null = null; // fetched once per visit
+
+/** Profile card that drops under a social button on hover. GitHub numbers are live from its public API; nothing here is typed in by hand except the LinkedIn handle. */
+function SocialCard({ icon }: { icon: string }) {
+  const [gh, setGh] = useState<GitHubUser | null>(null);
+  const isGh = icon === 'github';
+  useEffect(() => {
+    if (!isGh) return;
+    ghUser ??= fetch(`https://api.github.com/users/${profile.githubUser}`).then(r => (r.ok ? r.json() : null)).catch(() => null);
+    ghUser.then(setGh);
+  }, [isGh]);
+  const name = (isGh && gh?.name) || profile.name;
+  const handle = isGh ? (gh?.login ?? profile.githubUser) : `in/${profile.linkedin.split('/in/')[1]}`;
+  const bio = (isGh && gh?.bio) || profile.intro;
+  return (
+    <span className="social-card" aria-hidden="true">
+      <span className="sc-top">
+        <img src={`${base}hero/pfp.webp`} alt="" />
+        <span><b>{name}</b><code>{handle}</code></span>
+      </span>
+      <span className="sc-bio">{bio}</span>
+      {isGh && gh?.location && <span className="sc-loc"><Icon name="pin" />{gh.location}</span>}
+      {isGh && gh && <span className="sc-stats"><span><b>{gh.public_repos}</b> Repositories</span><span><b>{gh.followers}</b> Followers</span></span>}
+    </span>
   );
 }
 
@@ -62,6 +90,7 @@ export default function Hero() {
       <IndexNav />
       <div className="banner" aria-hidden="true">
         <NightBanner />
+        <i className="fade" />
         <Clock />
       </div>
       <div className="profile rule-top rule-bottom">
@@ -77,15 +106,22 @@ export default function Hero() {
       <ul className="bullets">{profile.bullets.map(b => <li key={b}><span>•</span><span>{b.split('**').map((t, i) => i % 2 ? <b key={i}>{t}</b> : t)}</span></li>)}</ul>
       <div className="cta-row">
         <span className="flip">
-          <a className="chip inner" href={profile.cv} download><Icon name="download" /> Download CV</a>
-          <span className="lid" aria-hidden="true"><span><Icon name="download" /> Download CV</span></span>
+          {/* Invisible copy sets the size; the real link waits under a lid that hinges open on hover */}
+          <span className="chip solid ghost" aria-hidden="true"><Icon name="download" /> Download CV</span>
+          <a className="flip-btn" href={profile.cv} download><Icon name="download" /> Download CV</a>
+          <span className="cover" aria-hidden="true">
+            <span className="innie"><Icon name="download" /> PDF</span>
+            <span className="spine" />
+            <span className="outie chip solid"><Icon name="download" /> Download CV</span>
+          </span>
+          <span className="cast" aria-hidden="true" />
         </span>
         <a className="chip" href={`mailto:${profile.email}`}><Icon name="mail" /> Send an email</a>
       </div>
       <h2 className="socials-title">Here are my <b>socials</b></h2>
       <ul className="socials">
         {socials.map(s => (
-          <li key={s.label}><a className="chip" href={s.href} target={s.icon === 'mail' ? undefined : '_blank'} rel="noopener"><Icon name={s.icon} /> {s.label}</a></li>
+          <li key={s.label} className="social"><a className="chip" href={s.href} target={s.icon === 'mail' ? undefined : '_blank'} rel="noopener"><Icon name={s.icon} /> {s.label}</a>{s.icon !== 'mail' && <SocialCard icon={s.icon} />}</li>
         ))}
       </ul>
     </header>
