@@ -9,7 +9,8 @@ export const profile = {
   // **text** is shown in bold
   bullets: [
     'AI, open source, and hard backend problems are what pull me in.',
-    '**66** merged pull requests across Concore, Beehive, Diomede and GNU Radio.',
+    "CS Undergrad @Manipal'28",
+    '**65+** merged pull requests across Concore, Beehive, Diomede and GNU Radio.',
     'Took real payments live at Sundarone, and shipped **EvidenceRAG** and **RoadGuard AI**.',
   ],
   quote: 'Do so much work that it would be unreasonable\nfor you to not be successful.', // \n = line break on wide screens
