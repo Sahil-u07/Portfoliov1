@@ -52,8 +52,6 @@
 }
 
 * { box-sizing: border-box; }
-/* Wide screens open at 80% scale, the size the layout looks best at */
-@media (min-width: 1200px) { html { zoom: 0.8; } }
 html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 /* The full-width dashed rules stick out of the column; this wrapper trims them at the screen edge */
 .site { overflow-x: clip; }

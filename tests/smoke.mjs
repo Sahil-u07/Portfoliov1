@@ -107,7 +107,7 @@ try {
     assert.equal(await page.locator('.heat i[data-level]').count(), 365);
     assert.match(await page.textContent('#activity .sec-note'), /^\d+ GitHub activities in the last year$/);
 
-    // Hovering a day shows its tooltip right above that cell (the page is zoomed to 80% on desktop).
+    // Hovering a day shows its tooltip right above that cell.
     if (name === 'desktop') {
       const cell = page.locator('.heat i[data-level]').nth(200);
       await cell.scrollIntoViewIfNeeded();
