@@ -5,7 +5,7 @@ export const profile = {
   name: 'Sahil Lenka',
   role: '20', // shown under the name
   tagline: 'B.Tech CSE (AIML) · Manipal University Jaipur · Class of 2028',
-  intro: "I send code to strangers' projects. 66 times, they said yes.",
+  intro: 'I find the bug, fix it, and disappear. 66 merged pull requests so far.',
   // **text** is shown in bold
   bullets: [
     'Studying Computer Science (AI and ML) at Manipal University Jaipur, class of 2028.',
