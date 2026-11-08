@@ -5,14 +5,13 @@ export const profile = {
   name: 'Sahil Lenka',
   role: '20', // shown under the name
   tagline: 'B.Tech CSE (AIML) · Manipal University Jaipur · Class of 2028',
-  intro: "66 of my pull requests are merged into other people's open-source projects, and I haven't graduated yet.",
+  intro: "Full-stack developer with 66 pull requests merged into other people's open-source projects.",
   // **text** is shown in bold
   bullets: [
-    'In **Concore** I tracked down a race where two writers could corrupt the same shared-memory message, and fixed it with a sequence counter and a semaphore.',
-    'For **Beehive** I wrote a scanner that hunts for API routes missing auth. It found 6 vulnerabilities, 1 of them critical.',
-    'At Sundarone I added Razorpay to a live hostel booking site, and bookings went up 15%. Before that I built the production website for IOTA Studio AI.',
-    'I built **EvidenceRAG**, which only answers when it can point to the evidence, and **RoadGuard AI**, which finds potholes in road video.',
-    'Studying CS (AI and ML) at Manipal University Jaipur, class of 2028.',
+    'Studying Computer Science (AI and ML) at Manipal University Jaipur, class of 2028.',
+    'Interned at IOTA Studio AI and Sundarone, building websites and payment flows.',
+    '108 open-source pull requests (66 merged) to Beehive, Concore, Diomede, GNU Radio and more.',
+    'Currently building **EvidenceRAG** and **RoadGuard AI**.',
   ],
   quote: 'Do so much work that it would be unreasonable\nfor you to not be successful.', // \n = line break on wide screens
   quoteBy: 'Alex Hormozi',
