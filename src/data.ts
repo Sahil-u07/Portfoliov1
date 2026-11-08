@@ -19,6 +19,7 @@ export const profile = {
   github: 'https://github.com/Sahil-u07',
   githubUser: 'Sahil-u07',
   linkedin: 'https://www.linkedin.com/in/sahil-lenka-3608a2311',
+  medium: 'https://medium.com/@sahillenka44',
   cv: `${import.meta.env.BASE_URL}Sahil-Lenka-CV.pdf`,
 };
 
@@ -141,10 +142,16 @@ export const highlights: { value: string; label: string; caption: string }[] = [
   { value: '3×', label: 'Hackathon finalist', caption: 'At university and national level.' },
 ];
 
+// Medium posts, newest first (from medium.com/feed/@sahillenka44).
+export const blogs: { title: string; date: string; url: string; tags: string[] }[] = [
+  { title: 'My RAG app scored 0.973. Then I gave it a real test.', date: 'Nov 2026', url: 'https://medium.com/@sahillenka44/my-rag-app-scored-0-973-then-i-gave-it-a-real-test-f787853e6354', tags: ['RAG', 'Information Retrieval', 'Python', 'AI', 'Machine Learning'] },
+];
+
 export const sections = [
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'open-source', label: 'Open Source' },
   { id: 'skills', label: 'Skills' },
+  { id: 'blog', label: 'Blog' },
   { id: 'highlights', label: 'Highlights' },
 ];
