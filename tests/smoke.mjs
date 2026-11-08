@@ -78,6 +78,11 @@ try {
     await page.getByRole('tab', { name: 'closed' }).click();
     await page.waitForFunction(() => [...document.querySelectorAll('.prs h3')].map(h => h.textContent).join() === 'Beehive,Concore,Diomede,GNU Radio');
 
+    // Blog: one row per Medium post, each linking out, plus View All to the profile.
+    assert.ok(await page.locator('#blog h3').count() > 0, `${name}: no blog posts`);
+    assert.ok(await page.$$eval('#blog .posts a', as => as.every(a => a.href.startsWith('https://medium.com/'))));
+    assert.match(await page.getAttribute('#blog .view-all a', 'href'), /^https:\/\/medium\.com\/@/);
+
     // Experience rows fold open to show their details.
     const row = page.locator('.xp-row').first();
     await row.click();

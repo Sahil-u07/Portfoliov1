@@ -5,6 +5,7 @@ import Projects from './components/Projects';
 import GithubActivity from './components/GithubActivity';
 import OpenSource from './components/OpenSource';
 import Skills from './components/Skills';
+import Blog from './components/Blog';
 import Highlights from './components/Highlights';
 import './components/Sections.css';
 
@@ -20,6 +21,7 @@ export default function App() {
           <GithubActivity />
           <OpenSource />
           <Skills />
+          <Blog />
           <Highlights />
           <figure className="quote rule-top">
             <i className="dots" style={{ top: -1 }} />

@@ -156,9 +156,9 @@
 .tabs button[aria-selected="true"], .tabs button:hover { color: var(--fg); }
 .os-stats { margin: 16px 0 0; }
 .os-stats .more:hover { text-decoration: underline; }
-.prs li::after { left: 0 !important; right: 0 !important; }
-.prs a { display: flex; flex-direction: column; gap: 6px; margin: 0 calc(-1 * var(--gutter)); padding: 16px var(--gutter); border-radius: 8px; transition: background var(--fast); }
-.prs a:hover { background: var(--row-hover); }
+.prs li::after, .posts li::after { left: 0 !important; right: 0 !important; }
+.prs a, .posts a { display: flex; flex-direction: column; gap: 6px; margin: 0 calc(-1 * var(--gutter)); padding: 16px var(--gutter); border-radius: 8px; transition: background var(--fast); }
+.prs a:hover, .posts a:hover { background: var(--row-hover); }
 .pr-title { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .pr-title i { flex: none; width: 8px; height: 8px; border-radius: 50%; }
 .pr-title i.merged { background: #a855f7; box-shadow: 0 0 8px rgb(168 85 247 / 0.4); }
@@ -215,3 +215,11 @@
 .floor > b { color: #a1a1aa; opacity: 0; transition: opacity 700ms ease-in-out; mask-image: radial-gradient(250px circle at var(--x, -1000px) var(--y, -1000px), black, transparent); }
 :root[data-theme="light"] .floor > b { color: #71717a; }
 .floor:hover > b { opacity: 0.25; }
+
+/* Blog: same rows as the PR list, with an arrow on the right */
+.posts a { position: relative; padding-right: calc(var(--gutter) + 28px); }
+.posts h3 { font-size: 15px; font-weight: 600; color: var(--fg); }
+.post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 13px; color: var(--fg-muted); }
+.post-meta > span { display: inline-flex; align-items: center; gap: 6px; }
+.posts .go { position: absolute; right: var(--gutter); top: 50%; translate: 0 -50%; color: var(--fg-faint); transition: translate var(--fast), color var(--fast); }
+.posts a:hover .go { translate: 4px -50%; color: var(--fg); }
