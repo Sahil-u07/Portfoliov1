@@ -10,7 +10,7 @@ export const profile = {
   bullets: [
     'Studying Computer Science (AI and ML) at Manipal University Jaipur, class of 2028.',
     'Interned at IOTA Studio AI and Sundarone, building websites and payment flows.',
-    '100+ open-source contributions to Beehive, Concore, Diomede and GNU Radio.',
+    '108 open-source pull requests (66 merged) to Beehive, Concore, Diomede, GNU Radio and more.',
     'Currently building **EvidenceRAG** and **RoadGuard AI**.',
   ],
   quote: 'Do so much work that it would be unreasonable\nfor you to not be successful.', // \n = line break on wide screens
@@ -22,25 +22,28 @@ export const profile = {
   cv: `${import.meta.env.BASE_URL}Sahil-Lenka-CV.pdf`,
 };
 
+// PR counts from GitHub search (author:Sahil-u07, other people's repos), checked 8 Nov 2026.
+export const prTotals = { merged: 66, open: 17, closed: 25 };
+
 export const openSource = [
   {
-    name: 'Beehive', org: 'KathiraveluLab', url: 'https://github.com/KathiraveluLab/Beehive', count: 20,
-    sub: 'Security Audit Tool · 20+ contributions',
+    name: 'Beehive', org: 'KathiraveluLab', url: 'https://github.com/KathiraveluLab/Beehive', prs: { merged: 14, open: 0, closed: 7 },
+    sub: 'Security Audit Tool · 21 pull requests',
     body: 'Built a static scanner that hunts for API routes missing auth. It found 6 vulnerabilities (1 critical, 4 high). Also locked down secret handling, turned off debug mode in production, and added tests and linting to CI.',
   },
   {
-    name: 'Concore', org: 'ControlCore-Project', url: 'https://github.com/ControlCore-Project/concore', count: 25,
-    sub: 'Neuromodulation simulation protocol · 25+ contributions',
+    name: 'Concore', org: 'ControlCore-Project', url: 'https://github.com/ControlCore-Project/concore', prs: { merged: 19, open: 1, closed: 3 },
+    sub: 'Neuromodulation simulation protocol · 23 pull requests',
     body: 'Wrote the concore CLI from scratch with 6 commands (init, run, validate, inspect, status, stop), and fixed a race where two writers could corrupt the same shared-memory message, using a sequence counter and a POSIX semaphore in Python and C++.',
   },
   {
-    name: 'Diomede', org: 'KathiraveluLab', url: 'https://github.com/KathiraveluLab/Diomede', count: 15,
-    sub: 'Dynamic DICOM Routing Module · 15+ contributions',
+    name: 'Diomede', org: 'KathiraveluLab', url: 'https://github.com/KathiraveluLab/Diomede', prs: { merged: 21, open: 2, closed: 0 },
+    sub: 'Dynamic DICOM Routing Module · 23 pull requests',
     body: 'Built load-based DICOM routing across several Orthanc servers, then made it fail gracefully: a clean HTTP 503 when Redis is down, and retries for failed acknowledgements.',
   },
   {
-    name: 'GNU Radio', org: 'gnuradio', url: 'https://github.com/gnuradio/gnuradio', count: 0,
-    sub: 'Signal-processing toolkit · and counting',
+    name: 'GNU Radio', org: 'gnuradio', url: 'https://github.com/gnuradio/gnuradio', prs: { merged: 1, open: 0, closed: 1 },
+    sub: 'Signal-processing toolkit · 2 pull requests',
     body: 'Fixed redundant signals in the GRC Qt editor and updated the WAV file blocks for libsndfile.',
   },
 ];
@@ -130,7 +133,7 @@ export const skills: Record<string, string[]> = {
 
 export const highlights: { value: string; label: string; caption: string }[] = [
   { value: 'Top 35', label: 'HackRx 6.0', caption: 'Top 35 out of 10,000+ teams at the Bajaj Finserv national hackathon.' },
-  { value: '100+', label: 'Open-source contributions', caption: 'Across five projects, including 40+ merged pull requests.' },
+  { value: '108', label: 'Open-source pull requests', caption: 'Across 16 repositories, 66 of them merged.' },
   { value: '15%', label: 'More bookings', caption: 'After I added Razorpay payments during the Sundarone internship.' },
   { value: '3rd', label: 'Smart Delhi Ideathon', caption: 'Third place in our category at a government-backed contest.' },
   { value: '97', label: 'Backend tests', caption: 'Written for EvidenceRAG.' },
