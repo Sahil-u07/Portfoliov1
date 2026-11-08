@@ -62,6 +62,7 @@ try {
       assert.equal(await page.locator(href).count(), 1, `${name}: ${href} has no section`);
 
     assert.deepEqual(await page.$$eval('#projects h3', hs => hs.map(h => h.textContent)), ['EvidenceRAG', 'RoadGuard AI', 'ProjectMUJToppers', 'This portfolio']);
+    assert.deepEqual(await page.$$eval('#projects .status', ss => ss.map(s => s.textContent)), ['Completed', 'Completed', 'Live', 'Live']);
     // Open source: per-project counts link to each repo; the PR list is live, one search per tab.
     assert.ok(await page.$$eval('#open-source .more', as => as.length === 4 && as.every(a => a.href.startsWith('https://github.com/'))));
     await page.waitForSelector('.prs h3');
