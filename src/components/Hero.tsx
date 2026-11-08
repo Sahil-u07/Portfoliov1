@@ -9,7 +9,7 @@ import './Hero.css';
 const base = import.meta.env.BASE_URL;
 
 /** Live local time in the banner corner, drawn like a dot-matrix clock: HH:MM:SS */
-function Clock() {
+export function Clock() {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => { const t = setInterval(() => setNow(new Date()), 1000); return () => clearInterval(t); }, []);
   const [h, m, sec] = now.toTimeString().slice(0, 8).split(':');
@@ -18,7 +18,7 @@ function Clock() {
 }
 
 /** Flips the theme and remembers it. The new theme is revealed by the CSS view transition where supported. */
-function ThemeButton() {
+export function ThemeButton() {
   const [dark, setDark] = useState(() => document.documentElement.dataset.theme !== 'light');
   const flip = () => {
     const next = dark ? 'light' : 'dark';

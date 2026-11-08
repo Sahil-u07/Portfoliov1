@@ -223,3 +223,16 @@
 .post-meta > span { display: inline-flex; align-items: center; gap: 6px; }
 .posts .go { position: absolute; right: var(--gutter); top: 50%; translate: 0 -50%; color: var(--fg-faint); transition: translate var(--fast), color var(--fast); }
 .posts a:hover .go { translate: 4px -50%; color: var(--fg); }
+
+/* A single post page */
+.post-top .back { display: grid; place-items: center; width: 32px; height: 32px; margin-top: 24px; border-radius: 6px; border: 1px solid var(--line); background: var(--tile); color: var(--fg-muted); transition: color var(--fast); }
+.post-top .back:hover { color: var(--fg); }
+.post-top .post-kind { font-size: 24px; font-weight: 700; letter-spacing: -0.025em; line-height: 1; color: var(--fg); }
+.post-top .post-path { margin-top: 4px; font-size: 13px; }
+.post { padding: 24px 0 64px; }
+.post h1 { margin: 16px 0 12px; font-size: clamp(28px, 5vw, 40px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; color: var(--fg); }
+.post-sub { font-size: 17px; line-height: 1.6; color: var(--fg-2); }
+.post .post-meta { margin: 16px 0 24px; }
+.post-cover { display: block; width: 100%; border-radius: 10px; border: 1px solid var(--line); }
+.post-body { margin-top: 16px; font-size: 16px; line-height: 1.75; color: var(--fg-2); }
+.read-on { margin-top: 24px; }

@@ -80,8 +80,15 @@ try {
 
     // Blog: one row per Medium post, each linking out, plus View All to the profile.
     assert.ok(await page.locator('#blog h3').count() > 0, `${name}: no blog posts`);
-    assert.ok(await page.$$eval('#blog .posts a', as => as.every(a => a.href.startsWith('https://medium.com/'))));
     assert.match(await page.getAttribute('#blog .view-all a', 'href'), /^https:\/\/medium\.com\/@/);
+    // A post opens as its own page inside the site; Back returns to the blog list.
+    const postTitle = await page.textContent('#blog h3');
+    await page.locator('#blog .posts a').first().click();
+    await page.getByRole('heading', { level: 1, name: postTitle }).waitFor();
+    assert.match(await page.textContent('.post-path'), /^Blogs\/[a-z0-9-]+$/);
+    assert.match(await page.getAttribute('.post a.read-on', 'href'), /^https:\/\/medium\.com\//);
+    await page.getByRole('link', { name: 'Back' }).click();
+    await page.locator('#blog h3').first().waitFor();
 
     // Experience rows fold open to show their details.
     const row = page.locator('.xp-row').first();
