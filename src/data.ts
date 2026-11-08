@@ -5,13 +5,13 @@ export const profile = {
   name: 'Sahil Lenka',
   role: '20', // shown under the name
   tagline: 'B.Tech CSE (AIML) · Manipal University Jaipur · Class of 2028',
-  intro: 'Engineer / Open-source regular. I build things, break them, and ship them again better.',
+  intro: '**Engineer** / **Open-source regular**. I build things, break them, and ship them again better.',
   // **text** is shown in bold
   bullets: [
-    'AI, open source, and hard backend problems are what pull me in.',
-    "CS Undergrad @Manipal'28",
+    '**AI**, **open source**, and **hard backend problems** are what pull me in.',
+    "CS Undergrad **@Manipal'28**",
     '**65+** merged pull requests across Concore, Beehive, Diomede and GNU Radio.',
-    'Took real payments live at Sundarone, and shipped **EvidenceRAG** and **RoadGuard AI**.',
+    'Took **real payments live** at **Sundarone**, and shipped **EvidenceRAG** and **RoadGuard AI**.',
   ],
   quote: 'Do so much work that it would be unreasonable\nfor you to not be successful.', // \n = line break on wide screens
   quoteBy: 'Alex Hormozi',
