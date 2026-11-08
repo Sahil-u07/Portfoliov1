@@ -8,7 +8,7 @@ export const profile = {
   intro: 'Engineer / Open-source regular. I build things, break them, and ship them again better.',
   // **text** is shown in bold
   bullets: [
-    "Most at home in AI, backends, and other people's codebases.",
+    'AI, open source, and hard backend problems are what pull me in.',
     '**66** merged pull requests across Concore, Beehive, Diomede and GNU Radio.',
     'Took real payments live at Sundarone, and shipped **EvidenceRAG** and **RoadGuard AI**.',
   ],
