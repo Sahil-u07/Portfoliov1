@@ -5,13 +5,12 @@ export const profile = {
   name: 'Sahil Lenka',
   role: '20', // shown under the name
   tagline: 'B.Tech CSE (AIML) · Manipal University Jaipur · Class of 2028',
-  intro: 'The bug hunter your codebase deserves.',
+  intro: "Builder / Bug hunter. I like finding what's broken and leaving it better than I found it.",
   // **text** is shown in bold
   bullets: [
-    'Studying Computer Science (AI and ML) at Manipal University Jaipur, class of 2028.',
-    'Interned at IOTA Studio AI and Sundarone, building websites and payment flows.',
-    '108 open-source pull requests (66 merged) to Beehive, Concore, Diomede, GNU Radio and more.',
-    'Currently building **EvidenceRAG** and **RoadGuard AI**.',
+    'AI, open source, and code that has to survive real users are what get me going.',
+    "I'd rather show you a merged pull request than tell you I'm good. **66** so far.",
+    'Lately shipped **EvidenceRAG** and **RoadGuard AI**, and hunting for the next hard problem.',
   ],
   quote: 'Do so much work that it would be unreasonable\nfor you to not be successful.', // \n = line break on wide screens
   quoteBy: 'Alex Hormozi',
