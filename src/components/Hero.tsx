@@ -6,6 +6,9 @@ import { prefersReducedMotion } from '../hooks';
 import Icon from './Icon';
 import './Hero.css';
 
+// **text** is shown in bold
+const bold = (s: string) => s.split('**').map((t, i) => (i % 2 ? <b key={i}>{t}</b> : t));
+
 const base = import.meta.env.BASE_URL;
 
 /** Live local time in the banner corner, drawn like a dot-matrix clock: HH:MM:SS */
@@ -64,7 +67,7 @@ function SocialCard({ icon }: { icon: string }) {
   }, [isGh]);
   const name = (isGh && gh?.name) || profile.name;
   const handle = isGh ? (gh?.login ?? profile.githubUser) : `in/${profile.linkedin.split('/in/')[1]}`;
-  const bio = (isGh && gh?.bio) || profile.intro;
+  const bio = (isGh && gh?.bio) || profile.intro.replaceAll('**', '');
   return (
     <span className="social-card" aria-hidden="true">
       <span className="sc-top">
@@ -102,8 +105,8 @@ export default function Hero() {
         </div>
         <div className="tools"><CommandMenu /><ThemeButton /></div>
       </div>
-      <p className="intro">{profile.intro}</p>
-      <ul className="bullets">{profile.bullets.map(b => <li key={b}><span>•</span><span>{b.split('**').map((t, i) => i % 2 ? <b key={i}>{t}</b> : t)}</span></li>)}</ul>
+      <p className="intro">{bold(profile.intro)}</p>
+      <ul className="bullets">{profile.bullets.map(b => <li key={b}><span>•</span><span>{bold(b)}</span></li>)}</ul>
       <div className="cta-row">
         <span className="flip">
           {/* Invisible copy sets the size; the real link waits under a lid that hinges open on hover */}

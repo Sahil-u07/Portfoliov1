@@ -50,7 +50,7 @@
 .intro { margin-top: 16px; color: var(--fg-2); }
 .bullets { margin-top: 16px; padding-left: 16px; color: var(--fg-2); }
 .bullets li { display: flex; gap: 6px; }
-.bullets b { font-weight: 600; color: var(--fg); }
+.intro b, .bullets b { font-weight: 600; color: var(--fg); }
 .cta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .socials-title { margin: 24px 0 8px; font-size: 14px; font-weight: 400; color: #71717a; }
 .socials-title b { font-weight: 500; color: var(--fg-2); }
