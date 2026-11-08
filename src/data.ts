@@ -47,14 +47,14 @@ export const openSource = [
 
 export const projects: { name: string; status: string; summary: string; tags: string[]; href: string; image?: string }[] = [
   {
-    name: 'EvidenceRAG', status: 'On GitHub',
+    name: 'EvidenceRAG', status: 'Completed',
     summary: "Ask a question about your own documents and get an answer you can check. It finds the evidence first, answers only from it, verifies every citation, and says so when the evidence isn't there.",
     tags: ['Python', 'FastAPI', 'React', 'Ollama'],
     href: 'https://github.com/Sahil-u07/evidencerag',
     image: 'evidencerag.webp', // the app in its built-in demo mode
   },
   {
-    name: 'RoadGuard AI', status: 'Building',
+    name: 'RoadGuard AI', status: 'Completed',
     summary: "A university team project that spots potholes, cracks and speed bumps in road photos and video, so damage can be reported and fixed before it causes accidents.",
     tags: ['Python', 'YOLOv8', 'Streamlit', 'OpenCV'],
     href: 'https://github.com/Sahil-u07/roadguard-ai',
