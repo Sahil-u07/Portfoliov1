@@ -142,9 +142,17 @@ export const highlights: { value: string; label: string; caption: string }[] = [
   { value: '3×', label: 'Hackathon finalist', caption: 'At university and national level.' },
 ];
 
-// Medium posts, newest first (from medium.com/feed/@sahillenka44).
-export const blogs: { title: string; date: string; url: string; tags: string[] }[] = [
-  { title: 'My RAG app scored 0.973. Then I gave it a real test.', date: 'Nov 2026', url: 'https://medium.com/@sahillenka44/my-rag-app-scored-0-973-then-i-gave-it-a-real-test-f787853e6354', tags: ['RAG', 'Information Retrieval', 'Python', 'AI', 'Machine Learning'] },
+// Medium posts, newest first (from medium.com/feed/@sahillenka44). Each opens at #blog/<slug>.
+// body: the article, one paragraph per entry; leave it out to show the subtitle and a link to Medium.
+export const blogs: { slug: string; title: string; subtitle: string; date: string; url: string; cover?: string; tags: string[]; body?: string[] }[] = [
+  {
+    slug: 'my-rag-app-scored-0-973',
+    title: 'My RAG app scored 0.973. Then I gave it a real test.',
+    subtitle: 'What happened when I built a document Q&A app that would rather say "I don\'t know" than make something up',
+    cover: 'https://cdn-images-1.medium.com/max/1024/1*o8xOC9VtioeLnrDnEvFqNw.png',
+    date: 'Nov 2026', url: 'https://medium.com/@sahillenka44/my-rag-app-scored-0-973-then-i-gave-it-a-real-test-f787853e6354',
+    tags: ['RAG', 'Information Retrieval', 'Python', 'AI', 'Machine Learning'],
+  },
 ];
 
 export const sections = [
