@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { openSource, profile } from '../data';
+import { openSource, prTotals, profile } from '../data';
 import Section, { ViewAll } from './Section';
 
 type Tab = 'merged' | 'open' | 'closed';
@@ -9,6 +9,9 @@ const filters: Record<Tab, string> = { merged: 'is:merged', open: 'is:open', clo
 // Pull requests to other people's projects, newest first, from GitHub's public search API.
 export const searchUrl = (tab: Tab) =>
   `https://api.github.com/search/issues?q=${encodeURIComponent(`author:${profile.githubUser} type:pr -user:${profile.githubUser} ${filters[tab]}`)}&sort=updated&per_page=4`;
+// Non-zero counts only, e.g. "14 merged · 7 closed"
+const breakdown = (c: Record<Tab, number>) => TABS.filter(t => c[t]).map(t => `${c[t]} ${t}`).join(' · ');
+const sum = (c: Record<Tab, number>) => c.merged + c.open + c.closed;
 const searchPage = (tab: Tab) => `https://github.com/pulls?q=${encodeURIComponent(`author:${profile.githubUser} is:pr -user:${profile.githubUser} ${filters[tab]}`)}`;
 
 export default function OpenSource() {
@@ -36,9 +39,10 @@ export default function OpenSource() {
 
   return (
     <Section id="open-source" title="Open Source Contributions" aside={tabs}>
-      {/* The per-project counts are my own tally; the list below is live from GitHub */}
+      {/* Counts are a snapshot in data.ts; the list below is live from GitHub */}
+      <p className="os-total">{sum(prTotals)} pull requests · {breakdown(prTotals)}</p>
       <dl className="stats os-stats">
-        {openSource.map(p => <div key={p.name}><dd><a className="more" href={p.url} target="_blank" rel="noopener">{p.count ? `${p.count}+` : 'Counting'}</a></dd><dt>{p.name}</dt></div>)}
+        {openSource.map(p => <div key={p.name}><dd><a className="more" href={p.url} target="_blank" rel="noopener">{sum(p.prs)}</a></dd><dt>{p.name}</dt><small>{breakdown(p.prs)}</small></div>)}
       </dl>
       <ul className="prs" role="tabpanel">
         {list === 'failed' ? openSource.map(p => (

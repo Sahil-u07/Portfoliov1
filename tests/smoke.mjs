@@ -65,6 +65,9 @@ try {
     assert.deepEqual(await page.$$eval('#projects .status', ss => ss.map(s => s.textContent)), ['Completed', 'Completed', 'Live', 'Live']);
     // Open source: per-project counts link to each repo; the PR list is live, one search per tab.
     assert.ok(await page.$$eval('#open-source .more', as => as.length === 4 && as.every(a => a.href.startsWith('https://github.com/'))));
+    assert.deepEqual(await page.$$eval('#open-source .more', as => as.map(a => a.textContent)), ['21', '23', '23', '2']);
+    assert.equal(await page.textContent('#open-source .os-total'), '108 pull requests · 66 merged · 17 open · 25 closed');
+    assert.equal(await page.textContent('#open-source .os-stats small'), '14 merged · 7 closed');
     await page.waitForSelector('.prs h3');
     assert.deepEqual(await page.$$eval('.prs h3', hs => hs.map(h => h.textContent)), ['merged PR 1', 'merged PR 2']);
     assert.match(await page.textContent('#open-source .view-all'), /View All \(31 more\)/);

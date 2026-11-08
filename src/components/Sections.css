@@ -146,6 +146,8 @@
 
 /* Open source: sliding tabs, counts, then the live PR list */
 .tabs { margin-right: 8px; }
+.os-total { margin: 0 0 12px; font-size: 13px; color: var(--fg-muted); }
+.os-stats small { display: block; margin-top: 4px; font-size: 11px; color: var(--fg-faint); }
 .tabs::before { inset: -5px; border-radius: 11px; }
 .tabs-inner { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); padding: 4px; border-radius: 6px; background: var(--card); border: 1px solid var(--edge); box-shadow: var(--lift); }
 .tab-pill { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc((100% - 8px) / 3); border-radius: 4px; background: #1e1e20; border: 1px solid rgb(39 39 42 / 0.5); transition: translate 300ms var(--ease); }
